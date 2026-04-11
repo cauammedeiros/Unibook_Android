@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".tela_Entrando">
+
+    <ImageView
+        android:id="@+id/logo2"
+        android:layout_width="match_parent"
+        android:layout_height="274dp"
+        android:layout_gravity="center|top"
+        app:srcCompat="@drawable/logo_nome" />
+
+    <TextView
+        android:id="@+id/bemvindo2"
+        android:layout_width="match_parent"
+        android:layout_height="117dp"
+        android:fontFamily="@font/angkor"
+        android:gravity="center"
+        android:text="Bem vindo ao Unibook !"
+        android:textColor="#1C70AB"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#217AB5"
+        android:text="Entrar" />
+
+</LinearLayout>

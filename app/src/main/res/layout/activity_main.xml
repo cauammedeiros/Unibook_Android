@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/Logo"
         android:layout_width="351dp"
         android:layout_height="274dp"
         android:layout_gravity="center|top"
@@ -26,46 +26,53 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textLogin"
         android:layout_width="match_parent"
-        android:layout_height="107dp"
+        android:layout_height="59dp"
         android:fontFamily="@font/bree_serif"
-        android:gravity="center"
-        android:text="Faça o Login"
+        android:gravity="center|left"
+        android:text="  Faça o Login"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Insira seu Email"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/email"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:fallbackLineSpacing="false"
         android:hapticFeedbackEnabled="false"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Insira sua Senha"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:hint="Insira o E-mail"
+        android:inputType="textEmailAddress"
+        android:keyboardNavigationCluster="false" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/senha"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Insira a senha"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1B0404"
+        android:text="Continuar"
+        android:textColorLink="#000000" />
+
+    <TextView
+        android:id="@+id/txtEsqueceuSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/averia_libre_italic"
+        android:padding="8dp"
+        android:text="Esqueceu a Senha ?"
+        android:textColor="#2196F3"
+        android:textStyle="italic" />
 
 </LinearLayout>
