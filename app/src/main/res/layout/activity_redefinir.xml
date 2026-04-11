@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CadastroActivity">
+    tools:context=".RedefinirActivity">
 
     <ImageButton
         android:id="@+id/btnVoltarRedefinir"
@@ -19,36 +19,35 @@
         android:src="@drawable/baseline_keyboard_arrow_left_24" />
 
     <ImageView
-        android:id="@+id/logo3"
+        android:id="@+id/logo6"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/logo_nome" />
 
     <TextView
-        android:id="@+id/txtCrieconta"
+        android:id="@+id/txtInsira"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Crie uma conta"
-        android:textSize="20sp"
+        android:text="Insira uma nova senha:"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/txtNome"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+    <TextView
+        android:id="@+id/txtRequisitosSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:hint="Nome Completo"
-        android:inputType="text" />
+        android:layout_margin="16dp"
+        android:background="@drawable/fundo_requisitos_senha"
+        android:padding="12dp"
+        android:lineSpacingExtra="4sp"
+        android:text="A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula."
+        android:textColor="#666666"
+        android:textSize="13sp" />
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtNovaSenha"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,11 +56,11 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/borda_edittext"
         android:ems="10"
-        android:hint="email@domain.com"
-        android:inputType="textEmailAddress" />
+        android:hint="Insira uma nova senha"
+        android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/txtRepetirSenha"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,36 +69,17 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/borda_edittext"
         android:ems="10"
-        android:hint="Crie uma senha"
+        android:hint="Confirme a nova senha"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnCadastrar"
+        android:id="@+id/btnRedefinir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#000000"
-        android:text="Cadastrar" />
+        android:text="Redefinir senha" />
 
-    <TextView
-        android:id="@+id/txtTemLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Já Possui conta? Faça o Login"
-        android:textColor="#2177B6" />
-
-    <TextView
-        android:id="@+id/txtTermos2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:text="@string/termos"
-        android:textSize="12sp" />
 </LinearLayout>

@@ -9,27 +9,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class RecuperacaoActivity : AppCompatActivity() {
+class SolicitacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_recuperacao)
+        setContentView(R.layout.activity_solicitacao)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarRecuperar)
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarSolicitar)
 
         btnVoltar.setOnClickListener {
             finish()
         }
 
-        val btnSolicitar = findViewById<Button>(R.id.btnSolicitar)
+        val btnEnviar = findViewById<Button>(R.id.btnEnviar)
 
-        btnSolicitar.setOnClickListener {
-            val intent = Intent(this, SolicitacaoActivity::class.java)
+        btnEnviar.setOnClickListener{
+            val intent = Intent(this, RedefinirActivity::class.java)
+            startActivity(intent)
         }
     }
 }

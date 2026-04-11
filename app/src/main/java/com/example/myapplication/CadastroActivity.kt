@@ -20,7 +20,7 @@ class CadastroActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarCadastro)
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarRedefinir)
 
         btnVoltar.setOnClickListener {
             finish()
