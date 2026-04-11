@@ -21,10 +21,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
        }
 
-        val esqueceuSenha = findViewById<TextView>(R.id.txtEsqueceuSenha)
+        val btnEsqueceuSenha = findViewById<TextView>(R.id.txtEsqueceuSenha)
 
-        esqueceuSenha.setOnClickListener {
+        btnEsqueceuSenha.setOnClickListener {
             val intent = Intent(this, RecuperacaoActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnCadastrar = findViewById<TextView>(R.id.txtCadastrar)
+
+        btnCadastrar.setOnClickListener {
+            val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
     }

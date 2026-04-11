@@ -11,27 +11,28 @@
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="351dp"
-        android:layout_height="274dp"
+        android:layout_height="250dp"
         android:layout_gravity="center|top"
         app:srcCompat="@drawable/logo_nome" />
 
     <TextView
-        android:id="@+id/bemvindo"
+        android:id="@+id/txtBemvindo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/angkor"
         android:gravity="center"
-        android:text="Bem vindo ao Unibook"
+        android:text="@string/bem_vindo"
         android:textColor="#1C70AB"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textLogin"
+        android:id="@+id/txtLogin"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:fontFamily="@font/bree_serif"
-        android:gravity="center|left"
-        android:text="  Faça o Login"
+        android:layout_marginStart="30dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center|start"
+        android:text="@string/login"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -40,11 +41,13 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/borda_edittext"
         android:ems="10"
         android:fallbackLineSpacing="false"
         android:hapticFeedbackEnabled="false"
-        android:hint="Insira o E-mail"
+        android:hint="@string/insira_o_e_mail"
         android:inputType="textEmailAddress"
         android:keyboardNavigationCluster="false" />
 
@@ -53,26 +56,54 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/borda_edittext"
         android:ems="10"
-        android:hint="Insira a senha"
+        android:hint="@string/insira_a_senha"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnContinuar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="#1B0404"
-        android:text="Continuar"
+        android:text="@string/continuar"
         android:textColorLink="#000000" />
 
     <TextView
         android:id="@+id/txtEsqueceuSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/averia_libre_italic"
+        android:layout_marginStart="30dp"
+        android:fontFamily="sans-serif"
         android:padding="8dp"
-        android:text="Esqueceu a Senha ?"
+        android:text="@string/esqueceu_a_senha"
         android:textColor="#2196F3"
         android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txtCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/cadastre_se"
+        android:textColor="#3387CA" />
+
+    <TextView
+        android:id="@+id/txtTermos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/termos"
+        android:gravity="center"
+        android:textSize="12sp" />
 
 </LinearLayout>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="termos">Clicando em continuar, você concorda com nossos <b>Termos de Serviço</b> e <b>Políticas de Privacidade</b></string>
+    <string name="cadastre_se">Não tem uma conta? Cadastre-se.</string>
+    <string name="esqueceu_a_senha">Esqueceu a Senha ?</string>
+    <string name="continuar">Continuar</string>
+    <string name="bem_vindo">Bem vindo ao Unibook</string>
+    <string name="login">Faça o Login</string>
+    <string name="insira_o_e_mail">Insira o E-mail</string>
+    <string name="insira_a_senha">Insira a senha</string>
+    <string name="crie_uma_conta">Criar uma conta</string>"
 </resources>
