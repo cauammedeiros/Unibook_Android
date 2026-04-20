@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetalhesLivroActivity">
+
+    <!-- HEADER AZUL ESCURO -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul_escuro"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Botão Voltar -->
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:contentDescription="Voltar"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tela do Livro"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center" />
+
+        <!-- Espaço para balancear o layout -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TÍTULO DO LIVRO -->
+            <TextView
+                android:id="@+id/txtNomeLivro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome do Livro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_escuro"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Linha divisória -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cinza_borda"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ÁREA DA CAPA E BOTÕES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <!-- CAPA DO LIVRO -->
+                <ImageView
+                    android:id="@+id/imgCapaLivro"
+                    android:layout_width="160dp"
+                    android:layout_height="240dp"
+                    android:background="@color/cinza_claro"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Capa do Livro" />
+
+                <!-- BOTÕES À DIREITA -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:gravity="top">
+
+                    <!-- Botão Baixar -->
+                    <Button
+                        android:id="@+id/btnBaixar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Baixar"
+                        android:textColor="@color/white"
+                        android:background="@drawable/btn_azul"
+                        android:drawableEnd="@drawable/ic_download"
+                        android:padding="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:textAllCaps="false" />
+
+                    <!-- Botão Favoritar/Desfavoritar -->
+                    <Button
+                        android:id="@+id/btnFavoritar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Favoritar / Desfavoritar"
+                        android:textColor="@color/texto_escuro"
+                        android:background="@drawable/btn_branco_borda"
+                        android:drawableEnd="@drawable/ic_star_outline"
+                        android:padding="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="12sp" />
+
+                    <!-- Botão Alugar/Empréstimo -->
+                    <Button
+                        android:id="@+id/btnAlugar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alugar/Emprestimo"
+                        android:textColor="@color/texto_escuro"
+                        android:background="@drawable/btn_branco_borda"
+                        android:drawableEnd="@drawable/ic_shopping_cart"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- INFORMAÇÕES DO LIVRO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- Gênero -->
+                <TextView
+                    android:id="@+id/txtGenero"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gênero :"
+                    android:textSize="14sp"
+                    android:textColor="@color/texto_claro"
+                    android:padding="8dp"
+                    android:background="@drawable/btn_branco_borda" />
+
+                <!-- Autor -->
+                <TextView
+                    android:id="@+id/txtAutor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Autor :"
+                    android:textSize="14sp"
+                    android:textColor="@color/texto_claro"
+                    android:padding="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/btn_branco_borda" />
+            </LinearLayout>
+
+            <!-- CAIXA DE SINOPSE -->
+            <TextView
+                android:id="@+id/txtSinopse"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:text="Aqui vai ficar a Sinopse do Livro"
+                android:textSize="14sp"
+                android:textColor="@color/texto_claro"
+                android:padding="16dp"
+                android:background="@drawable/btn_branco_borda"
+                android:gravity="top" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BOTTOM NAVIGATION -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul_escuro"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <!-- Início -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_home"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Início"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Biblioteca -->
+        <LinearLayout
+            android:id="@+id/navBiblioteca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_library"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biblioteca"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- CHATBOT -->
+        <LinearLayout
+            android:id="@+id/navChatbot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chatbot"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHATBOT"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Buscar -->
+        <LinearLayout
+            android:id="@+id/navBuscar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Perfil -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
