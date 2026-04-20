@@ -11,19 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
             android:name=".TelaBibliotecaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tela_biblioteca"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".ChatbotActivity"
             android:exported="false" />
-        <activity
-            android:name="TelaBibliotecaActivity"
-            android:exported="false"
-            android:label="@string/title_activity_tela_biblioteca"
-            android:theme="@style/Theme.MyApplication" />
-        <activity
-            android:name=".TelaBibliotecaActivity"
-            android:exported="false"
-            android:label="@string/title_activity_tela_biblioteca"
-            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".RedefinirActivity"
             android:exported="false" />
