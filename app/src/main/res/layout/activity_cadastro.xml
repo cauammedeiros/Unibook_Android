@@ -34,6 +34,18 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/txtRequisitosSenha2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/fundo_requisitos_senha"
+        android:lineSpacingExtra="4sp"
+        android:padding="8dp"
+        android:text="A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula."
+        android:textColor="#666666"
+        android:textSize="13sp" />
+
     <EditText
         android:id="@+id/txtNome"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -95,11 +107,12 @@
     <TextView
         android:id="@+id/txtTermos2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="30dp"
         android:gravity="center"
         android:text="@string/termos"
         android:textSize="12sp" />
+
 </LinearLayout>
