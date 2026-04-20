@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Cores originais -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Cores do app Unibook -->
+    <color name="azul_escuro">#1E3A5F</color>  <!-- Azul escuro do header e bottom nav -->
+    <color name="azul_botao">#5B7FFF</color>   <!-- Azul vibrante do botão "Baixar" -->
+    <color name="cinza_claro">#F5F5F5</color>  <!-- Fundo cinza claro -->
+    <color name="cinza_borda">#E0E0E0</color>  <!-- Borda dos botões -->
+    <color name="texto_escuro">#333333</color> <!-- Texto principal -->
+    <color name="texto_claro">#666666</color>  <!-- Texto secundário -->
 </resources>
