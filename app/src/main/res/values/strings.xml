@@ -8,5 +8,6 @@
     <string name="login">Faça o Login</string>
     <string name="insira_o_e_mail">Insira o E-mail</string>
     <string name="insira_a_senha">Insira a senha</string>
-    <string name="crie_uma_conta">Criar uma conta</string>"
+    <string name="crie_uma_conta">Criar uma conta</string>
+    <string name="title_activity_tela_biblioteca">Tela_BibliotecaActivity</string>"
 </resources>
