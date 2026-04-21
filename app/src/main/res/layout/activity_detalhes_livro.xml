@@ -5,20 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".DetalhesLivroActivity">
 
     <!-- HEADER AZUL ESCURO -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:paddingHorizontal="8dp">
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <ImageButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Voltar"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:tint="@color/black" />
+        <!-- Botão Voltar -->
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:contentDescription="Voltar"
+            app:tint="@color/black" />
 
+    </RelativeLayout>
+
+    <!-- CONTEÚDO PRINCIPAL COM SCROLL -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,11 +47,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nome do Livro"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/texto_escuro"
+                android:textColor="@color/black"
                 android:gravity="center"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="12dp" />
 
             <!-- Linha divisória -->
             <View
@@ -55,16 +65,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="16dp">
 
                 <!-- CAPA DO LIVRO -->
-                <ImageView
-                    android:id="@+id/imgCapaLivro"
-                    android:layout_width="160dp"
-                    android:layout_height="240dp"
-                    android:background="@color/cinza_claro"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Capa do Livro" />
+                <FrameLayout
+                    android:layout_width="140dp"
+                    android:layout_height="210dp"
+                    android:background="@color/cinza_borda">
+
+                    <ImageView
+                        android:id="@+id/imgCapaLivro"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Capa do Livro" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Capa do Livro"
+                        android:textColor="@color/texto_claro"
+                        android:textSize="12sp" />
+                </FrameLayout>
 
                 <!-- BOTÕES À DIREITA -->
                 <LinearLayout
@@ -72,50 +95,97 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_marginStart="16dp"
-                    android:gravity="top">
+                    android:layout_marginStart="12dp">
 
                     <!-- Botão Baixar -->
-                    <Button
-                        android:id="@+id/btnBaixar"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:background="@color/azul_escuro"
-                        android:drawableEnd="@drawable/ic_download"
-                        android:padding="12dp"
-                        android:text="Baixar"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
+                        android:layout_marginBottom="8dp">
+
+                        <Button
+                            android:id="@+id/btnBaixar"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_toStartOf="@+id/ic_baixar_ext"
+                            android:layout_marginEnd="8dp"
+                            android:text="Baixar"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:background="@drawable/btn_azul"
+                            app:backgroundTint="@null"
+                            android:textAllCaps="false"
+                            android:gravity="center" />
+
+                        <ImageView
+                            android:id="@+id/ic_baixar_ext"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_download"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
 
                     <!-- Botão Favoritar/Desfavoritar -->
-                    <Button
-                        android:id="@+id/btnFavoritar"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Favoritar / Desfavoritar"
-                        android:textColor="@color/texto_escuro"
-                        android:background=""
-                        android:drawableEnd="@drawable/ic_star_outline"
-                        android:padding="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="12sp" />
+                        android:layout_marginBottom="8dp">
+
+                        <Button
+                            android:id="@+id/btnFavoritar"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_toStartOf="@+id/ic_favoritar_ext"
+                            android:layout_marginEnd="8dp"
+                            android:text="Favoritar / Desfavoritar"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_branco_borda"
+                            app:backgroundTint="@null"
+                            android:textAllCaps="false"
+                            android:gravity="center" />
+
+                        <ImageView
+                            android:id="@+id/ic_favoritar_ext"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_star_outline"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
 
                     <!-- Botão Alugar/Empréstimo -->
-                    <Button
-                        android:id="@+id/btnAlugar"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Alugar/Emprestimo"
-                        android:textColor="@color/texto_escuro"
-                        android:background="@drawable/btn_branco_borda"
-                        android:drawableEnd="@drawable/ic_shopping_cart"
-                        android:padding="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        android:layout_height="wrap_content">
 
+                        <Button
+                            android:id="@+id/btnAlugar"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_toStartOf="@+id/ic_alugar_ext"
+                            android:layout_marginEnd="8dp"
+                            android:text="Alugar/Emprestimo"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/btn_branco_borda"
+                            app:backgroundTint="@null"
+                            android:textAllCaps="false"
+                            android:gravity="center" />
+
+                        <ImageView
+                            android:id="@+id/ic_alugar_ext"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_shopping_cart"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <!-- INFORMAÇÕES DO LIVRO -->
@@ -126,42 +196,48 @@
                 android:layout_marginBottom="16dp">
 
                 <!-- Gênero -->
-                <TextView
+                <EditText
                     android:id="@+id/txtGenero"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="Gênero :"
-                    android:textSize="14sp"
-                    android:textColor="@color/texto_claro"
-                    android:padding="8dp"
-                    android:background="@drawable/btn_branco_borda" />
+                    android:hint="Gênero :"
+                    android:textSize="13sp"
+                    android:textColorHint="@color/texto_claro"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/borda_edittext"
+                    android:inputType="text"
+                    android:layout_marginEnd="8dp" />
 
                 <!-- Autor -->
-                <TextView
+                <EditText
                     android:id="@+id/txtAutor"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="Autor :"
-                    android:textSize="14sp"
-                    android:textColor="@color/texto_claro"
-                    android:padding="8dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/btn_branco_borda" />
+                    android:hint="Autor :"
+                    android:textSize="13sp"
+                    android:textColorHint="@color/texto_claro"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/borda_edittext"
+                    android:inputType="text" />
             </LinearLayout>
 
             <!-- CAIXA DE SINOPSE -->
-            <TextView
+            <EditText
                 android:id="@+id/txtSinopse"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:text="Aqui vai ficar a Sinopse do Livro"
-                android:textSize="14sp"
-                android:textColor="@color/texto_claro"
-                android:padding="16dp"
-                android:background="@drawable/btn_branco_borda"
-                android:gravity="top" />
+                android:layout_height="180dp"
+                android:hint="Aqui vai ficar a Sinopse do Livro"
+                android:textSize="13sp"
+                android:textColorHint="@color/texto_claro"
+                android:padding="12dp"
+                android:background="@drawable/borda_edittext"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical" />
         </LinearLayout>
     </ScrollView>
 
@@ -171,7 +247,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingVertical="8dp">
+        android:paddingVertical="8dp"
+        android:elevation="8dp">
 
         <!-- Início -->
         <LinearLayout
@@ -181,7 +258,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
@@ -195,7 +273,7 @@
                 android:text="Início"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <!-- Biblioteca -->
@@ -206,7 +284,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
@@ -220,7 +299,7 @@
                 android:text="Biblioteca"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <!-- CHATBOT -->
@@ -231,7 +310,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
@@ -245,7 +325,7 @@
                 android:text="CHATBOT"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <!-- Buscar -->
@@ -256,7 +336,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
@@ -270,7 +351,7 @@
                 android:text="Buscar"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <!-- Perfil -->
@@ -281,7 +362,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
@@ -295,7 +377,7 @@
                 android:text="Perfil"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
     </LinearLayout>
 
