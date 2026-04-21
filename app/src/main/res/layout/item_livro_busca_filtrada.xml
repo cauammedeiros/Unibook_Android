@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Capa do Livro -->
+        <FrameLayout
+            android:layout_width="140dp"
+            android:layout_height="180dp"
+            android:background="#E0E0E0">
+
+            <ImageView
+                android:id="@+id/imgCapaBusca"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txtCapaTextoBusca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Capa do Livro"
+                android:textSize="12sp" />
+        </FrameLayout>
+
+        <!-- Informações -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome :"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/borda_edittext"
+                android:paddingHorizontal="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Autor :"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/borda_edittext"
+                android:paddingHorizontal="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gênero :"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:paddingHorizontal="8dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Sinopse -->
+    <TextView
+        android:id="@+id/txtSinopseBusca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/borda_edittext"
+        android:minHeight="100dp"
+        android:padding="12dp"
+        android:text="Aqui vai ficar a Sinopse do Livro"
+        android:textSize="13sp" />
+
+</LinearLayout>

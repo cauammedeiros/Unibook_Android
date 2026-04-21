@@ -50,6 +50,18 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".BuscaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PesquisaGeneroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BuscaFiltradaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalhesLivroActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
