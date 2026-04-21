@@ -52,8 +52,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
 
         // Botão Baixar
         btnBaixar.setOnClickListener {
-            Toast.makeText(this, "Baixando livro...", Toast.LENGTH_SHORT).show()
-            // Aqui você adiciona a lógica para baixar o livro
+            showPopUpTermos()
         }
 
         // Botão Favoritar
@@ -91,6 +90,39 @@ class DetalhesLivroActivity : AppCompatActivity() {
         // Bottom Navigation - Perfil
         findViewById<android.view.View>(R.id.navPerfil).setOnClickListener {
             Toast.makeText(this, "Ir para Perfil", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showPopUpTermos() {
+        // 1. Infla o layout do pop-up que você criou
+        val mDialogView = layoutInflater.inflate(R.layout.dialog_termos, null)
+
+        // 2. Constrói o AlertDialog usando o seu layout
+        val mBuilder = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        val mAlertDialog = mBuilder.show()
+
+        // 3. Mapeia os componentes que estão DENTRO do pop-up
+        val btnConfirmar = mDialogView.findViewById<Button>(R.id.btnConfirmarBaixar)
+        val btnVoltarPopUp = mDialogView.findViewById<TextView>(R.id.btnVoltar)
+        val checkAceitar = mDialogView.findViewById<android.widget.CheckBox>(R.id.checkAceitar)
+
+        // Opcional: Começa com o botão desativado até aceitarem os termos
+        btnConfirmar.isEnabled = false
+        checkAceitar.setOnCheckedChangeListener { _, isChecked ->
+            btnConfirmar.isEnabled = isChecked
+        }
+
+        // Configura o clique do "Voltar" dentro do Pop-up
+        btnVoltarPopUp.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+        // Configura o clique final de "Baixar" dentro do Pop-up
+        btnConfirmar.setOnClickListener {
+            mAlertDialog.dismiss()
+            Toast.makeText(this, "Iniciando download do livro...", Toast.LENGTH_SHORT).show()
         }
     }
 }

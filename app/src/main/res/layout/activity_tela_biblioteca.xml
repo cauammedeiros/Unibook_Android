@@ -33,18 +33,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtBiblioteca" />
 
+    <!-- Subtítulo Favoritos -->
+
     <ImageView
         android:id="@+id/btnMoon"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:background="#E0E0E0"
         android:padding="5dp"
         android:src="@drawable/ic_dark_mode"
         app:layout_constraintEnd_toEndOf="@+id/btnSun"
         app:layout_constraintTop_toBottomOf="@+id/btnSun" />
-
-    <!-- Subtítulo Favoritos -->
 
     <TextView
         android:id="@+id/txtFavoritos"
