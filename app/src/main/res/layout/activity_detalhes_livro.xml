@@ -8,40 +8,17 @@
     tools:context=".DetalhesLivroActivity">
 
     <!-- HEADER AZUL ESCURO -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/azul_escuro"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
-
-        <!-- Botão Voltar -->
-        <ImageButton
-            android:id="@+id/btnVoltar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            android:contentDescription="Voltar"
-            app:tint="@color/white" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tela do Livro"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:gravity="center" />
-
-        <!-- Espaço para balancear o layout -->
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-    </LinearLayout>
 
     <!-- CONTEÚDO PRINCIPAL -->
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Voltar"
+        android:src="@drawable/baseline_keyboard_arrow_left_24"
+        app:tint="@color/black" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -103,13 +80,13 @@
                         android:id="@+id/btnBaixar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Baixar"
-                        android:textColor="@color/white"
-                        android:background="@drawable/btn_azul"
+                        android:layout_marginBottom="12dp"
+                        android:background="@color/azul_escuro"
                         android:drawableEnd="@drawable/ic_download"
                         android:padding="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:textAllCaps="false" />
+                        android:text="Baixar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
 
                     <!-- Botão Favoritar/Desfavoritar -->
                     <Button
@@ -118,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:text="Favoritar / Desfavoritar"
                         android:textColor="@color/texto_escuro"
-                        android:background="@drawable/btn_branco_borda"
+                        android:background=""
                         android:drawableEnd="@drawable/ic_star_outline"
                         android:padding="12dp"
                         android:layout_marginBottom="12dp"
@@ -138,6 +115,7 @@
                         android:textAllCaps="false"
                         android:textSize="13sp" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- INFORMAÇÕES DO LIVRO -->
@@ -191,7 +169,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/azul_escuro"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingVertical="8dp">
 
@@ -209,13 +187,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Início"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
@@ -234,13 +212,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_library"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Biblioteca"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
@@ -259,13 +237,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_chatbot"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHATBOT"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
@@ -284,13 +262,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_search"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buscar"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
@@ -309,13 +287,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_profile"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perfil"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
