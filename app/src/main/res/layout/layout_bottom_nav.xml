@@ -1,139 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomNavigation"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:layout_height="70dp"
+    android:background="#FFFFFF"
+    android:elevation="10dp"
     android:orientation="horizontal"
-    android:paddingVertical="8dp"
-    android:elevation="8dp">
+    android:paddingTop="8dp">
 
-    <!-- Início -->
     <LinearLayout
-        android:id="@+id/navInicio"
+        android:id="@+id/nav_home"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless">
-
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_home"
-            app:tint="@color/black" />
-
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_home" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Início"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:layout_marginTop="2dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Biblioteca -->
     <LinearLayout
-        android:id="@+id/navBiblioteca"
+        android:id="@+id/nav_library"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless">
-
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_library"
-            app:tint="@color/black" />
-
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_library" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biblioteca"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:layout_marginTop="2dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- CHATBOT -->
     <LinearLayout
-        android:id="@+id/navChatbot"
+        android:id="@+id/nav_chatbot"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless">
-
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_chatbot"
-            app:tint="@color/black" />
-
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_chatbot" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CHATBOT"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:layout_marginTop="2dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Buscar -->
     <LinearLayout
-        android:id="@+id/navBuscar"
+        android:id="@+id/nav_search"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless">
-
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_search"
-            app:tint="@color/black" />
-
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_search" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:layout_marginTop="2dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Perfil -->
     <LinearLayout
-        android:id="@+id/navPerfil"
+        android:id="@+id/nav_profile"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless">
-
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:src="@drawable/ic_profile_1" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Perfil"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:layout_marginTop="2dp" />
+            android:textSize="12sp" />
     </LinearLayout>
+
 </LinearLayout>
