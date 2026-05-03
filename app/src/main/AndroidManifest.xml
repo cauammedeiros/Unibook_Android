@@ -48,6 +48,9 @@
             android:name=".tela_Entrando"
             android:exported="false" />
         <activity
+            android:name=".HistoricoLivrosActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmprestimoActivity"
             android:exported="false" />
         <activity
