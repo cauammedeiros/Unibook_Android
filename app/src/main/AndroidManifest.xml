@@ -48,6 +48,12 @@
             android:name=".tela_Entrando"
             android:exported="false" />
         <activity
+            android:name=".QrCodePagamentoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AtrasoActivity"
+            android:exported="false" />
+        <activity
             android:name=".HistoricoLivrosActivity"
             android:exported="false" />
         <activity
