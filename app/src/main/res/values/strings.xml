@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Unibook</string>
     <string name="termos">Clicando em continuar, você concorda com nossos <b>Termos de Serviço</b> e <b>Políticas de Privacidade</b></string>
     <string name="cadastre_se">Não tem uma conta? Cadastre-se.</string>
     <string name="esqueceu_a_senha">Esqueceu a Senha ?</string>
@@ -9,5 +9,66 @@
     <string name="insira_o_e_mail">Insira o E-mail</string>
     <string name="insira_a_senha">Insira a senha</string>
     <string name="crie_uma_conta">Criar uma conta</string>
-    <string name="title_activity_tela_biblioteca">Tela_BibliotecaActivity</string>"
+
+    <!-- Administração -->
+    <string name="title_administracao">Administração</string>
+    <string name="btn_gerenciar_livros">Gerenciar Livros</string>
+    <string name="btn_procurar_usuarios">Procurar Usuários</string>
+    <string name="btn_verificar_multas">Verificar Multas</string>
+    <string name="btn_configuracoes">Configurações</string>
+    <string name="title_procurar_usuarios">Procurar Usuários</string>
+    <string name="title_procurar_livros">Procurar Livros</string>
+    <string name="hint_busca">Faça Sua Busca</string>
+
+    <!-- Diálogos -->
+    <string name="msg_confirmar_exclusao">Tem certeza que deseja Excluir?</string>
+    <string name="msg_acao_usuario">Qual ação deseja fazer :</string>
+    <string name="btn_visualizar_perfil">Visualizar Perfil</string>
+    <string name="btn_excluir_perfil">Excluir Perfil</string>
+    <string name="btn_criar_pequeno">Criar</string>
+    <string name="btn_procurar_pequeno">Procurar</string>
+
+    <!-- Livros (Criar/Editar) -->
+    <string name="title_criar_livros">Criar Livros</string>
+    <string name="title_editar">Editar</string>
+    <string name="label_capa_livro">Capa do Livro</string>
+    <string name="label_nome">Nome :</string>
+    <string name="label_autor">Autor :</string>
+    <string name="label_genero">Gênero :</string>
+    <string name="btn_alterar_foto">Alterar foto</string>
+    <string name="label_sinopse">Sinopse</string>
+    <string name="btn_criar">Criar</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="btn_excluir">Excluir</string>
+    <string name="placeholder_capa_livro">Capa do Livro 1</string>
+
+    <!-- Perfil e Usuário -->
+    <string name="btn_sair_conta">Sair da Conta</string>
+    <string name="btn_editar_perfil">Editar Perfil</string>
+    <string name="label_nome_usuario">Nome do Usuário :</string>
+    <string name="label_email">E-mail :</string>
+    <string name="label_livros_emprestimo">Livros em Empréstimo :</string>
+    <string name="label_devolver_em">Devolver em :</string>
+    <string name="label_tempo_restante">Tempo restante :</string>
+    <string name="btn_livros_favoritos">Livros favoritos</string>
+    <string name="btn_historico_livros">Histórico de Livros</string>
+
+    <!-- Atraso -->
+    <string name="title_livro_atraso">Livro em Atraso</string>
+    <string name="label_devolucao_prevista">Devolução Prevista:</string>
+    <string name="label_dias_atraso">Dias em Atraso :</string>
+    <string name="label_multa_atual">Multa Atual :</string>
+    <string name="label_status">Status :</string>
+    <string name="msg_regularize_pagamento">Regularize o pagamento para continuar utilizando o sistema</string>
+    <string name="btn_gerar_qrcode">Gerar QrCode para Pagamento</string>
+
+    <!-- Navegação -->
+    <string name="nav_inicio">Início</string>
+    <string name="nav_biblioteca">Biblioteca</string>
+    <string name="nav_chatbot">CHATBOT</string>
+    <string name="nav_buscar">Buscar</string>
+    <string name="nav_perfil">Perfil</string>
+
+    <!-- Gerais -->
+    <string name="voltar">Voltar</string>
 </resources>

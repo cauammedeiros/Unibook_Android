@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="Sair da Conta"
+            android:text="@string/btn_sair_conta"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="#2D4373"
-        android:text="Editar Perfil"
+        android:text="@string/btn_editar_perfil"
         android:textAllCaps="false"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Nome do Usuário :"
+            android:text="@string/label_nome_usuario"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -105,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="E-mail :"
+            android:text="@string/label_email"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -119,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Livros em Empréstimo :"
+            android:text="@string/label_livros_emprestimo"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -167,7 +167,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp"
-                    android:text="Devolver em :"
+                    android:text="@string/label_devolver_em"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -192,7 +192,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp"
-                    android:text="Tempo restante :"
+                    android:text="@string/label_tempo_restante"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -237,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Livros favoritos"
+                android:text="@string/btn_livros_favoritos"
                 android:textColor="#4A148C"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -263,7 +263,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Histórico de Livros"
+                android:text="@string/btn_historico_livros"
                 android:textColor="#4A148C"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -294,7 +294,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Configurações"
+            android:text="@string/btn_configuracoes"
             android:textColor="#4A148C"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -324,7 +324,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Início"
+                android:text="@string/nav_inicio"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -341,7 +341,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Biblioteca"
+                android:text="@string/nav_biblioteca"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -358,7 +358,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CHATBOT"
+                android:text="@string/nav_chatbot"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -375,7 +375,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buscar"
+                android:text="@string/nav_buscar"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -393,7 +393,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perfil"
+                android:text="@string/nav_perfil"
                 android:textColor="#2D4373"
                 android:textStyle="bold"
                 android:textSize="12sp" />

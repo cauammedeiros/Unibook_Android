@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Livro em Atraso"
+            android:text="@string/title_livro_atraso"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="18sp" />
@@ -98,7 +98,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
-                    android:text="Devolução Prevista:"
+                    android:text="@string/label_devolucao_prevista"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
                 <View
@@ -121,7 +121,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
-                    android:text="Dias em Atraso :"
+                    android:text="@string/label_dias_atraso"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
                 <View
@@ -144,7 +144,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
-                    android:text="Multa Atual :"
+                    android:text="@string/label_multa_atual"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
                 <View
@@ -167,7 +167,7 @@
                     android:background="@drawable/btn_branco_borda"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
-                    android:text="Status :"
+                    android:text="@string/label_status"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
                 <View
@@ -184,7 +184,7 @@
                 android:background="@drawable/btn_branco_borda"
                 android:gravity="center"
                 android:padding="12dp"
-                android:text="Regularize o pagamento para continuar utilizando o sistema"
+                android:text="@string/msg_regularize_pagamento"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -199,7 +199,7 @@
         android:layout_marginBottom="60dp"
         android:backgroundTint="#4267B2"
         android:paddingHorizontal="24dp"
-        android:text="Gerar QrCode para Pagamento"
+        android:text="@string/btn_gerar_qrcode"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

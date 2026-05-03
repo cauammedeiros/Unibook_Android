@@ -29,90 +29,87 @@
         android:id="@+id/txtCrieconta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Crie uma conta"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtRequisitosSenha2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:background="@drawable/fundo_requisitos_senha"
-        android:lineSpacingExtra="4sp"
-        android:padding="8dp"
-        android:text="A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula."
-        android:textColor="#666666"
-        android:textSize="13sp" />
 
     <EditText
         android:id="@+id/txtNome"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:hint="Nome Completo"
-        android:inputType="text" />
+        android:hint="Nome completo"
+        android:inputType="textPersonName"
+        android:paddingStart="15dp" />
 
     <EditText
         android:id="@+id/txtEmail"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/borda_edittext"
-        android:ems="10"
         android:hint="email@domain.com"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:paddingStart="15dp" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/borda_edittext"
-        android:ems="10"
         android:hint="Crie uma senha"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingStart="15dp" />
 
     <Button
         android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#000000"
-        android:text="Cadastrar" />
+        android:text="Cadastrar"
+        android:textSize="16sp"
+        app:cornerRadius="8dp" />
 
     <TextView
         android:id="@+id/txtTemLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Já Possui conta? Faça o Login"
-        android:textColor="#2177B6" />
+        android:text="Já possui uma conta? Faça o login."
+        android:textColor="#2D5AF0"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/txtTermos2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="@string/termos"
+        android:text="Clicando em continuar, você concorda com nossos Termos de Serviço e Políticas de Privacidade"
+        android:textColor="#555555"
         android:textSize="12sp" />
 
 </LinearLayout>

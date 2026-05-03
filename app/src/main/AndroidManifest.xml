@@ -15,7 +15,6 @@
         <activity
             android:name=".TelaBibliotecaActivity"
             android:exported="false"
-            android:label="@string/title_activity_tela_biblioteca"
             android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ChatbotActivity"
@@ -41,6 +40,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ConfirmarExclusaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditarLivroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProcurarLivrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CriarLivroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GerenciarLivrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdmActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
