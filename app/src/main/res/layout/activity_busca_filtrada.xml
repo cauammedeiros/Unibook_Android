@@ -46,12 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="20dp"
+        android:padding="16dp"
         android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3"
-        tools:listitem="@layout/item_livro_grid" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_livro_busca_filtrada" />
 
     <!-- Bottom Navigation -->
     <include layout="@layout/layout_bottom_nav" />
