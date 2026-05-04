@@ -71,6 +71,7 @@
                 android:id="@+id/txtSugestoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="Sugestões"
                 android:textSize="18sp"
@@ -100,7 +101,9 @@
                 android:orientation="horizontal"
                 android:padding="8dp"
                 android:paddingStart="16dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_livro"
+                />
 
             <TextView
                 android:id="@+id/txtSuspense"
@@ -116,9 +119,12 @@
                 android:id="@+id/rvSuspense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:padding="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:paddingStart="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_livro"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

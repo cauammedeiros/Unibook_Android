@@ -20,13 +20,13 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
         holder.titulo.text = livro.titulo
-        holder.capa.setImageResource(livro.imagem)
+        //holder.capa.setImageResource(livro.imagem)
     }
 
     override fun getItemCount() = listaLivros.size
 
     class LivroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val capa: ImageView = view.findViewById(R.id.imgCapa)
+        //val capa: ImageView = view.findViewById(R.id.imgCapa)
         val titulo: TextView = view.findViewById(R.id.txtTituloLivro)
     }
 }
