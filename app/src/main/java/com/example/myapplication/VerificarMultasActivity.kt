@@ -1,0 +1,79 @@
+package com.example.myapplication
+
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+
+class VerificarMultasActivity : AppCompatActivity() {
+
+    private lateinit var btnVoltar: ImageButton
+    private lateinit var edtBusca: EditText
+    private lateinit var btnBuscar: ImageButton
+    private lateinit var rvMultas: RecyclerView
+    private lateinit var adapter: MultasAdapter
+
+    private val multasCompletas = mutableListOf<Multa>()
+    private val multasFiltradas = mutableListOf<Multa>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_verificar_multas)
+
+        // Inicialização direta para forçar o reconhecimento dos IDs
+        btnVoltar = findViewById(R.id.btnVoltar)
+        edtBusca = findViewById(R.id.edtBusca)
+        btnBuscar = findViewById(R.id.btn_pesquisar_multa)
+        rvMultas = findViewById(R.id.rvMultas)
+
+        // Configurar RecyclerView
+        adapter = MultasAdapter(multasFiltradas) { multa ->
+            Toast.makeText(this, "Usuário: ${multa.nomeUsuario}", Toast.LENGTH_SHORT).show()
+        }
+        rvMultas.adapter = adapter
+        rvMultas.layoutManager = LinearLayoutManager(this)
+
+        carregarDadosExemplo()
+
+        // Configurar Listeners
+        btnVoltar.setOnClickListener { finish() }
+
+        btnBuscar.setOnClickListener {
+            filtrarMultas(edtBusca.text.toString())
+        }
+
+        edtBusca.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filtrarMultas(s.toString())
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun carregarDadosExemplo() {
+        multasCompletas.clear()
+        multasCompletas.add(Multa("1", "Carlos Silva", 25.50, 5, false, "Dom Casmurro"))
+        multasCompletas.add(Multa("2", "Ana Oliveira", 10.00, 2, false, "1984"))
+        multasCompletas.add(Multa("3", "Marcos Souza", 0.00, 0, true, "O Hobbit"))
+        
+        multasFiltradas.clear()
+        multasFiltradas.addAll(multasCompletas)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun filtrarMultas(query: String) {
+        val filtrados = multasCompletas.filter { 
+            it.nomeUsuario.contains(query, ignoreCase = true) 
+        }
+        multasFiltradas.clear()
+        multasFiltradas.addAll(filtrados)
+        adapter.notifyDataSetChanged()
+    }
+}

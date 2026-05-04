@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".PesquisaGeneroActivity">
 
+
+    <!--SOMBREAMENTO E ELEVAÇÃO NOS LIVRO -->
     <!-- Header -->
     <RelativeLayout
         android:layout_width="match_parent"

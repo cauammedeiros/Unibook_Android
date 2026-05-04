@@ -67,13 +67,17 @@
     <Button
         android:id="@+id/btnContinuar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:backgroundTint="#1B0404"
+        android:background="@drawable/btn_azul"
+        app:backgroundTint="@null"
         android:text="@string/continuar"
-        android:textColorLink="#000000" />
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtEsqueceuSenha"

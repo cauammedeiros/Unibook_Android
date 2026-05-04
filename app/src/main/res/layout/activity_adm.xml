@@ -58,59 +58,51 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/btn_branco_borda"
+            app:backgroundTint="@null"
             android:text="@string/btn_gerenciar_livros"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnProcurarUsuarios"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/btn_branco_borda"
+            app:backgroundTint="@null"
             android:text="@string/btn_procurar_usuarios"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnVerificarMultas"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="48dp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/btn_branco_borda"
+            app:backgroundTint="@null"
             android:text="@string/btn_verificar_multas"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnConfiguracoesAdm"
             android:layout_width="160dp"
             android:layout_height="60dp"
-            android:backgroundTint="#A9A9A9"
             android:background="@drawable/btn_cinza_borda"
+            app:backgroundTint="@null"
             android:text="@string/btn_configuracoes"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
