@@ -44,39 +44,36 @@
         android:background="@color/cinza_borda" />
 
     <!-- Campo de Busca -->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:gravity="center_vertical">
+        android:paddingVertical="12dp">
 
         <EditText
             android:id="@+id/edtBusca"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:background="@drawable/borda_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/bg_search_pill"
             android:hint="Faça Sua Busca"
-            android:textColorHint="@color/texto_claro"
+            android:textColorHint="#BCBCBC"
             android:paddingStart="16dp"
             android:paddingEnd="48dp"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:singleLine="true"
             android:imeOptions="actionSearch"
             android:inputType="text" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_pesquisar_multa"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="-48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/ic_search"
             android:contentDescription="Buscar"
             app:tint="@color/black" />
-    </LinearLayout>
+    </FrameLayout>
 
     <!-- Lista de Multas -->
     <androidx.recyclerview.widget.RecyclerView

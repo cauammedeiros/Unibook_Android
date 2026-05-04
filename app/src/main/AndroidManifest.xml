@@ -90,6 +90,9 @@
         <activity
             android:name=".VerificarMultasActivity"
             android:exported="false" />
+        <activity
+            android:name=".VisualizarPerfilActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

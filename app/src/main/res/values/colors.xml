@@ -11,4 +11,5 @@
     <color name="cinza_borda">#E0E0E0</color>  <!-- Borda dos botões -->
     <color name="texto_escuro">#333333</color> <!-- Texto principal -->
     <color name="texto_claro">#666666</color>  <!-- Texto secundário -->
+    <color name="vermelho_botao">#C62828</color> <!-- Vermelho para multas -->
 </resources>

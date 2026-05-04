@@ -59,9 +59,9 @@ class VerificarMultasActivity : AppCompatActivity() {
 
     private fun carregarDadosExemplo() {
         multasCompletas.clear()
-        multasCompletas.add(Multa("1", "Carlos Silva", 25.50, 5, false, "Dom Casmurro"))
-        multasCompletas.add(Multa("2", "Ana Oliveira", 10.00, 2, false, "1984"))
-        multasCompletas.add(Multa("3", "Marcos Souza", 0.00, 0, true, "O Hobbit"))
+        multasCompletas.add(Multa("1", "Nome do Usuário 1", 0.0, 2, false))
+        multasCompletas.add(Multa("2", "Nome do Usuário 2", 0.0, 4, false))
+        multasCompletas.add(Multa("3", "Nome do Usuário 3", 0.0, 1, false))
         
         multasFiltradas.clear()
         multasFiltradas.addAll(multasCompletas)
