@@ -83,6 +83,20 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+        <activity android:name=".BuscaActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DetalhesLivroActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PesquisaGeneroActivity"
+            android:exported="false" />
+
+        <activity android:name=".ConfiguracoesActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

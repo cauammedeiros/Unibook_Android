@@ -1,9 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +32,44 @@ class DetalhesLivroActivity : AppCompatActivity() {
 
         // Configurar os cliques dos botões
         configurarBotoes()
+
+        // Menu de Navegação
+        val btnInicio = findViewById<LinearLayout>(R.id.nav_home)
+        val btnBiblioteca = findViewById<LinearLayout>(R.id.nav_library)
+        val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
+        val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
+        val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
+
+        btnInicio.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
+
+        btnBiblioteca.setOnClickListener {
+            val intent = Intent(this, TelaBibliotecaActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
+
+        btnChatbot.setOnClickListener {
+            val intent = Intent(this, ChatbotActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
+
+        btnBuscar.setOnClickListener {
+            val intent = Intent(this, BuscaActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
+
+        btnPerfil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
+
     }
 
     private fun inicializarViews() {
@@ -65,31 +105,6 @@ class DetalhesLivroActivity : AppCompatActivity() {
         btnAlugar.setOnClickListener {
             Toast.makeText(this, "Alugando livro...", Toast.LENGTH_SHORT).show()
             // Aqui você adiciona a lógica para alugar/emprestar
-        }
-
-        // Bottom Navigation - Início
-        findViewById<android.view.View>(R.id.navInicio).setOnClickListener {
-            Toast.makeText(this, "Ir para Início", Toast.LENGTH_SHORT).show()
-        }
-
-        // Bottom Navigation - Biblioteca
-        findViewById<android.view.View>(R.id.navBiblioteca).setOnClickListener {
-            Toast.makeText(this, "Ir para Biblioteca", Toast.LENGTH_SHORT).show()
-        }
-
-        // Bottom Navigation - CHATBOT
-        findViewById<android.view.View>(R.id.navChatbot).setOnClickListener {
-            Toast.makeText(this, "Ir para CHATBOT", Toast.LENGTH_SHORT).show()
-        }
-
-        // Bottom Navigation - Buscar
-        findViewById<android.view.View>(R.id.navBuscar).setOnClickListener {
-            Toast.makeText(this, "Ir para Buscar", Toast.LENGTH_SHORT).show()
-        }
-
-        // Bottom Navigation - Perfil
-        findViewById<android.view.View>(R.id.navPerfil).setOnClickListener {
-            Toast.makeText(this, "Ir para Perfil", Toast.LENGTH_SHORT).show()
         }
     }
 

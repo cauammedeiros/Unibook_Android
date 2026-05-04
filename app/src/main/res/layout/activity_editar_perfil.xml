@@ -20,49 +20,29 @@
         app:tint="@color/black" />
 
     <!-- Logo -->
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="270dp"
-        android:layout_height="159dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/logo_nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Foto de Perfil -->
+
+    <!-- Botão Alterar Foto -->
     <ImageView
         android:id="@+id/imgUserIcon"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/ic_profile_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botão Alterar Foto -->
-    <Button
-        android:id="@+id/btnAlterarFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#2D4373"
-        android:text="Alterar foto"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgUserIcon" />
-
-    <!-- Campos de Edição -->
     <LinearLayout
         android:id="@+id/editFieldsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/btnAlterarFoto">
+        app:layout_constraintTop_toBottomOf="@+id/btnAlterarFoto"
+        tools:layout_editor_absoluteX="-1dp">
 
         <View
             android:layout_width="match_parent"
@@ -128,27 +108,39 @@
             android:background="#CCCCCC" />
     </LinearLayout>
 
-    <!-- Botão Salvar -->
     <Button
         android:id="@+id/btnSalvarAlteracoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@color/black"
         android:paddingHorizontal="32dp"
         android:text="Salvar Alterações"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editFieldsLayout" />
 
-    <!-- Barra de Navegação Inferior (Reutilizada) -->
-    <include
-        android:id="@+id/bottomNavigation"
-        layout="@layout/layout_bottom_nav"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnAlterarFoto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginTop="4dp"
+        android:backgroundTint="#2D4373"
+        android:text="Alterar foto"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgUserIcon" />
+
+    <!-- Campos de Edição -->
+
+    <!-- Botão Salvar -->
+
+    <!-- Barra de Navegação Inferior (Reutilizada) -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

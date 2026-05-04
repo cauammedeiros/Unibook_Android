@@ -21,7 +21,8 @@ class TelaBibliotecaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        /* Menu de Navegação
+
+        // Menu de Navegação
         val btnInicio = findViewById<LinearLayout>(R.id.nav_home)
         val btnBiblioteca = findViewById<LinearLayout>(R.id.nav_library)
         val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
@@ -30,30 +31,35 @@ class TelaBibliotecaActivity : AppCompatActivity() {
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 
         btnBiblioteca.setOnClickListener {
             val intent = Intent(this, TelaBibliotecaActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 
         btnChatbot.setOnClickListener {
             val intent = Intent(this, ChatbotActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 
         btnBuscar.setOnClickListener {
             val intent = Intent(this, BuscaActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 
         btnPerfil.setOnClickListener {
             val intent = Intent(this, PerfilActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 
-         */
+
 
 
         // Botões de Modo de Tema

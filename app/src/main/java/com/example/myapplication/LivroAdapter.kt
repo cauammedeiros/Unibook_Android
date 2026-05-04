@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,14 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
     // 2. Coloca os dados (texto e imagem) no item
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
-        holder.titulo.text = livro.titulo
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetalhesLivroActivity::class.java)
+
+            // Passando informações para a próxima tela (opcional)
+            intent.putExtra("TITULO_LIVRO", "Livro Favoritado")
+
+            holder.itemView.context.startActivity(intent)
+        }
         //holder.capa.setImageResource(livro.imagem)
     }
 
