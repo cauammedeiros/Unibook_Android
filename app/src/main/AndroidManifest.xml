@@ -50,6 +50,9 @@
             android:name=".ProcurarLivrosActivity"
             android:exported="false" />
         <activity
+            android:name=".ProcurarUsuariosActivity"
+            android:exported="false" />
+        <activity
             android:name=".CriarLivroActivity"
             android:exported="false" />
         <activity
@@ -74,6 +77,9 @@
             android:name=".HistoricoLivrosActivity"
             android:exported="false" />
         <activity
+            android:name=".EditarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmprestimoActivity"
             android:exported="false" />
         <activity
@@ -96,6 +102,12 @@
 
         <activity android:name=".ConfiguracoesActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".BuscaFiltradaActivity"
+            android:exported="false" />
+
+
 
         <meta-data
             android:name="preloaded_fonts"
