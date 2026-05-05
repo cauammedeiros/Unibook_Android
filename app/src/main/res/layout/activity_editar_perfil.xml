@@ -8,6 +8,13 @@
     tools:context=".EditarPerfilActivity">
 
     <!-- Botão Voltar -->
+
+    <!-- Logo -->
+
+    <!-- Foto de Perfil -->
+
+    <!-- Botão Alterar Foto -->
+
     <ImageView
         android:id="@+id/btnVoltar"
         android:layout_width="32dp"
@@ -19,11 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/black" />
 
-    <!-- Logo -->
-
-    <!-- Foto de Perfil -->
-
-    <!-- Botão Alterar Foto -->
     <ImageView
         android:id="@+id/imgUserIcon"
         android:layout_width="120dp"
@@ -60,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nome do Usuário :"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edtNomeUsuario"
