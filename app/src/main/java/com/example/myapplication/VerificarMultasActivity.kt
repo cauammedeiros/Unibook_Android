@@ -5,17 +5,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
 
 class VerificarMultasActivity : AppCompatActivity() {
 
     private lateinit var btnVoltar: ImageButton
     private lateinit var edtBusca: EditText
-    private lateinit var btnBuscar: ImageButton
+    private lateinit var btnBuscar: ImageView // Alterado de ImageButton para ImageView para bater com o XML
     private lateinit var rvMultas: RecyclerView
     private lateinit var adapter: MultasAdapter
 
@@ -40,6 +40,13 @@ class VerificarMultasActivity : AppCompatActivity() {
         rvMultas.layoutManager = LinearLayoutManager(this)
 
         carregarDadosExemplo()
+
+        // Verifica se veio um nome da tela de perfil para filtrar automaticamente
+        val nomePreDefinido = intent.getStringExtra("USER_NAME")
+        if (!nomePreDefinido.isNullOrEmpty()) {
+            edtBusca.setText(nomePreDefinido)
+            filtrarMultas(nomePreDefinido)
+        }
 
         // Configurar Listeners
         btnVoltar.setOnClickListener { finish() }

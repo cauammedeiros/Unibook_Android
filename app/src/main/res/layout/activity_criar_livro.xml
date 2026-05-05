@@ -19,6 +19,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/black" />
 
+    <ImageView
+        android:id="@+id/btnVoltarAdmSuperior"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:rotation="180"
+        android:src="@drawable/baseline_keyboard_arrow_left_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
     <TextView
         android:id="@+id/txtTituloCriar"
         android:layout_width="wrap_content"
@@ -31,6 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnVoltar" />
+
 
     <View
         android:id="@+id/dividerCriar"
@@ -52,10 +65,24 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Mensagem de Erro (RF - Fluxo) -->
+            <TextView
+                android:id="@+id/txtErroCriarLivro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="#FFD2D2"
+                android:padding="12dp"
+                android:text="Preencha nome, autor e gênero antes de continuar."
+                android:textColor="#D32F2F"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
 
                 <!-- Capa do Livro -->
                 <LinearLayout
@@ -82,37 +109,83 @@
                     android:layout_marginStart="16dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/btn_branco_borda"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="@string/label_nome"
-                        android:textColor="@color/black" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_branco_borda"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="@string/label_nome"
+                            android:textColor="@color/black" />
+                        <EditText
+                            android:id="@+id/edtNomeLivro"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:textSize="14sp" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:background="@drawable/btn_branco_borda"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="@string/label_autor"
-                        android:textColor="@color/black" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_branco_borda"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="@string/label_autor"
+                            android:textColor="@color/black" />
+                        <EditText
+                            android:id="@+id/edtAutorLivro"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:textSize="14sp" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:background="@drawable/btn_branco_borda"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="@string/label_genero"
-                        android:textColor="@color/black" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_branco_borda"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="@string/label_genero"
+                            android:textColor="@color/black" />
+                        <EditText
+                            android:id="@+id/edtGeneroLivro"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:textSize="14sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- Botão Alterar Foto -->
