@@ -22,8 +22,11 @@ class RedefinirActivity : AppCompatActivity() {
         val btnRedefinir = findViewById<Button>(R.id.btnRedefinir)
 
         btnRedefinir.setOnClickListener {
+            android.widget.Toast.makeText(this, "Senha redefinida com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
     }
 }

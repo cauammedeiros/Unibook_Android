@@ -35,6 +35,6 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
 
     class LivroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //val capa: ImageView = view.findViewById(R.id.imgCapa)
-        val titulo: TextView = view.findViewById(R.id.txtTituloLivro)
+        //val titulo: TextView = view.findViewById(R.id.txtTituloLivro)
     }
 }

@@ -52,7 +52,8 @@ class CadastroActivity : AppCompatActivity() {
                 txtErro.visibility = View.VISIBLE
             }
             else {
-                // Sucesso: Vai para a tela Entrando que você acabou de configurar
+                // Sucesso: Exibe mensagem e vai para a tela Entrando
+                android.widget.Toast.makeText(this, "Cadastro realizado com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
                 txtErro.visibility = View.GONE
                 val intent = Intent(this, tela_Entrando::class.java)
                 intent.putExtra("TIPO_USUARIO", "aluno")

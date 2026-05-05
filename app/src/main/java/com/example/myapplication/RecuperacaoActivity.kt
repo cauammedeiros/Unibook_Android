@@ -41,9 +41,14 @@ class RecuperacaoActivity : AppCompatActivity() {
                 txtErro.visibility = View.VISIBLE
             }
             // Simulação de e-mails cadastrados no sistema do Unibook
-            else if (email == "aluno@unifor.br" || email == "admin@unifor.br") {
+            else if (email == "aluno@unifor.br") {
                 txtErro.visibility = View.GONE
-
+                val intent = Intent(this, SolicitacaoActivity::class.java)
+                startActivity(intent)
+            }
+            else if (email == "admin@unifor.br") {
+                txtErro.visibility = View.GONE
+                // Admin pode ter fluxo direto ou o mesmo, manteremos o finish ou redirecionamento se desejar
                 finish()
             }
             else {

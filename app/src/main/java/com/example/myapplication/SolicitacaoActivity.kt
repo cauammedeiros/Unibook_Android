@@ -27,10 +27,17 @@ class SolicitacaoActivity : AppCompatActivity() {
         }
 
         val btnEnviar = findViewById<Button>(R.id.btnEnviar)
+        val edtCodigo = findViewById<android.widget.EditText>(R.id.Codigo)
 
         btnEnviar.setOnClickListener{
-            val intent = Intent(this, RedefinirActivity::class.java)
-            startActivity(intent)
+            val codigo = edtCodigo.text.toString()
+            if (codigo == "1234") {
+                val intent = Intent(this, RedefinirActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                android.widget.Toast.makeText(this, "Código incorreto!", android.widget.Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
