@@ -21,12 +21,9 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetalhesLivroActivity::class.java)
-
-            // Passando informações para a próxima tela (opcional)
-            intent.putExtra("TITULO_LIVRO", "Livro Favoritado")
-
-            holder.itemView.context.startActivity(intent)
+            val intent = Intent(it.context, DetalhesLivroActivity::class.java)
+            intent.putExtra("TITULO_LIVRO", livro.titulo)
+            it.context.startActivity(intent)
         }
         //holder.capa.setImageResource(livro.imagem)
     }

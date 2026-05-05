@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,11 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
 
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, DetalhesLivroActivity::class.java)
+            intent.putExtra("TITULO_LIVRO", livro.titulo)
+            it.context.startActivity(intent)
+        }
         holder.txtNome.text = livro.titulo
         if (livro.imagem != 0) {
             holder.imgCapa.setImageResource(livro.imagem)
