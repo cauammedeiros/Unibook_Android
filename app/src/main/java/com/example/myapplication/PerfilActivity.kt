@@ -3,7 +3,9 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -58,6 +60,22 @@ class PerfilActivity : AppCompatActivity() {
 
             // 5. Mostrar o popup
             dialog.show()
+
+            // Botão Voltar (Seta)
+            val btnVoltar = findViewById<ImageView>(R.id.btnVoltar)
+            btnVoltar.setOnClickListener {
+                val intent = Intent (this, PerfilActivity::class.java)
+                startActivity(intent)
+            }
+
+            // Botão Salvar Alterações
+            val btnSalvar = findViewById<Button>(R.id.btnSalvarAlteracoes)
+            btnSalvar.setOnClickListener {
+                // Lógica de feedback para o usuário
+                Toast.makeText(this, "Alterações salvas com sucesso!", Toast.LENGTH_SHORT).show()
+                val intent = Intent (this, PerfilActivity::class.java)
+                startActivity(intent)
+            }
         }
 
 
