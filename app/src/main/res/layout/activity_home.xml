@@ -102,8 +102,7 @@
                 android:padding="8dp"
                 android:paddingStart="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_livro"
-                />
+                tools:listitem="@layout/item_livro" />
 
             <TextView
                 android:id="@+id/txtSuspense"
