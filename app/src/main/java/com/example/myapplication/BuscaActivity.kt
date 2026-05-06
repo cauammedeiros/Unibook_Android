@@ -2,9 +2,11 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
@@ -12,6 +14,30 @@ class BuscaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_busca)
+
+        // 1. Inicializar os componentes
+        val editBusca = findViewById<EditText>(R.id.edtBusca) // ID do seu campo de texto
+        val btnLupa = findViewById<ImageView>(R.id.btnLupa) // ID da imagem da lupa
+
+// 2. Ação ao clicar na lupa
+        btnLupa.setOnClickListener {
+            val textoBusca = editBusca.text.toString()
+
+            if (textoBusca.isNotEmpty()) {
+                val intent = Intent(this, BuscaFiltradaActivity::class.java)
+                // Passa o que foi digitado para a próxima tela
+                intent.putExtra("TERMO_BUSCA", textoBusca)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Digite algo para buscar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+// 3. (Opcional) Ação ao clicar no "Enter" do teclado
+        editBusca.setOnEditorActionListener { _, _, _ ->
+            btnLupa.performClick() // Simula o clique na lupa
+            true
+        }
 
         // Menu de Navegação
         val btnInicio = findViewById<LinearLayout>(R.id.nav_home)

@@ -74,6 +74,10 @@ class HomeActivity : AppCompatActivity() {
 
         // Livros de Ação
         val listaDeAcao = listOf(
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
             Livro("Teste",R.drawable.logo_nome)
         )
 
@@ -83,6 +87,10 @@ class HomeActivity : AppCompatActivity() {
 
         // Livros de Suspense
         val listaDeSuspense = listOf(
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
             Livro("Teste",R.drawable.logo_nome)
         )
 

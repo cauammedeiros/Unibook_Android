@@ -21,10 +21,22 @@ class BuscaFiltradaActivity : AppCompatActivity() {
         btnVoltar = findViewById(R.id.btnVoltar)
         txtNomeBusca = findViewById(R.id.txtNomeBusca)
 
+        // Recupera o termo que o usuário digitou
+        val termo = intent.getStringExtra("TERMO_BUSCA")
+
+        if (termo != null) {
+            txtNomeBusca.text = "Resultados para: $termo"
+        }
+
+        // Configura o botão voltar (a setinha no topo esquerdo)
+        findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
+            finish()
+        }
+
         val query = intent.getStringExtra("QUERY") ?: "Busca"
         txtNomeBusca.text = query
 
-        btnVoltar.setOnClickListener { finish() }
+        //btnVoltar.setOnClickListener { finish() }
 
         setupRecyclerView()
     }

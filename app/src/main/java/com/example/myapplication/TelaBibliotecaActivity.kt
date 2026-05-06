@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.RecyclerView
 
 class TelaBibliotecaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,9 +60,6 @@ class TelaBibliotecaActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-
         // Botões de Modo de Tema
         val btnLight = findViewById<ImageView>(R.id.btnSun)
         val btnNight = findViewById<ImageView>(R.id.btnMoon)
@@ -77,5 +75,17 @@ class TelaBibliotecaActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             delegate.applyDayNight()
         }
+
+        val listaDeLivros = listOf(
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",R.drawable.logo_nome),
+        )
+
+        val rvLivros = findViewById<RecyclerView>(R.id.rvLivros)
+        rvLivros.adapter = LivroAdapter(listaDeLivros)
     }
-}
+    }
