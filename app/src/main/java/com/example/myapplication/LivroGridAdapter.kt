@@ -20,9 +20,10 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
         val livro = listaLivros[position]
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, DetalhesLivroActivity::class.java)
-            intent.putExtra("TITULO_LIVRO", livro.titulo)
-            it.context.startActivity(intent)
+            //intent.putExtra("TITULO_LIVRO", livro.titulo)
+            holder.itemView.context.startActivity(intent)
         }
+        /*
         holder.txtNome.text = livro.titulo
         if (livro.imagem != 0) {
             holder.imgCapa.setImageResource(livro.imagem)
@@ -30,12 +31,14 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
         } else {
             holder.imgCapa.visibility = View.GONE
         }
+
+         */
     }
 
     override fun getItemCount() = listaLivros.size
 
     class LivroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imgCapa: ImageView = view.findViewById(R.id.imgLivroGrid)
-        val txtNome: TextView = view.findViewById(R.id.txtNomeLivroGrid)
+        //val imgCapa: ImageView = view.findViewById(R.id.imgLivroGrid)
+        //val txtNome: TextView = view.findViewById(R.id.txtNomeLivroGrid)
     }
 }

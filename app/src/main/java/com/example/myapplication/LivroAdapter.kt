@@ -22,8 +22,8 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
         val livro = listaLivros[position]
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, DetalhesLivroActivity::class.java)
-            intent.putExtra("TITULO_LIVRO", livro.titulo)
-            it.context.startActivity(intent)
+            //intent.putExtra("TITULO_LIVRO", livro.titulo)
+            holder.itemView.context.startActivity(intent)
         }
         //holder.capa.setImageResource(livro.imagem)
     }

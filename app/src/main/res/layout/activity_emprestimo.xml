@@ -225,6 +225,14 @@
             </LinearLayout>
 
             <!-- Botões de Ação -->
+            <TextView
+                android:id="@+id/txtErroTermos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aceite os Termos de Serviço."
+                android:textColor="#FF0000"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

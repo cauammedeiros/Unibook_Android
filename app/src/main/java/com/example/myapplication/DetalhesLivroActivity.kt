@@ -66,7 +66,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
         mAlertDialog.show()
 
         val btnConfirmar = mDialogView.findViewById<Button>(R.id.btnConfirmarBaixar)
-        val btnVoltarPopUp = mDialogView.findViewById<LinearLayout>(R.id.btnVoltar) // Ajustado para LinearLayout como no seu print
+        val btnVoltarPopUp = mDialogView.findViewById<TextView>(R.id.btnVoltar) // Ajustado para LinearLayout como no seu print
         val checkAceitar = mDialogView.findViewById<CheckBox>(R.id.checkAceitar)
 
         btnConfirmar.isEnabled = false
@@ -91,8 +91,8 @@ class DetalhesLivroActivity : AppCompatActivity() {
         mDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         mDialog.show()
 
-        val btnVoltar = mView.findViewById<LinearLayout>(R.id.btnDialogVoltar)
-        val btnIrEmprestimo = mView.findViewById<LinearLayout>(R.id.btnDialogEmprestimo)
+        val btnVoltar = mView.findViewById<TextView>(R.id.btnDialogVoltar)
+        val btnIrEmprestimo = mView.findViewById<TextView>(R.id.btnDialogEmprestimo)
 
         btnVoltar.setOnClickListener { mDialog.dismiss() }
 
