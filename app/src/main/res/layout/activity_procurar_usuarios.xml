@@ -75,13 +75,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
+
                     <ImageView
                         android:id="@+id/imgUser1"
                         android:layout_width="60dp"
@@ -92,6 +95,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/black" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -102,6 +106,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/btnEditUser1"
                         app:layout_constraintStart_toEndOf="@+id/imgUser1"
                         app:layout_constraintTop_toTopOf="parent">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -111,6 +116,7 @@
                             android:text="Nome do Usuário"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -121,6 +127,7 @@
                             android:text="Email"
                             android:textColor="@color/black"
                             android:textSize="11sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -132,6 +139,7 @@
                             android:textColor="@color/black"
                             android:textSize="11sp" />
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/btnEditUser1"
                         android:layout_width="24dp"
@@ -151,12 +159,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
                     <ImageView
                         android:id="@+id/imgUser2"
@@ -227,12 +236,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
                     <ImageView
                         android:id="@+id/imgUser3"
@@ -303,12 +313,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
                     <ImageView
                         android:id="@+id/imgUser4"
@@ -379,12 +390,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
                     <ImageView
                         android:id="@+id/imgUser5"
@@ -455,12 +467,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                app:cardBackgroundColor="#D9D9D9"
-                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/azul_item_lista"
                     android:padding="8dp">
                     <ImageView
                         android:id="@+id/imgUser6"

@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
-    android:padding="12dp"
-    android:background="#CBCBCB"
-    android:gravity="center_vertical">
+    android:background="@drawable/bg_item_lista_arredondado"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
 
     <!-- Ícone de Perfil -->
     <ImageView
@@ -31,45 +33,45 @@
             android:id="@+id/txtNomeUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/bg_multa_text_pill"
+            android:gravity="center"
+            android:minWidth="160dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:minWidth="160dp"
-            android:gravity="center"
             android:text="Nome do Usuário 1"
-            android:textSize="13sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
+            android:textSize="13sp" />
 
         <!-- Valor da Multa -->
         <TextView
             android:id="@+id/txtValorMulta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/bg_multa_text_pill"
+            android:gravity="center"
+            android:minWidth="140dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:minWidth="140dp"
-            android:gravity="center"
             android:text="Valor da multa: R$"
-            android:textSize="13sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
+            android:textSize="13sp" />
 
         <!-- Livro Atrasado -->
         <TextView
             android:id="@+id/txtLivroAtrasado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/bg_multa_text_pill"
+            android:gravity="center"
+            android:minWidth="180dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:minWidth="180dp"
-            android:gravity="center"
             android:text="Livro atrasado há 2 dias"
-            android:textSize="13sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
+            android:textSize="13sp" />
 
         <!-- Status -->
         <TextView
@@ -77,13 +79,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_multa_text_pill"
+            android:gravity="center"
+            android:minWidth="170dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:minWidth="170dp"
-            android:gravity="center"
             android:text="Status: Pago/Não Pago"
-            android:textSize="13sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="13sp" />
     </LinearLayout>
 
 </LinearLayout>

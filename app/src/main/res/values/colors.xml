@@ -7,9 +7,11 @@
     <!-- Cores do app Unibook -->
     <color name="azul_escuro">#1E3A5F</color>  <!-- Azul escuro do header e bottom nav -->
     <color name="azul_botao">#5B7FFF</color>   <!-- Azul vibrante do botão "Baixar" -->
+    <color name="azul_claro">#8FA9FF</color>   <!-- Azul mais claro -->
     <color name="cinza_claro">#F5F5F5</color>  <!-- Fundo cinza claro -->
     <color name="cinza_borda">#E0E0E0</color>  <!-- Borda dos botões -->
     <color name="texto_escuro">#333333</color> <!-- Texto principal -->
     <color name="texto_claro">#666666</color>  <!-- Texto secundário -->
     <color name="vermelho_botao">#C62828</color> <!-- Vermelho para multas -->
+    <color name="azul_item_lista">#1C70AB</color> <!-- Azul dos cards de lista -->
 </resources>
