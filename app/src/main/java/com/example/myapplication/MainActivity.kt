@@ -10,11 +10,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var fb = Firebase.firestore
 
         val btnContinuar = findViewById<Button>(R.id.btnContinuar)
         val edtEmail = findViewById<EditText>(R.id.CampoEmail)
