@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
@@ -45,6 +46,10 @@ class BuscaActivity : AppCompatActivity() {
         val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
         val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
+
+        // Destacar tela atual (Busca)
+        findViewById<ImageView>(R.id.iv_search).setColorFilter(Color.parseColor("#2196F3"))
+        findViewById<TextView>(R.id.tv_search).setTextColor(Color.parseColor("#2196F3"))
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

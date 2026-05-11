@@ -18,6 +18,8 @@
             android:id="@+id/imgLogo"
             android:layout_width="197dp"
             android:layout_height="100dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
             android:src="@drawable/logo_nome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

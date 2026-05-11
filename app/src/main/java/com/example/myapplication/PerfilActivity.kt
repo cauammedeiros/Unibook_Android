@@ -1,10 +1,12 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -85,6 +87,10 @@ class PerfilActivity : AppCompatActivity() {
         val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
         val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
+
+        // Destacar tela atual (Perfil)
+        findViewById<ImageView>(R.id.iv_profile).setColorFilter(Color.parseColor("#2196F3"))
+        findViewById<TextView>(R.id.tv_profile).setTextColor(Color.parseColor("#2196F3"))
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
