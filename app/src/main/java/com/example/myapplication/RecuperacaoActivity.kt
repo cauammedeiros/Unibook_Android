@@ -11,12 +11,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class RecuperacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_recuperacao)
+        val fb = Firebase.firestore
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -45,16 +48,29 @@ class RecuperacaoActivity : AppCompatActivity() {
                 txtErro.visibility = View.GONE
                 val intent = Intent(this, SolicitacaoActivity::class.java)
                 startActivity(intent)
-            }
-            else if (email == "admin@unifor.br") {
+            } else if (email == "admin@unifor.br") {
                 txtErro.visibility = View.GONE
                 // Admin pode ter fluxo direto ou o mesmo, manteremos o finish ou redirecionamento se desejar
                 finish()
-            }
-            else {
-                // Exatamente como no seu print: "O email inserido não existe!"
-                txtErro.text = "O email inserido não existe!"
-                txtErro.visibility = View.VISIBLE
+            } else {
+                fb.collection("Usuários")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        if (!documents.isEmpty) {
+                            txtErro.visibility = View.GONE
+                            val intent = Intent(this, SolicitacaoActivity::class.java)
+                            intent.putExtra("EMAIL_RECUPERACAO", email)
+                            startActivity(intent)
+                        } else {
+                            txtErro.text = "O email inserido não existe !"
+                            txtErro.visibility = View.VISIBLE
+                        }
+                    }
+                    .addOnFailureListener {
+                        txtErro.text = "Erro ao conectar com o servidor."
+                        txtErro.visibility = View.VISIBLE
+                    }
             }
         }
     }

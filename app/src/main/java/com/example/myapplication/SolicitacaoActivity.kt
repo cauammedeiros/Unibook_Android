@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.Toast
 
 class SolicitacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,13 +31,15 @@ class SolicitacaoActivity : AppCompatActivity() {
         val edtCodigo = findViewById<android.widget.EditText>(R.id.Codigo)
 
         btnEnviar.setOnClickListener{
+            val email = intent.getStringExtra("EMAIL_RECUPERACAO")
             val codigo = edtCodigo.text.toString()
             if (codigo == "1234") {
                 val intent = Intent(this, RedefinirActivity::class.java)
+                intent.putExtra("EMAIL_RECUPERACAO", email)
                 startActivity(intent)
                 finish()
             } else {
-                android.widget.Toast.makeText(this, "Código incorreto!", android.widget.Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Código incorreto!", Toast.LENGTH_SHORT).show()
             }
         }
     }
