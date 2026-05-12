@@ -38,8 +38,7 @@ class HomeActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tv_home).setTextColor(Color.parseColor("#2196F3"))
 
         btnInicio.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            // Já estamos na Home, não precisa reiniciar
         }
 
         btnBiblioteca.setOnClickListener {

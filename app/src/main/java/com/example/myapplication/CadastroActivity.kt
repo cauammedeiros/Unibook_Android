@@ -55,14 +55,14 @@ class CadastroActivity : AppCompatActivity() {
                 txtErro.visibility = View.VISIBLE
             }
             else {
-                // Verificar se o email já existe no Firestore
+                // Busca no Firebase Firestore para verificar se o email já existe
                 fb.collection("Usuários")
                     .whereEqualTo("email", email)
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
                             // Criar novo usuário no banco
-                            val novoUsuario = mapOf(
+                            val novoUsuario = hashMapOf(
                                 "nome" to nome,
                                 "email" to email,
                                 "senha" to senha,
@@ -80,16 +80,17 @@ class CadastroActivity : AppCompatActivity() {
                                     finish()
                                 }
                                 .addOnFailureListener {
-                                    txtErro.text = "Erro ao conectar com o banco de dados."
+                                    txtErro.text = "Erro ao salvar os dados. Tente novamente."
                                     txtErro.visibility = View.VISIBLE
                                 }
                         } else {
+                            // Email já cadastrado
                             txtErro.text = "O email inserido já está cadastrado!"
                             txtErro.visibility = View.VISIBLE
                         }
                     }
                     .addOnFailureListener {
-                        txtErro.text = "Erro ao verificar disponibilidade do email."
+                        txtErro.text = "Erro ao conectar com o servidor."
                         txtErro.visibility = View.VISIBLE
                     }
             }
