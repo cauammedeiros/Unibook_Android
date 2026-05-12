@@ -11,12 +11,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class CadastroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_cadastro)
+        val fb = Firebase.firestore
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -43,22 +46,49 @@ class CadastroActivity : AppCompatActivity() {
                 txtErro.text = "Preencha todos os campos!"
                 txtErro.visibility = View.VISIBLE
             }
-            else if (email == "aluno@unifor.br") { // Simulação de e-mail já existente
-                txtErro.text = "O email inserido já está cadastrado!"
-                txtErro.visibility = View.VISIBLE
-            }
             else if (!isSenhaValida(senha)) {
                 txtErro.text = "A senha deve ter no mínimo 8 caracteres, um número e uma letra maiúscula!"
                 txtErro.visibility = View.VISIBLE
             }
             else {
-                // Sucesso: Exibe mensagem e vai para a tela Entrando
-                android.widget.Toast.makeText(this, "Cadastro realizado com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
-                txtErro.visibility = View.GONE
-                val intent = Intent(this, tela_Entrando::class.java)
-                intent.putExtra("TIPO_USUARIO", "aluno")
-                startActivity(intent)
-                finish()
+                // Busca no Firebase Firestore para verificar se o email já existe
+                fb.collection("Usuários")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        if (documents.isEmpty) {
+                            // Email não existe, prosseguir com o cadastro
+                            val novoUsuario = hashMapOf(
+                                "nome" to nome,
+                                "email" to email,
+                                "senha" to senha,
+                                "tipo" to "aluno"
+                            )
+
+                            fb.collection("Usuários")
+                                .add(novoUsuario)
+                                .addOnSuccessListener {
+                                    android.widget.Toast.makeText(this, "Cadastro realizado com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
+                                    txtErro.visibility = View.GONE
+                                    val intent = Intent(this, tela_Entrando::class.java)
+                                    intent.putExtra("TIPO_USUARIO", "aluno")
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                .addOnFailureListener {
+                                    txtErro.text = "Erro ao salvar os dados. Tente novamente."
+                                    txtErro.visibility = View.VISIBLE
+                                }
+                        } else {
+                            // Email já cadastrado
+                            txtErro.text = "O email inserido já está cadastrado!"
+                            txtErro.visibility = View.VISIBLE
+                        }
+                    }
+                    .addOnFailureListener {
+                        txtErro.text = "Erro ao conectar com o servidor."
+                        txtErro.visibility = View.VISIBLE
+                    }
             }
         }
 
