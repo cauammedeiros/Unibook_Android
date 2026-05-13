@@ -88,117 +88,136 @@
                         app:tint="@color/black" />
                 </FrameLayout>
 
-                <!-- Campos Nome, Autor, Gênero com ícones de edição -->
+                <!-- Campos Nome, Autor, Gênero Editáveis -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:orientation="vertical">
 
+                    <!-- Nome -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/ic_edit"
                             app:tint="@color/black" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="4dp"
                             android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
                             android:text="@string/label_nome"
+                            android:textSize="12sp"
                             android:textColor="@color/black" />
                     </LinearLayout>
+                    <EditText
+                        android:id="@+id/edtNomeLivroEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="Nome do livro"
+                        android:inputType="text"
+                        android:textSize="14sp"
+                        android:paddingVertical="4dp"/>
 
+                    <!-- Autor -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/ic_edit"
                             app:tint="@color/black" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="4dp"
                             android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
                             android:text="@string/label_autor"
+                            android:textSize="12sp"
                             android:textColor="@color/black" />
                     </LinearLayout>
+                    <EditText
+                        android:id="@+id/edtAutorLivroEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="Nome do autor"
+                        android:inputType="textPersonName"
+                        android:textSize="14sp"
+                        android:paddingVertical="4dp"/>
 
+                    <!-- Gênero -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/ic_edit"
                             app:tint="@color/black" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="4dp"
                             android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
                             android:text="@string/label_genero"
+                            android:textSize="12sp"
                             android:textColor="@color/black" />
                     </LinearLayout>
+                    <EditText
+                        android:id="@+id/edtGeneroLivroEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="Gênero do livro"
+                        android:inputType="text"
+                        android:textSize="14sp"
+                        android:paddingVertical="4dp"/>
 
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Sinopse com ícone de edição -->
-            <FrameLayout
+            <!-- Sinopse Editável -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/label_sinopse"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtSinopseEditar"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_branco_borda">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_sinopse"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_edit"
-                        app:tint="@color/black" />
-                </LinearLayout>
-            </FrameLayout>
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_branco_borda"
+                android:gravity="top"
+                android:hint="Digite a sinopse..."
+                android:padding="12dp"
+                android:textSize="14sp" />
 
             <!-- Botões Salvar e Excluir -->
             <LinearLayout
