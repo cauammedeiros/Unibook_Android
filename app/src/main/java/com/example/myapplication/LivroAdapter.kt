@@ -25,13 +25,14 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
             //intent.putExtra("TITULO_LIVRO", livro.titulo)
             holder.itemView.context.startActivity(intent)
         }
-        //holder.capa.setImageResource(livro.imagem)
+        holder.titulo.text = livro.titulo
+        holder.capa.setImageResource(livro.imagem)
     }
 
     override fun getItemCount() = listaLivros.size
 
     class LivroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //val capa: ImageView = view.findViewById(R.id.imgCapa)
-        //val titulo: TextView = view.findViewById(R.id.txtTituloLivro)
+        val capa: ImageView = view.findViewById(R.id.imgCapa)
+        val titulo: TextView = view.findViewById(R.id.txtTituloLivro)
     }
 }

@@ -111,12 +111,13 @@
                             android:paddingVertical="4dp"
                             android:text="@string/label_nome"
                             android:textColor="@color/black" />
+
                         <EditText
                             android:id="@+id/edtNomeLivro"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginStart="4dp"
+                            android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:inputType="text"
                             android:textSize="14sp" />

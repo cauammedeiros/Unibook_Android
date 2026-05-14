@@ -64,12 +64,12 @@ class PesquisaGeneroActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val livros = listOf(
-            Livro("Livro 1", 0),
-            Livro("Livro 2", 0),
-            Livro("Livro 3", 0),
-            Livro("Livro 4", 0),
-            Livro("Livro 5", 0),
-            Livro("Livro 6", 0)
+            Livro("Livro 1", "0"),
+            Livro("Livro 2", "0"),
+            Livro("Livro 3", "0"),
+            Livro("Livro 4", "0"),
+            Livro("Livro 5", "0"),
+            Livro("Livro 6", "0")
         )
 
         val adapter = LivroGridAdapter(livros)

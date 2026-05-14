@@ -3,7 +3,6 @@ package com.example.myapplication
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -83,12 +82,13 @@ class TelaBibliotecaActivity : AppCompatActivity() {
         }
 
         val listaDeLivros = listOf(
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste", imagem = R.drawable.logo_nome)
         )
 
         val rvLivros = findViewById<RecyclerView>(R.id.rvLivros)

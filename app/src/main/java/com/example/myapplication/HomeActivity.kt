@@ -80,11 +80,11 @@ class HomeActivity : AppCompatActivity() {
 
         // Livros de Ação
         val listaDeAcao = listOf(
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome)
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome)
         )
 
         val rvAcao = findViewById<RecyclerView>(R.id.rvAcao)
@@ -93,11 +93,11 @@ class HomeActivity : AppCompatActivity() {
 
         // Livros de Suspense
         val listaDeSuspense = listOf(
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome),
-            Livro("Teste",R.drawable.logo_nome)
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome),
+            Livro("Teste",imagem = R.drawable.logo_nome)
         )
 
         val rvSuspense = findViewById<RecyclerView>(R.id.rvSuspense)

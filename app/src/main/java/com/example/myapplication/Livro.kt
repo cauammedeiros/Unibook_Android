@@ -22,5 +22,6 @@ data class Livro(
 
     @get:PropertyName("Sinopse")
     @set:PropertyName("Sinopse")
-    var sinopse: String = ""
+    var sinopse: String = "",
+    var imagem: Int = 0
 )
