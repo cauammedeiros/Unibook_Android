@@ -13,7 +13,7 @@ class EditarPerfilActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     // No futuro, aqui você pegará o ID do usuário logado via Firebase Auth
     // Por enquanto, usaremos um ID fixo para teste que deve existir no seu Firebase
-    private val userId = "usuario_teste_1" 
+    private val userId = "usuario_teste_1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
         // Tenta atualizar o documento na coleção "Usuários"
         db.collection("Usuários").document(userId)
-            .set(dados) // Usamos 'set' com Merge para criar se não existir ou atualizar se já existir
+            .set(dados)
             .addOnSuccessListener {
                 Toast.makeText(this, "Perfil atualizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
