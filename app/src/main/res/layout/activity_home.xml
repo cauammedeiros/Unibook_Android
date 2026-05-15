@@ -20,7 +20,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:text="Início"
-            android:textColor="@android:color/black"
+            android:textColor="@color/azul_escuro"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -74,6 +74,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="Sugestões"
+                android:textColor="@color/azul_escuro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -81,7 +82,7 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#888888" />
+                android:background="@color/azul_escuro" />
 
             <TextView
                 android:id="@+id/txtAcao"
@@ -90,6 +91,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Ação"
+                android:textColor="@color/azul_escuro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -111,6 +113,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Suspense"
+                android:textColor="@color/azul_escuro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
