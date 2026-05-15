@@ -131,13 +131,13 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Barra de Navegação Inferior (Reutilizada) -->
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp" />
 
-    <!-- Barra de Navegação Inferior (Reutilizada) -->
     <include
         android:id="@+id/bottomNavigation"
         layout="@layout/layout_bottom_nav"
