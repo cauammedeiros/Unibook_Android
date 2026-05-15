@@ -1,203 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:background="@color/fundo_principal"
     tools:context=".VisualizarPerfilActivity">
 
-    <!-- Header -->
-    <RelativeLayout
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
-        android:layout_height="184dp"
-        android:layout_marginBottom="24dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
         <ImageButton
             android:id="@+id/btnVoltar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             android:src="@drawable/baseline_keyboard_arrow_left_24"
-            app:tint="@color/black" />
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:id="@+id/txtTituloVisualizar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_visualizar_perfil"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="192dp"
-            android:layout_height="160dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/logo_nome" />
-    </RelativeLayout>
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
 
-    <!-- Profile Icon -->
-    <ImageView
-        android:id="@+id/imgPerfil"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_profile_1"
-        app:tint="@color/black" />
-
-    <!-- User Name Section -->
-    <TextView
-        android:id="@+id/txtNomeLabel"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nome do Usuário :"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:layout_marginBottom="4dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/cinza_borda"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Email Section -->
-    <TextView
-        android:id="@+id/txtEmailLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="E-mail :"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:layout_marginBottom="4dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/cinza_borda"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Loan Card -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginBottom="32dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true">
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Avatar do Usuário -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/cor_card"
+                android:layout_marginBottom="32dp">
+                <ImageView
+                    android:id="@+id/imgPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile_1"
+                    android:contentDescription="@string/nav_perfil" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Seção Nome -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_nome_usuario"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Livro em Empréstimo"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp" />
+                android:id="@+id/txtNomeUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/borda_edittext"
+                android:paddingHorizontal="16dp"
+                android:gravity="center_vertical"
+                android:text="@string/placeholder_nome_usuario"
+                android:textColor="@color/texto_principal"
+                android:textSize="16sp" />
 
-            <!-- Book Name Row -->
-            <LinearLayout
+            <!-- Seção Email -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_email"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/borda_edittext"
+                android:paddingHorizontal="16dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
+                android:text="@string/placeholder_email"
+                android:textColor="@color/texto_principal"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="Nome do livro:"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtNomeLivro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Nome do livro"
-                        android:textColor="@color/black" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/black" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Status Row -->
-            <LinearLayout
+            <!-- Card de Empréstimo -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="Status:"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
-                        android:id="@+id/txtStatusLivro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/label_livro_emprestimo"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- Linha: Nome do Livro -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Ativo / Atrasado"
-                        android:textColor="@color/black" />
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_nome"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtNomeLivro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/placeholder_livro_nome"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
-                    <View
+                    <!-- Linha: Status -->
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/black" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_status_v2"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtStatusLivro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/placeholder_status_emprestimo"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
                 </LinearLayout>
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botão de Multa -->
+            <Button
+                android:id="@+id/btnVerificarMulta"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_vermelho"
+                app:backgroundTint="@null"
+                android:text="@string/btn_verificar_multa"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
 
-    <!-- Verify Fine Button -->
-    <Button
-        android:id="@+id/btnVerificarMulta"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_vermelho"
-        app:backgroundTint="@null"
-        android:paddingHorizontal="16dp"
-        android:text="Verificar Multa"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-</LinearLayout>
+</RelativeLayout>

@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@android:color/white">
+    android:layout_margin="24dp"
+    app:cardBackgroundColor="@color/cor_card"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aceite os Termos de Serviço."
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="@android:color/black" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DDDDDD"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp" />
-
-    <CheckBox
-        android:id="@+id/checkAceitar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aceitar"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:drawableStart="@drawable/arrow_back"
-        android:drawablePadding="0dp"
-        android:paddingStart="0dp"
-        android:text="  Voltar"
-        android:textSize="16sp" />
-
-    <Button
-        android:id="@+id/btnConfirmarBaixar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Baixar"
-        android:backgroundTint="#5B6CF0"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="16dp" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Termos de Serviço"
+            android:textColor="@color/texto_principal"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Para realizar o empréstimo, você deve aceitar os termos de uso da biblioteca."
+            android:textColor="@color/texto_secundario"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/checkAceitar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Eu aceito os termos"
+            android:textColor="@color/texto_principal"
+            android:buttonTint="@color/azul_botao"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnConfirmarBaixar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_azul"
+            app:backgroundTint="@null"
+            android:text="Confirmar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/btn_cinza_borda"
+            app:backgroundTint="@null"
+            android:text="@string/voltar"
+            android:textAllCaps="false"
+            android:textColor="@color/texto_principal"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

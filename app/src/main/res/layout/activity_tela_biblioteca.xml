@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,83 +8,93 @@
     android:background="@color/fundo_principal"
     tools:context=".TelaBibliotecaActivity">
 
-    <!-- Cabeçalho -->
-
-    <TextView
-        android:id="@+id/txtBiblioteca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Biblioteca"
-        android:textColor="@color/texto_principal"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/btnTema"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_light_mode"
-        android:padding="4dp"
-        app:tint="@color/cor_icones"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="@string/desc_alternar_tema"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="@+id/txtBiblioteca"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtBiblioteca" />
-
-    <!-- Subtítulo Favoritos -->
-
-    <TextView
-        android:id="@+id/txtFavoritos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Favoritos"
-        android:textColor="@color/texto_secundario"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBiblioteca" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/texto_secundario"
-        android:alpha="0.3"
-        app:layout_constraintTop_toBottomOf="@+id/txtFavoritos" />
-
-    <!-- Lista de Livros -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLivros"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="586dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:spanCount="2"
-        tools:listitem="@layout/item_livro" />
-
-    <!-- Barra de Navegação Inferior -->
-
-    <include
-        layout="@layout/layout_bottom_nav"
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtBiblioteca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Biblioteca"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+            android:id="@+id/btnBuscarTop"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_search"
+            android:contentDescription="@string/nav_buscar"
+            app:tint="@color/cor_icones" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:layout_above="@+id/layout_bottom_nav_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <!-- Título da Seção (Favoritos) -->
+            <TextView
+                android:id="@+id/txtFavoritos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Favoritos"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Grid de Livros -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLivros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_livro" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Container para o Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/layout_bottom_nav_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/layout_bottom_nav" />
+    </LinearLayout>
+
+</RelativeLayout>

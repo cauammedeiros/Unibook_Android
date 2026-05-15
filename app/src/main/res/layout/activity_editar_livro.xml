@@ -1,256 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".EditarLivroActivity">
 
-    <!-- Header -->
-    <ImageView
-        android:id="@+id/btnVoltar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
-
-    <TextView
-        android:id="@+id/txtTituloEditar"
-        android:layout_width="wrap_content"
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_editar"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVoltar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnVoltar" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-    <View
-        android:id="@+id/dividerEditar"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="#CCCCCC"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloEditar" />
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
 
-    <ScrollView
+        <TextView
+            android:id="@+id/txtTituloEditar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_editar"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dividerEditar">
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal">
 
-                <!-- Capa do Livro com ícone de edição -->
-                <FrameLayout
-                    android:layout_width="160dp"
-                    android:layout_height="220dp">
-
-                    <LinearLayout
+                <!-- Capa do Livro -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="140dp"
+                    android:layout_height="200dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/cor_card">
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#E0E0E0"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/imgCapaLivroEditar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_nome" />
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_edit"
+                            android:padding="4dp"
+                            android:background="@drawable/scrim_gradient"
+                            app:tint="@color/white" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/placeholder_capa_livro"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/ic_edit"
-                        app:tint="@color/black" />
-                </FrameLayout>
-
-                <!-- Campos Nome, Autor, Gênero Editáveis -->
+                <!-- Campos Nome, Autor, Gênero -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:orientation="vertical">
 
-                    <!-- Nome -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit"
-                            app:tint="@color/black" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
-                            android:text="@string/label_nome"
-                            android:textSize="12sp"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
+                        android:text="@string/label_nome"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/edtNomeLivroEditar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="Nome do livro"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/borda_edittext"
                         android:inputType="text"
-                        android:textSize="14sp"
-                        android:paddingVertical="4dp"/>
+                        android:paddingHorizontal="12dp"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="15sp" />
 
-                    <!-- Autor -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit"
-                            app:tint="@color/black" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
-                            android:text="@string/label_autor"
-                            android:textSize="12sp"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
+                        android:text="@string/label_autor"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/edtAutorLivroEditar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="Nome do autor"
-                        android:inputType="textPersonName"
-                        android:textSize="14sp"
-                        android:paddingVertical="4dp"/>
+                        android:layout_height="56dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/borda_edittext"
+                        android:inputType="text"
+                        android:paddingHorizontal="12dp"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="15sp" />
 
-                    <!-- Gênero -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit"
-                            app:tint="@color/black" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:background="@drawable/btn_branco_borda"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
-                            android:text="@string/label_genero"
-                            android:textSize="12sp"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
+                        android:text="@string/label_genero"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/edtGeneroLivroEditar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="Gênero do livro"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/borda_edittext"
                         android:inputType="text"
-                        android:textSize="14sp"
-                        android:paddingVertical="4dp"/>
-
+                        android:paddingHorizontal="12dp"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Sinopse Editável -->
+            <!-- Sinopse -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_sinopse"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textColor="@color/texto_secundario"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtSinopseEditar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="150dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/btn_branco_borda"
+                android:background="@drawable/borda_edittext"
                 android:gravity="top"
-                android:hint="Digite a sinopse..."
+                android:inputType="textMultiLine"
                 android:padding="12dp"
+                android:textColor="@color/texto_principal"
                 android:textSize="14sp" />
 
             <!-- Botões Salvar e Excluir -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btnSalvarLivro"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:backgroundTint="#5B7FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/btn_azul"
+                    app:backgroundTint="@null"
                     android:text="@string/btn_salvar"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    app:cornerRadius="8dp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnExcluirLivro"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF4B4B"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/btn_vermelho_borda"
+                    app:backgroundTint="@null"
                     android:text="@string/btn_excluir"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:cornerRadius="8dp" />
+                    android:textColor="@color/vermelho_botao"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

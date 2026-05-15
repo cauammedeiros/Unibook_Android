@@ -1,277 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".EmprestimoActivity">
 
-    <!-- Botão Voltar -->
-    <ImageView
-        android:id="@+id/btnVoltarTopo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
-
-    <!-- Logo -->
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="252dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logo_nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtTituloEmprestimo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Emprestimo do Livro"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
-    <View
-        android:id="@+id/dividerTop"
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="#CCCCCC"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloEmprestimo" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnVoltarTopo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:id="@+id/txtTituloEmprestimo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Empréstimo"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@+id/dividerTop">
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:layout_above="@id/bottomNavigation">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp">
 
-            <!-- Capa do Livro -->
-            <FrameLayout
-                android:id="@+id/frameCapaLivro"
-                android:layout_width="180dp"
-                android:layout_height="260dp"
-                android:background="#E0E0E0">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Capa do Livro"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-            </FrameLayout>
-
-            <!-- Detalhes -->
-            <LinearLayout
+            <!-- Card com Info do Livro -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="Nome do Livro :"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="Autor :"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="Status :"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <!-- Datas -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_branco_borda"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="Data de Entrega :"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="10/07/2026"
-                            android:textColor="@color/black" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/black" />
-                    </LinearLayout>
-                </LinearLayout>
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/imgCapaLivro"
+                        android:layout_width="150dp"
+                        android:layout_height="220dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo_nome"
+                        android:layout_marginBottom="24dp"
+                        android:background="@color/cinza_borda"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtNomeLivro"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/btn_branco_borda"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="Data de Devolução :"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:text="Título do Livro"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginBottom="4dp"/>
 
+                    <TextView
+                        android:id="@+id/txtAutorLivro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Autor do Livro"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp"/>
+
+                    <!-- Datas -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Data de Retirada:"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtDataEntrega"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="24/07/2026"
-                            android:textColor="@color/black" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/black" />
+                            android:text="10/07/2023"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Data de Devolução:"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtDataDevolucao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="24/07/2023"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="24dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status:"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Disponível"
+                            android:textColor="@color/azul_botao"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <!-- Termos -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkTermos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/azul_botao" />
+
+                        <TextView
+                            android:id="@+id/btnAceitarTermos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Aceito os Termos de Serviço"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtErroTermos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Por favor, aceite os termos para continuar."
+                        android:textColor="@color/vermelho_botao"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-
-            <!-- Termos de Serviço -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkTermos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/black" />
-
-                <TextView
-                    android:id="@+id/btnAceitarTermos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="Aceitar os Termos de Serviços"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <!-- Botões de Ação -->
-            <TextView
-                android:id="@+id/txtErroTermos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aceite os Termos de Serviço."
-                android:textColor="#FF0000"
-                android:visibility="gone" />
-
-            <LinearLayout
+            <!-- Botões -->
+            <Button
+                android:id="@+id/btnConfirmar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="Confirmar Empréstimo"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btnConfirmar"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="#4064E4"
-                    android:text="Confirmar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnVoltar"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Voltar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    app:strokeColor="#CCCCCC"
-                    app:strokeWidth="1dp" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_cinza_borda"
+                app:backgroundTint="@null"
+                android:text="Cancelar"
+                android:textAllCaps="false"
+                android:textColor="@color/texto_principal" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Barra de Navegação Inferior -->
     <include
         android:id="@+id/bottomNavigation"
         layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_alignParentBottom="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

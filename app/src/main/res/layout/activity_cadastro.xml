@@ -1,132 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/fundo_principal"
     tools:context=".CadastroActivity">
 
-    <ImageButton
-        android:id="@+id/btnVoltarRedefinir"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Voltar"
-        android:src="@drawable/baseline_keyboard_arrow_left_24" />
-
-    <ImageView
-        android:id="@+id/logo3"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/logo_nome" />
-
-    <TextView
-        android:id="@+id/txtCrieconta"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:text="Crie uma conta"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/txtNome"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:hint="Nome completo"
-        android:inputType="textPersonName"
-        android:paddingStart="15dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:hint="email@domain.com"
-        android:inputType="textEmailAddress"
-        android:paddingStart="15dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/btnVoltarRedefinir"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/voltar"
+                    android:src="@drawable/baseline_keyboard_arrow_left_24"
+                    app:tint="@color/cor_icones" />
+            </RelativeLayout>
 
-    <EditText
-        android:id="@+id/txtSenha"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:hint="Crie uma senha"
-        android:inputType="textPassword"
-        android:paddingStart="15dp" />
+            <ImageView
+                android:id="@+id/logo3"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                app:srcCompat="@drawable/logo_nome" />
 
-    <TextView
-        android:id="@+id/txtErroCadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/fundo_erro"
-        android:padding="10dp"
-        android:text="Mensagem de erro aqui"
-        android:textColor="#CC0000"
-        android:visibility="gone" />
+            <TextView
+                android:id="@+id/txtCrieconta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/crie_uma_conta"
+                android:textColor="@color/texto_principal"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/btn_azul"
-        app:backgroundTint="@null"
-        android:text="Cadastrar"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/txtNome"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_nome_completo"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtTemLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="Já possui uma conta? Faça o login."
-        android:textColor="#2D5AF0"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_email_exemplo"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+            <EditText
+                android:id="@+id/txtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_crie_senha"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtTermos2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="Clicando em continuar, você concorda com nossos Termos de Serviço e Políticas de Privacidade"
-        android:textColor="#555555"
-        android:textSize="12sp" />
+            <TextView
+                android:id="@+id/txtErroCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/fundo_erro"
+                android:padding="12dp"
+                android:text="Mensagem de erro aqui"
+                android:textColor="@color/erro_texto"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="@string/btn_cadastrar"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTemLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/msg_ja_tem_conta"
+                android:textColor="@color/texto_principal"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="40dp" />
+
+            <TextView
+                android:id="@+id/txtTermos2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/termos"
+                android:textColor="@color/texto_secundario"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

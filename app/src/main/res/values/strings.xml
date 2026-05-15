@@ -12,13 +12,16 @@
 
     <!-- Administração -->
     <string name="title_administracao">Administração</string>
+    <string name="label_painel_controle">Painel de Controle</string>
     <string name="btn_gerenciar_livros">Gerenciar Livros</string>
     <string name="btn_procurar_usuarios">Procurar Usuários</string>
     <string name="btn_verificar_multas">Verificar Multas</string>
     <string name="btn_configuracoes">Configurações</string>
+    <string name="title_multas">Multas</string>
     <string name="title_procurar_usuarios">Procurar Usuários</string>
     <string name="title_procurar_livros">Procurar Livros</string>
     <string name="hint_busca">Faça Sua Busca</string>
+    <string name="hint_busca_multas">Buscar por livro ou data</string>
 
     <!-- Diálogos -->
     <string name="msg_confirmar_exclusao">Tem certeza que deseja Excluir?</string>
@@ -27,6 +30,14 @@
     <string name="btn_excluir_perfil">Excluir Perfil</string>
     <string name="btn_criar_pequeno">Criar</string>
     <string name="btn_procurar_pequeno">Procurar</string>
+    <string name="title_escolha_acao">Escolha uma ação</string>
+    <string name="msg_pergunta_livro">O que deseja fazer com este livro?</string>
+    <string name="btn_emprestimo">Empréstimo</string>
+    <string name="title_gerenciar_livros">Gerenciar Livros</string>
+    <string name="msg_termos_livro">Para realizar o empréstimo, você deve aceitar os termos de uso da biblioteca.</string>
+    <string name="label_aceito_termos">Eu aceito os termos</string>
+    <string name="btn_confirmar">Confirmar</string>
+    <string name="title_termos_servico">Termos de Serviço</string>
 
     <!-- Livros (Criar/Editar) -->
     <string name="title_criar_livros">Criar Livros</string>
@@ -88,4 +99,55 @@
     <string name="home_cat_animes">Animes</string>
     <string name="home_cat_classicos">Clássicos da Literatura</string>
     <string name="desc_alternar_tema">Alternar entre modo claro e escuro</string>
+    <string name="title_detalhes">Detalhes</string>
+    <string name="btn_baixar">Baixar</string>
+    <string name="btn_favoritar">Favoritar</string>
+    <string name="btn_emprestimo_v2">Empréstimo</string>
+    <string name="label_genero_v2">Gênero: %1$s</string>
+    <string name="label_autor_v2">Autor: %1$s</string>
+    <string name="desc_capa_livro">Capa do Livro</string>
+    <string name="hint_nome_completo">Nome completo</string>
+    <string name="hint_email_exemplo">email@domain.com</string>
+    <string name="hint_crie_senha">Crie uma senha</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="msg_ja_tem_conta">Já possui uma conta? Faça o login.</string>
+    <string name="title_visualizar_perfil">Visualizar Perfil</string>
+    <string name="label_livro_emprestimo">Livro em Empréstimo</string>
+    <string name="label_status_v2">Status:</string>
+    <string name="btn_verificar_multa">Verificar Multa</string>
+    <string name="title_informacoes_conta">Informações da Conta</string>
+    <string name="title_emprestimo_ativo">Empréstimo Ativo</string>
+    <string name="title_atividade_ajustes">Atividade e Ajustes</string>
+    <string name="label_historico_leitura">Histórico de Leitura</string>
+    <string name="placeholder_email">email@exemplo.com</string>
+    <string name="placeholder_nome_usuario">Nome do Usuário</string>
+    <string name="placeholder_livro_nome">O Senhor dos Anéis</string>
+    <string name="placeholder_status_emprestimo">Em andamento</string>
+    <string name="hint_digite_nome">Digite seu nome</string>
+    <string name="hint_digite_email">Digite seu e-mail</string>
+    <string name="title_redefinir_senha">Redefinir Senha</string>
+    <string name="title_recuperar_senha">Recuperar Senha</string>
+    <string name="title_verificar_codigo">Verificar Código</string>
+    <string name="title_pagamento_pix">Pagamento via Pix</string>
+    <string name="msg_codigo_enviado">O código foi enviado para o seu e-mail.</string>
+    <string name="hint_insira_codigo">Insira o Código</string>
+    <string name="btn_enviar">Enviar</string>
+    <string name="txt_reenviar_codigo">Reenviar o código</string>
+    <string name="label_insira_nova_senha">Insira uma nova senha:</string>
+    <string name="hint_nova_senha">Nova senha</string>
+    <string name="hint_confirmar_senha">Confirme a nova senha</string>
+    <string name="btn_redefinir">Redefinir senha</string>
+    <string name="label_informe_email">Informe seu e-mail</string>
+    <string name="btn_solicitar">Solicitar</string>
+    <string name="btn_copiar_codigo">Copiar Código</string>
+    <string name="label_copie_cole">Código do copie e cole</string>
+    <string name="label_valor_multa_v2">Valor da Multa :</string>
+    <string name="label_status_pagamento">Status :</string>
+    <string name="msg_instrucao_pagamento">Após realizar o pagamento,\nenvie o comprovante via imagem.</string>
+    <string name="msg_requisitos_senha">A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula.</string>
+    <string name="msg_erro_email_inexistente">O e-mail inserido não existe!</string>
+    <string name="btn_enviar_comprovante">Enviar Comprovante</string>
+    <string name="label_valor">Valor</string>
+    <string name="placeholder_valor_multa">R$ 0,00</string>
+    <string name="placeholder_status_pendente">Pendente</string>
 </resources>

@@ -1,85 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/fundo_principal"
     tools:context=".RedefinirActivity">
 
-    <ImageButton
-        android:id="@+id/btnVoltarRedefinir"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Voltar"
-        android:src="@drawable/baseline_keyboard_arrow_left_24" />
-
-    <ImageView
-        android:id="@+id/logo6"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/logo_nome" />
-
-    <TextView
-        android:id="@+id/txtInsira"
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Insira uma nova senha:"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/txtRequisitosSenha"
+        <ImageButton
+            android:id="@+id/btnVoltarRedefinir"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_redefinir_senha"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/fundo_requisitos_senha"
-        android:padding="12dp"
-        android:lineSpacingExtra="4sp"
-        android:text="A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula."
-        android:textColor="#666666"
-        android:textSize="13sp" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/txtNovaSenha"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:hint="Insira uma nova senha"
-        android:inputType="textPassword" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingBottom="32dp">
 
-    <EditText
-        android:id="@+id/txtRepetirSenha"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:hint="Confirme a nova senha"
-        android:inputType="textPassword" />
+            <ImageView
+                android:id="@+id/logo6"
+                android:layout_width="240dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/logo_nome" />
 
-    <Button
-        android:id="@+id/btnRedefinir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="#000000"
-        android:text="Redefinir senha" />
+            <TextView
+                android:id="@+id/txtInsira"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/label_insira_nova_senha"
+                android:textColor="@color/texto_principal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/txtRequisitosSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/fundo_requisitos_senha"
+                android:padding="16dp"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/msg_requisitos_senha"
+                android:textColor="@color/texto_secundario"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/txtNovaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_nova_senha"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/txtRepetirSenha"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_confirmar_senha"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/btnRedefinir"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="@string/btn_redefinir"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="40dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

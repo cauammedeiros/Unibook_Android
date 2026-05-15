@@ -1,127 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/fundo_principal"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/Logo"
-        android:layout_width="351dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center|top"
-        app:srcCompat="@drawable/logo_nome" />
-
-    <TextView
-        android:id="@+id/txtBemvindo"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/angkor"
-        android:gravity="center"
-        android:text="@string/bem_vindo"
-        android:textColor="#1C70AB"
-        android:textSize="24sp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txtLogin"
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:layout_marginStart="30dp"
-        android:fontFamily="sans-serif"
-        android:gravity="center|start"
-        android:text="@string/login"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/CampoEmail"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:fallbackLineSpacing="false"
-        android:hapticFeedbackEnabled="false"
-        android:hint="@string/insira_o_e_mail"
-        android:inputType="textEmailAddress"
-        android:keyboardNavigationCluster="false" />
+            <ImageView
+                android:id="@+id/Logo"
+                android:layout_width="280dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/logo_nome" />
 
-    <EditText
-        android:id="@+id/CampoSenha"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/borda_edittext"
-        android:ems="10"
-        android:hint="@string/insira_a_senha"
-        android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/txtBemvindo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/bem_vindo"
+                android:textColor="@color/texto_principal"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center" />
 
-    <TextView
-        android:id="@+id/txtMensagemErro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/fundo_erro"
-        android:padding="10dp"
-        android:text="Mensagem de erro aqui"
-        android:textColor="#CC0000"
-        android:visibility="gone" />
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/login"
+                android:textColor="@color/texto_principal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnContinuar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/btn_azul"
-        app:backgroundTint="@null"
-        android:text="@string/continuar"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/CampoEmail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/insira_o_e_mail"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtEsqueceuSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:fontFamily="sans-serif"
-        android:padding="8dp"
-        android:text="@string/esqueceu_a_senha"
-        android:textColor="#2196F3"
-        android:textStyle="italic" />
+            <EditText
+                android:id="@+id/CampoSenha"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/insira_a_senha"
+                android:textColorHint="@color/texto_secundario"
+                android:textColor="@color/texto_principal"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="@string/cadastre_se"
-        android:textColor="#3387CA" />
+            <TextView
+                android:id="@+id/txtMensagemErro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/fundo_erro"
+                android:padding="12dp"
+                android:text="Mensagem de erro aqui"
+                android:textColor="@color/erro_texto"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/txtTermos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:text="@string/termos"
-        android:gravity="center"
-        android:textSize="12sp" />
+            <Button
+                android:id="@+id/btnContinuar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="@string/continuar"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/txtEsqueceuSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="start"
+                android:text="@string/esqueceu_a_senha"
+                android:textColor="@color/texto_secundario"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtCadastrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/cadastre_se"
+                android:textColor="@color/texto_principal"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTermos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/termos"
+                android:textColor="@color/texto_secundario"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

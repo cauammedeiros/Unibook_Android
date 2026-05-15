@@ -1,114 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".AdmActivity">
 
-    <!-- Header -->
+    <!-- Header Estilo Netflix -->
     <LinearLayout
-        android:id="@+id/headerAdm"
-        android:layout_width="wrap_content"
+        android:id="@+id/headerNetflix"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_profile_1"
-            app:tint="@color/black" />
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txtTituloAdm"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_weight="1"
             android:text="@string/title_administracao"
-            android:textColor="@color/black"
-            android:textSize="32sp"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/dividerAdm"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/headerAdm" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix">
 
-    <!-- Buttons Container -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dividerAdm">
-
-        <Button
-            android:id="@+id/btnGerenciarLivros"
-            style="@style/Widget.AppCompat.Button"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_arrendondado"
-            android:text="@string/btn_gerenciar_livros"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            app:backgroundTint="@null" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
 
-        <Button
-            android:id="@+id/btnProcurarUsuarios"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_arrendondado"
-            android:text="@string/btn_procurar_usuarios"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            app:backgroundTint="@null" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_painel_controle"
+                android:textColor="@color/texto_secundario"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="8dp"/>
 
-        <Button
-            android:id="@+id/btnVerificarMultas"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="48dp"
-            android:background="@drawable/btn_arrendondado"
-            android:text="@string/btn_verificar_multas"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnGerenciarLivros"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/btn_azul"
+                android:text="@string/btn_gerenciar_livros"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btnConfiguracoesAdm"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:background="@drawable/btn_arrendondado"
-            android:text="@string/btn_configuracoes"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnProcurarUsuarios"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/btn_azul"
+                android:text="@string/btn_procurar_usuarios"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnVerificarMultas"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/btn_azul"
+                android:text="@string/btn_verificar_multas"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnConfiguracoesAdm"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_cinza_borda"
+                android:text="@string/btn_configuracoes"
+                android:textAllCaps="false"
+                android:textColor="@color/texto_principal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

@@ -1,209 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".AtrasoActivity">
 
-    <!-- Header -->
-    <ImageView
-        android:id="@+id/btnVoltar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
-
+    <!-- Header Estilo Netflix -->
     <LinearLayout
-        android:id="@+id/headerAtraso"
-        android:layout_width="wrap_content"
+        android:id="@+id/headerNetflix"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <!-- Ícone (usando um placeholder ou ícone existente) -->
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/hand_atraso_24"
-            app:tint="@color/black" />
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txtTituloAtraso"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/title_livro_atraso"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/dividerAtraso"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="#CCCCCC"
-        app:layout_constraintTop_toBottomOf="@+id/headerAtraso" />
-
-    <!-- Card Content -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:background="@drawable/btn_branco_borda"
-        android:orientation="vertical"
-        android:padding="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/dividerAtraso">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="12dp"
-            android:text="Nome do Livro"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CCCCCC" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp">
 
-            <!-- Devolução Prevista -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="@string/label_devolucao_prevista"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-                <View
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#888888" />
-            </LinearLayout>
-
-            <!-- Dias em Atraso -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="@string/label_dias_atraso"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#888888" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-            <!-- Multa Atual -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="@string/label_multa_atual"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#888888" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtNomeLivro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Nome do Livro"
+                        android:textColor="@color/texto_principal"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="24dp"/>
 
-            <!-- Status -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_branco_borda"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="@string/label_status"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#888888" />
-            </LinearLayout>
+                    <!-- Detalhes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_devolucao_prevista"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtDevolucaoPrevista"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10/10/2023"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
 
-            <!-- Aviso -->
-            <TextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_dias_atraso"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtDiasAtraso"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="5 dias"
+                            android:textColor="@color/vermelho_botao"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_multa_atual"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtMultaAtual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="R$ 10,00"
+                            android:textColor="@color/vermelho_botao"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="24dp">
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_status"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/txtStatusAtraso"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pendente"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/borda_edittext"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="@string/msg_regularize_pagamento"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnGerarQrCode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_branco_borda"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="@string/msg_regularize_pagamento"
-                android:textColor="@color/black"
-                android:textSize="14sp"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="@string/btn_gerar_qrcode"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/btnGerarQrCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="#4267B2"
-        android:paddingHorizontal="24dp"
-        android:text="@string/btn_gerar_qrcode"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

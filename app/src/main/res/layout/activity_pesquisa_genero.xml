@@ -1,60 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
+    android:background="@color/fundo_principal"
     tools:context=".PesquisaGeneroActivity">
 
-
-    <!--SOMBREAMENTO E ELEVAÇÃO NOS LIVRO -->
-    <!-- Header -->
-    <RelativeLayout
+    <!-- Header seguindo o padrão da Home -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:paddingHorizontal="8dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
         <ImageButton
             android:id="@+id/btnVoltar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             android:src="@drawable/baseline_keyboard_arrow_left_24"
-            app:tint="@color/black" />
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txtTitulo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Gênero do livro"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:layout_weight="1"
+            android:text="@string/label_genero"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
             android:textStyle="bold" />
-    </RelativeLayout>
 
-    <View
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <!-- Área de Conteúdo com Scroll Fluido (Estilo Streaming) -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/cinza_borda" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:layout_above="@+id/layout_bottom_nav_container"
+        android:fillViewport="true">
 
-    <!-- Grid de Livros -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLivrosGenero"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Grade de Livros Otimizada (3 colunas estilo Streaming) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLivrosGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="40dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_livro" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Container para o Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/layout_bottom_nav_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="20dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3"
-        tools:listitem="@layout/item_livro_grid" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/layout_bottom_nav" />
+    </LinearLayout>
 
-    <!-- Bottom Navigation -->
-    <include layout="@layout/layout_bottom_nav" />
-
-</LinearLayout>
+</RelativeLayout>

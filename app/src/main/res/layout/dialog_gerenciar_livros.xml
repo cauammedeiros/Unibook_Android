@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_margin="24dp"
+    app:cardBackgroundColor="@color/cor_card"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
 
-    <!-- Opção Criar -->
     <LinearLayout
-        android:id="@+id/layoutOpcaoCriar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingVertical="12dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_add"
-            app:tint="@color/black" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:text="@string/btn_criar_pequeno"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:text="Gerenciar Livros"
+            android:textColor="@color/texto_principal"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            android:rotation="180"
-            app:tint="@color/black" />
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cinza_borda" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#EEEEEE" />
-
-    <!-- Opção Procurar -->
-    <LinearLayout
-        android:id="@+id/layoutOpcaoProcurar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingVertical="12dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_more_vert"
-            app:tint="@color/black" />
-
-        <TextView
-            android:layout_width="0dp"
+        <!-- Opção Criar -->
+        <LinearLayout
+            android:id="@+id/layoutOpcaoCriar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:text="@string/btn_procurar_pequeno"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            android:rotation="180"
-            app:tint="@color/black" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_add"
+                app:tint="@color/cor_icones" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="@string/btn_criar_pequeno"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/baseline_keyboard_arrow_left_24"
+                android:rotation="180"
+                app:tint="@color/cor_icones" />
+        </LinearLayout>
+
+        <!-- Opção Procurar -->
+        <LinearLayout
+            android:id="@+id/layoutOpcaoProcurar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/cor_icones" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="@string/btn_procurar_pequeno"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/baseline_keyboard_arrow_left_24"
+                android:rotation="180"
+                app:tint="@color/cor_icones" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

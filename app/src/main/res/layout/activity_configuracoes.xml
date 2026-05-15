@@ -1,221 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".ConfiguracoesActivity">
 
-    <!-- Header -->
+    <!-- Header Estilo Netflix -->
     <LinearLayout
-        android:id="@+id/header"
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:id="@+id/txtTituloConfig"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Configurações"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/baseline_keyboard_arrow_left_24" />
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp">
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@android:drawable/ic_menu_manage"
-                app:tint="@color/black" />
-
+            <!-- Seção: Acessibilidade -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Configurações"
-                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
+                android:text="Acessibilidade"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
 
-    <View
-        android:id="@+id/headerDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+            <!-- Ajuste de Fonte -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
 
-    <!-- Acessibilidade Badge -->
-    <LinearLayout
-        android:id="@+id/badgeAcessibilidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/btn_branco_borda"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerDivider">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A"
-            android:textColor="#4A148C"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TAMANHO DA FONTE"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Acessibilidade"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-    <!-- Tamanho da Fonte Card -->
-    <LinearLayout
-        android:id="@+id/layoutFonte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/btn_branco_borda"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/badgeAcessibilidade">
+                        <TextView
+                            android:id="@+id/btnDiminuirFonte"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:gravity="center"
+                            android:text="—"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="24sp"
+                            android:background="?attr/selectableItemBackgroundBorderless" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TAMANHO DA FONTE"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txtTamanhoFonte"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="32dp"
+                            android:text="50%"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/btnAumentarFonte"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="24sp"
+                            android:background="?attr/selectableItemBackgroundBorderless" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
+            <!-- Seção: Visual -->
             <TextView
-                android:id="@+id/btnDiminuirFonte"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:text="—"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/txtTamanhoFonte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:text="50%"
-                android:textColor="@color/black"
-                android:textSize="24sp"
+                android:layout_marginTop="24dp"
+                android:text="Visual"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/btnAumentarFonte"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:text="+"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Cores Card -->
-    <LinearLayout
-        android:id="@+id/layoutCores"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/btn_branco_borda"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/layoutFonte">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CORES"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnPadrao"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:text="Padrão"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="CORES E CONTRASTE"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnPadrao"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_branco_borda"
+                            app:backgroundTint="@null"
+                            android:text="Padrão"
+                            android:textAllCaps="false"
+                            android:textColor="@color/texto_principal" />
+
+                        <Button
+                            android:id="@+id/btnContraste"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_azul"
+                            app:backgroundTint="@null"
+                            android:text="Contraste"
+                            android:textColor="@color/white"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botão Salvar -->
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="Salvar Alterações"
                 android:textAllCaps="false"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/btnContraste"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:backgroundTint="@color/black"
-                android:text="Contraste"
                 android:textColor="@color/white"
-                android:textAllCaps="false" />
+                android:textStyle="bold" />
+
         </LinearLayout>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <!-- Salvar Button -->
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="101dp"
-        android:backgroundTint="#4285F4"
-        android:text="Salvar"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutCores"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <!-- Navigation -->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

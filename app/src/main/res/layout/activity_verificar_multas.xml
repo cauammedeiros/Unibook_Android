@@ -1,88 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".VerificarMultasActivity">
 
-    <!-- HEADER -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/white"
-        android:paddingHorizontal="8dp">
-
-        <!-- Botão Voltar -->
-        <ImageButton
-            android:id="@+id/btnVoltar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            android:contentDescription="Voltar"
-            app:tint="@color/black" />
-
-        <!-- Título -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Verificar Multas"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <!-- Linha divisória -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/cinza_borda" />
-
-    <!-- Campo de Busca -->
-    <FrameLayout
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <EditText
-            android:id="@+id/edtBusca"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/bg_search_pill"
-            android:hint="Faça Sua Busca"
-            android:textColorHint="#BCBCBC"
-            android:paddingStart="16dp"
-            android:paddingEnd="48dp"
-            android:textSize="16sp"
-            android:singleLine="true"
-            android:imeOptions="actionSearch"
-            android:inputType="text" />
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:id="@+id/txtTituloMultas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_multas"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/btn_pesquisar_multa"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_search"
-            android:contentDescription="Buscar"
-            app:tint="@color/black" />
-    </FrameLayout>
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <!-- Campo de Busca Estilizado -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerNetflix"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="12dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtBusca"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="@string/hint_busca_multas"
+                android:textColorHint="@color/texto_secundario"
+                android:paddingStart="16dp"
+                android:paddingEnd="48dp"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:singleLine="true" />
+
+            <ImageView
+                android:id="@+id/btn_pesquisar_multa"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/cor_icones" />
+        </FrameLayout>
+    </LinearLayout>
 
     <!-- Lista de Multas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMultas"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchContainer"
+        android:layout_above="@+id/layout_bottom_nav_container"
         android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="80dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_multa" />
 
-</LinearLayout>
+    <!-- Container para o Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/layout_bottom_nav_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/layout_bottom_nav" />
+    </LinearLayout>
+
+</RelativeLayout>

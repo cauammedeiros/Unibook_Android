@@ -1,123 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".QrCodePagamentoActivity">
 
-    <!-- Header com botão voltar -->
-    <ImageView
-        android:id="@+id/btnVoltar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
-
-    <ScrollView
+    <!-- Header Estilo Netflix -->
+    <LinearLayout
+        android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVoltar">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/voltar"
+            android:src="@drawable/baseline_keyboard_arrow_left_24"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/cor_icones" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_pagamento_pix"
+            android:textColor="@color/texto_principal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerNetflix"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-            <!-- QR Code com borda grossa e arredondada (fundo_qrcode.xml) -->
-            <FrameLayout
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/fundo_qrcode">
+            <!-- Card Central do QR Code -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/white">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/imgQrCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/logo_nome"
+                        tools:ignore="ContentDescription" />
+
+                    <!-- Overlay de Carregamento ou Placeholder -->
+                    <TextView
+                        android:id="@+id/txtQrCodePlaceholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="QR CODE"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/label_copie_cole"
+                android:textColor="@color/texto_secundario"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1" />
+
+            <!-- Campo Copie e Cole com Botão Integrado -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/borda_edittext">
+
+                <TextView
+                    android:id="@+id/txtCodigoCopiaCola"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="56dp"
+                    android:text="00020126580014BR.GOV.BCB.PIX..."
+                    android:textColor="@color/texto_principal"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <ImageButton
+                    android:id="@+id/btnCopiarCodigo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/cor_botao"
+                    android:contentDescription="@string/btn_copiar_codigo" />
+            </RelativeLayout>
+
+            <!-- Grid de Informações Resumo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_item_lista_arredondado"
+                    android:layout_marginEnd="8dp"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_valor"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtValorMulta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/placeholder_valor_multa"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_item_lista_arredondado"
+                    android:layout_marginStart="8dp"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_status_pagamento"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtStatusPagamento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/placeholder_status_pendente"
+                        android:textColor="@color/vermelho_botao"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Card de Instrução Moderno -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/erro_fundo"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_chatbot"
+                    app:tint="@color/erro_texto"
+                    android:layout_marginEnd="12dp"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="QrCode"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:text="@string/msg_instrucao_pagamento"
+                    android:textColor="@color/erro_texto"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
-            </FrameLayout>
+            </LinearLayout>
 
-            <!-- Campo Código do copie e cole -->
-            <TextView
-                android:id="@+id/txtCodigoCopiaCola"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/btn_branco_borda"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="10dp"
-                android:text="Código do copie e cole"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <!-- Botão Copiar Código -->
             <Button
-                android:id="@+id/btnCopiarCodigo"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#5B7FFF"
-                android:text="Copiar Código"
+                android:id="@+id/btnEnviarComprovante"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_azul"
+                android:text="@string/btn_enviar_comprovante"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:cornerRadius="12dp" />
-
-            <!-- Campo Valor da Multa -->
-            <TextView
-                android:id="@+id/txtLabelValorMulta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_gravity="start"
-                android:background="@drawable/btn_branco_borda"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="10dp"
-                android:text="Valor da Multa :"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <!-- Campo Status -->
-            <TextView
-                android:id="@+id/txtLabelStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="start"
-                android:background="@drawable/btn_branco_borda"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="10dp"
-                android:text="Status :"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <!-- Aviso Rodapé em Card Centralizado -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/btn_branco_borda"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="Após realizar o pagamento,\nenvie o comprovante via imagem."
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
