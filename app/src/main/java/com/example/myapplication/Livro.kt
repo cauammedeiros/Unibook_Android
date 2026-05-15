@@ -23,5 +23,8 @@ data class Livro(
     @get:PropertyName("Sinopse")
     @set:PropertyName("Sinopse")
     var sinopse: String = "",
-    var imagem: Int = 0
+
+    @get:PropertyName("CapaUrl")
+    @set:PropertyName("CapaUrl")
+    var capaUrl: String = ""
 )
