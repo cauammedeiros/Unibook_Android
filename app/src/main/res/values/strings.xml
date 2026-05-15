@@ -71,4 +71,21 @@
 
     <!-- Gerais -->
     <string name="voltar">Voltar</string>
+
+    <!-- Home Categorias -->
+    <string name="home_saudacao">Para %1$s</string>
+    <string name="home_cat_aclamados">Livros aclamados pela crítica</string>
+    <string name="home_cat_educacao">Educação e Tecnologia</string>
+    <string name="home_cat_minha_lista">Minha lista</string>
+    <string name="home_ver_tudo">Ver tudo ></string>
+    <string name="home_cat_comedias">Comédias</string>
+    <string name="home_cat_suspense">Suspense e Mistério</string>
+    <string name="home_cat_ficcao">Ficção Científica</string>
+    <string name="home_cat_terror">Terror e Horror</string>
+    <string name="home_cat_romance">Romance</string>
+    <string name="home_cat_aventura">Ação e Aventura</string>
+    <string name="home_cat_documentarios">Documentários</string>
+    <string name="home_cat_animes">Animes</string>
+    <string name="home_cat_classicos">Clássicos da Literatura</string>
+    <string name="desc_alternar_tema">Alternar entre modo claro e escuro</string>
 </resources>

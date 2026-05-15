@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/fundo_principal"
     tools:context=".BuscaActivity">
 
     <!-- Header com Logo -->
@@ -16,34 +16,24 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="170dp"
-            android:layout_height="124dp"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
-            android:scaleX="1.6"
-            android:scaleY="1.6"
             android:src="@drawable/logo_nome" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/btnTema"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignParentEnd="true"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/btnLight"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_light_mode"
-                app:tint="@color/texto_claro" />
-
-            <ImageView
-                android:id="@+id/btnNight"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_dark_mode"
-                app:tint="@color/texto_claro" />
-        </LinearLayout>
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_light_mode"
+            android:padding="4dp"
+            app:tint="@color/cor_icones"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/desc_alternar_tema"
+            android:background="?attr/selectableItemBackgroundBorderless" />
     </RelativeLayout>
 
     <!-- Barra de Busca -->
@@ -62,6 +52,8 @@
             android:background="@drawable/borda_edittext"
             android:hint="Encontre Livros por aqui"
             android:paddingStart="16dp"
+            android:textColor="@color/texto_principal"
+            android:textColorHint="@color/texto_secundario"
             android:textSize="14sp" />
 
         <ImageButton
@@ -70,7 +62,8 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/ic_search"
-            app:tint="@color/black" />
+            android:contentDescription="@string/nav_buscar"
+            app:tint="@color/cor_icones" />
     </LinearLayout>
 
     <TextView

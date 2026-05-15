@@ -1,9 +1,9 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -26,7 +26,32 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
-        // Menu de Navegação
+        // Configurar saudação dinâmica
+        val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
+        txtUsuario.text = getString(R.string.home_saudacao, "Carlos")
+
+        configurarNavegacao()
+        configurarListasDeLivros()
+        configurarBotaoTema()
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        
+        // Define o ícone inicial com base no tema atual
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+    }
+
+    private fun configurarNavegacao() {
         val btnInicio = findViewById<LinearLayout>(R.id.nav_home)
         val btnBiblioteca = findViewById<LinearLayout>(R.id.nav_library)
         val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
@@ -34,75 +59,41 @@ class HomeActivity : AppCompatActivity() {
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
         // Destacar tela atual (Início)
-        findViewById<ImageView>(R.id.iv_home).setColorFilter(Color.parseColor("#2196F3"))
-        findViewById<TextView>(R.id.tv_home).setTextColor(Color.parseColor("#2196F3"))
+        val corDestaque = Color.parseColor("#5B7FFF")
+        findViewById<ImageView>(R.id.iv_home).setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_home).setTextColor(corDestaque)
 
-        btnInicio.setOnClickListener {
-            // Já estamos na Home, não precisa reiniciar
+        btnBiblioteca.setOnClickListener { startActivity(Intent(this, TelaBibliotecaActivity::class.java)) }
+        btnChatbot.setOnClickListener { startActivity(Intent(this, ChatbotActivity::class.java)) }
+        btnBuscar.setOnClickListener { startActivity(Intent(this, BuscaActivity::class.java)) }
+        btnPerfil.setOnClickListener { startActivity(Intent(this, PerfilActivity::class.java)) }
+    }
+
+    private fun configurarListasDeLivros() {
+        // Dados de teste para os livros (muitos itens para garantir o scroll lateral)
+        val listaTeste = mutableListOf<Livro>()
+        for (i in 1..15) {
+            listaTeste.add(Livro("Livro $i", imagem = R.drawable.logo_nome))
         }
 
-        btnBiblioteca.setOnClickListener {
-            val intent = Intent(this, TelaBibliotecaActivity::class.java)
-            startActivity(intent)
-        }
+        // Popula todas as 12 categorias definidas no XML
+        configurarRecyclerView(R.id.rvAclamados, listaTeste)
+        configurarRecyclerView(R.id.rvEducacao, listaTeste)
+        configurarRecyclerView(R.id.rvMinhaLista, listaTeste)
+        configurarRecyclerView(R.id.rvComedias, listaTeste)
+        configurarRecyclerView(R.id.rvSuspense, listaTeste)
+        configurarRecyclerView(R.id.rvFiccao, listaTeste)
+        configurarRecyclerView(R.id.rvTerror, listaTeste)
+        configurarRecyclerView(R.id.rvRomance, listaTeste)
+        configurarRecyclerView(R.id.rvAventura, listaTeste)
+        configurarRecyclerView(R.id.rvDocumentarios, listaTeste)
+        configurarRecyclerView(R.id.rvAnimes, listaTeste)
+        configurarRecyclerView(R.id.rvClassicos, listaTeste)
+    }
 
-        btnChatbot.setOnClickListener {
-            val intent = Intent(this, ChatbotActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnBuscar.setOnClickListener {
-            val intent = Intent(this, BuscaActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnPerfil.setOnClickListener {
-            val intent = Intent(this, PerfilActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        // Botões de Modo de Tema
-        val btnLight = findViewById<ImageButton>(R.id.btnLightMode)
-        val btnNight = findViewById<ImageButton>(R.id.btnNightMode)
-
-        // Configuração para o Modo Claro
-        btnLight.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            delegate.applyDayNight()
-        }
-
-        // Configuração para o Modo Escuro
-        btnNight.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            delegate.applyDayNight()
-        }
-
-        // Livros de Ação
-        val listaDeAcao = listOf(
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome)
-        )
-
-        val rvAcao = findViewById<RecyclerView>(R.id.rvAcao)
-        rvAcao.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvAcao.adapter = LivroAdapter(listaDeAcao)
-
-        // Livros de Suspense
-        val listaDeSuspense = listOf(
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome)
-        )
-
-        val rvSuspense = findViewById<RecyclerView>(R.id.rvSuspense)
-        rvSuspense.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvSuspense.adapter = LivroAdapter(listaDeSuspense)
-
+    private fun configurarRecyclerView(id: Int, lista: List<Livro>) {
+        val rv = findViewById<RecyclerView>(id)
+        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.adapter = LivroAdapter(lista)
     }
 }

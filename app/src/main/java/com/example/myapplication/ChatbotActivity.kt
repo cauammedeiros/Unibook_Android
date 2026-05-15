@@ -56,20 +56,17 @@ class ChatbotActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Botões de Modo de Tema
-        val btnLight = findViewById<ImageView>(R.id.btnSun)
-        val btnNight = findViewById<ImageView>(R.id.btnMoon)
+        // Botão de Alternar Tema
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK == android.content.res.Configuration.UI_MODE_NIGHT_YES
+        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
 
-        // Configuração para o Modo Claro
-        btnLight.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            delegate.applyDayNight()
-        }
-
-        // Configuração para o Modo Escuro
-        btnNight.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            delegate.applyDayNight()
+        btnTema.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
         }
     }
 }

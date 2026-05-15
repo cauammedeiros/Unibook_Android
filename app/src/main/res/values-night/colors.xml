@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fundo_principal">#000000</color>
+    <color name="texto_principal">#FFFFFF</color>
+    <color name="texto_secundario">#CCCCCC</color>
+    <color name="cor_icones">#FFFFFF</color>
+    <color name="cor_botao">#1E3A5F</color>
+    <color name="cor_card">#1A1A1A</color>
+</resources>

@@ -14,4 +14,12 @@
     <color name="texto_claro">#666666</color>  <!-- Texto secundário -->
     <color name="vermelho_botao">#C62828</color> <!-- Vermelho para multas -->
     <color name="azul_item_lista">#1C70AB</color> <!-- Azul dos cards de lista -->
+
+    <!-- Cores Adaptáveis para Temas -->
+    <color name="fundo_principal">#FFFFFF</color>
+    <color name="texto_principal">#000000</color>
+    <color name="texto_secundario">#666666</color>
+    <color name="cor_icones">#000000</color>
+    <color name="cor_botao">#5B7FFF</color>
+    <color name="cor_card">#F5F5F5</color>
 </resources>

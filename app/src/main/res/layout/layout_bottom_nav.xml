@@ -4,7 +4,7 @@
     android:id="@+id/bottomNavigation"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:background="#FFFFFF"
+    android:background="@color/fundo_principal"
     android:elevation="10dp"
     android:orientation="horizontal"
     android:paddingTop="8dp">
@@ -20,12 +20,14 @@
             android:id="@+id/iv_home"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_home"
+            app:tint="@color/cor_icones" />
         <TextView
             android:id="@+id/tv_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Início"
+            android:textColor="@color/texto_principal"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -40,12 +42,14 @@
             android:id="@+id/iv_library"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_library" />
+            android:src="@drawable/ic_library"
+            app:tint="@color/cor_icones" />
         <TextView
             android:id="@+id/tv_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biblioteca"
+            android:textColor="@color/texto_principal"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -60,12 +64,14 @@
             android:id="@+id/iv_chatbot"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_chatbot" />
+            android:src="@drawable/ic_chatbot"
+            app:tint="@color/cor_icones" />
         <TextView
             android:id="@+id/tv_chatbot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CHATBOT"
+            android:textColor="@color/texto_principal"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -80,12 +86,14 @@
             android:id="@+id/iv_search"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/ic_search"
+            app:tint="@color/cor_icones" />
         <TextView
             android:id="@+id/tv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar"
+            android:textColor="@color/texto_principal"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -100,12 +108,14 @@
             android:id="@+id/iv_profile"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_profile_1" />
+            android:src="@drawable/ic_profile_1"
+            app:tint="@color/cor_icones" />
         <TextView
             android:id="@+id/tv_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Perfil"
+            android:textColor="@color/texto_principal"
             android:textSize="12sp" />
     </LinearLayout>
 
