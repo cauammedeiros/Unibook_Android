@@ -17,7 +17,7 @@ class PerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil)
-
+        val fb = Firebase.firestore
         // Sair da conta
         findViewById<LinearLayout>(R.id.btnLogout).setOnClickListener {
             AlertDialog.Builder(this)
@@ -56,20 +56,16 @@ class PerfilActivity : AppCompatActivity() {
         val emailView = findViewById<TextView>(R.id.txtEmail)
         
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
-        val emailLogado = sharedPref.getString("USER_EMAIL", "") ?: ""
+        val userId = sharedPref.getString("USER_ID", "") ?: ""
 
-        if (emailLogado == "aluno@unifor.br") {
-            nomeView.text = "Aluno Unifor (Teste)"
-            emailView.text = emailLogado
-        } else if (emailLogado.isNotEmpty()) {
+        if (userId.isNotEmpty()) {
             Firebase.firestore.collection("Usuários")
-                .whereEqualTo("email", emailLogado)
+                .document(userId)
                 .get()
                 .addOnSuccessListener { documents ->
-                    if (!documents.isEmpty) {
-                        val doc = documents.documents[0]
-                        nomeView.text = doc.getString("nome")
-                        emailView.text = doc.getString("email")
+                    if (documents.exists()) {
+                        nomeView.text = documents.getString("nome")
+                        emailView.text = documents.getString("email")
                     }
                 }
         }

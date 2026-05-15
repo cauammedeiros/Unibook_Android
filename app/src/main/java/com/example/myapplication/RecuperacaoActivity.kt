@@ -59,7 +59,7 @@ class RecuperacaoActivity : AppCompatActivity() {
                     .addOnSuccessListener { documents ->
                         if (!documents.isEmpty) {
                             txtErro.visibility = View.GONE
-                            val intent = Intent(this, SolicitacaoActivity::class.java)
+                            val intent = Intent(this, RedefinirActivity::class.java)
                             intent.putExtra("EMAIL_RECUPERACAO", email)
                             startActivity(intent)
                         } else {

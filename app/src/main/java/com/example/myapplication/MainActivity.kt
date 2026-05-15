@@ -59,7 +59,10 @@ class MainActivity : AppCompatActivity() {
 
                             if (senhaNoBanco == senha) {
                                 val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
-                               sharedPref.edit().putString("USER_EMAIL", email).apply()
+                                val editor = sharedPref.edit()
+                                editor.putString("USER_ID", userDoc.id)
+                                editor.putString("USER_EMAIL", email)
+                                editor.apply()
                                 txtErro.visibility = View.GONE
                                 val intent = Intent(this, tela_Entrando::class.java)
                                 intent.putExtra("TIPO_USUARIO", tipoUsuario)
