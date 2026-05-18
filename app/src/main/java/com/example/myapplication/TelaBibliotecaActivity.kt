@@ -79,13 +79,13 @@ class TelaBibliotecaActivity : AppCompatActivity() {
         }
 
         val listaDeLivros = listOf(
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste",imagem = R.drawable.logo_nome),
-            Livro("Teste", imagem = R.drawable.logo_nome)
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = ""),
+            Livro(titulo = "Teste", capaUrl = "")
         )
 
         val rvLivros = findViewById<RecyclerView>(R.id.rvLivros)

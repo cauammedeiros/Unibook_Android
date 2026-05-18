@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,42 +7,58 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import java.util.UUID
-
-// ... imports ...
 
 class CriarLivroActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
-    // Removemos a linha do storage
 
+    // Declaração das Views
     private lateinit var imgCapa: ImageView
-    private lateinit var edtUrlCapa: EditText // Novo campo
+    private lateinit var edtUrlCapa: EditText
+    private lateinit var edtNome: EditText
+    private lateinit var edtAutor: EditText
+    private lateinit var edtGenero: EditText
+    private lateinit var edtSinopse: EditText
+    private lateinit var btnCriar: Button
+    private lateinit var txtErro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_livro)
 
-        // ... seus outros findViewByid ...
-        edtUrlCapa = findViewById(R.id.edtUrlCapa)
+        // Inicialização das Views (IDs sincronizados com o seu novo XML)
         imgCapa = findViewById(R.id.imgCapaLivro)
+        edtUrlCapa = findViewById(R.id.edtUrlCapa)
+        edtNome = findViewById(R.id.edtNome)
+        edtAutor = findViewById(R.id.edtAutor)
+        edtGenero = findViewById(R.id.edtGenero)
+        edtSinopse = findViewById(R.id.edtSinopse)
+        btnCriar = findViewById(R.id.btnCriar)
+        txtErro = findViewById(R.id.txtErro)
 
-        // DICA: Quando o usuário terminar de digitar a URL,
-        // já podemos mostrar uma prévia na ImageView usando o Glide
+        // Configuração do botão voltar
+        findViewById<View>(R.id.btnVoltar).setOnClickListener {
+            finish()
+        }
+
+        // Lógica para mostrar prévia da imagem quando o link for colado
         edtUrlCapa.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val url = edtUrlCapa.text.toString()
+                val url = edtUrlCapa.text.toString().trim()
                 if (url.isNotEmpty()) {
-                    Glide.with(this).load(url).into(imgCapa)
+                    Glide.with(this)
+                        .load(url)
+                        .placeholder(R.drawable.logo_nome)
+                        .error(R.drawable.logo_nome)
+                        .into(imgCapa)
                 }
             }
         }
 
+        // Lógica do botão Criar
         btnCriar.setOnClickListener {
             val nome = edtNome.text.toString().trim()
             val autor = edtAutor.text.toString().trim()
@@ -56,7 +71,6 @@ class CriarLivroActivity : AppCompatActivity() {
                 txtErro.visibility = View.VISIBLE
             } else {
                 txtErro.visibility = View.GONE
-                // Agora chamamos direto a função de salvar, sem passar pelo Upload
                 salvarLivroNoFirebase(nome, autor, genero, sinopse, urlCapa)
             }
         }

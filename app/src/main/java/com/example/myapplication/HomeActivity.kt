@@ -20,13 +20,13 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Configurar saudação dinâmica
         val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
         txtUsuario.text = getString(R.string.home_saudacao, "Carlos")
 
@@ -37,8 +37,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun configurarBotaoTema() {
         val btnTema = findViewById<ImageView>(R.id.btnTema)
-        
-        // Define o ícone inicial com base no tema atual
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
 
@@ -58,7 +56,6 @@ class HomeActivity : AppCompatActivity() {
         val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
-        // Destacar tela atual (Início)
         val corDestaque = Color.parseColor("#5B7FFF")
         findViewById<ImageView>(R.id.iv_home).setColorFilter(corDestaque)
         findViewById<TextView>(R.id.tv_home).setTextColor(corDestaque)
@@ -70,29 +67,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun configurarListasDeLivros() {
-        // Dados de teste para os livros (muitos itens para garantir o scroll lateral)
         val listaTeste = mutableListOf<Livro>()
+        // Criando lista vazia ou com placeholders para não dar erro de parâmetro 'imagem'
         for (i in 1..15) {
-            listaTeste.add(Livro("Livro $i", imagem = R.drawable.logo_nome))
+            listaTeste.add(Livro(titulo = "Livro $i", capaUrl = ""))
         }
 
-        // Popula todas as 12 categorias definidas no XML
         configurarRecyclerView(R.id.rvAclamados, listaTeste)
         configurarRecyclerView(R.id.rvEducacao, listaTeste)
         configurarRecyclerView(R.id.rvMinhaLista, listaTeste)
-        configurarRecyclerView(R.id.rvComedias, listaTeste)
-        configurarRecyclerView(R.id.rvSuspense, listaTeste)
-        configurarRecyclerView(R.id.rvFiccao, listaTeste)
-        configurarRecyclerView(R.id.rvTerror, listaTeste)
-        configurarRecyclerView(R.id.rvRomance, listaTeste)
-        configurarRecyclerView(R.id.rvAventura, listaTeste)
-        configurarRecyclerView(R.id.rvDocumentarios, listaTeste)
-        configurarRecyclerView(R.id.rvAnimes, listaTeste)
-        configurarRecyclerView(R.id.rvClassicos, listaTeste)
     }
 
     private fun configurarRecyclerView(id: Int, lista: List<Livro>) {
-        val rv = findViewById<RecyclerView>(id)
+        val rv = findViewById<RecyclerView>(id) ?: return
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv.adapter = LivroAdapter(lista)
     }

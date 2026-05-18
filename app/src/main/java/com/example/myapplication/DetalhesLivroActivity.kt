@@ -24,7 +24,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
 
         inicializarViews()
         configurarBotoes()
-        configurarMenuNavegacao() // Organizei o menu em uma função separada
+        configurarMenuNavegacao()
     }
 
     private fun inicializarViews() {
@@ -43,91 +43,34 @@ class DetalhesLivroActivity : AppCompatActivity() {
         btnVoltar.setOnClickListener { finish() }
 
         btnBaixar.setOnClickListener {
-            showPopUpTermos()
+            Toast.makeText(this, "Funcionalidade de Download", Toast.LENGTH_SHORT).show()
         }
 
         btnFavoritar.setOnClickListener {
             Toast.makeText(this, "Livro favoritado!", Toast.LENGTH_SHORT).show()
         }
 
-        // Ajustado para abrir o popup de escolha que vimos no seu design
         btnAlugar.setOnClickListener {
-            showPopUpEscolhaEmprestimo()
-        }
-    }
-
-    private fun showPopUpTermos() {
-        val mDialogView = layoutInflater.inflate(R.layout.dialog_termos, null)
-        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
-        val mAlertDialog = mBuilder.create() // Usei create() para poder aplicar o fundo transparente
-
-        // Ajuste para respeitar os cantos arredondados do seu XML
-        mAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        mAlertDialog.show()
-
-        val btnConfirmar = mDialogView.findViewById<Button>(R.id.btnConfirmarBaixar)
-        val btnVoltarPopUp = mDialogView.findViewById<TextView>(R.id.btnVoltar) // Ajustado para LinearLayout como no seu print
-        val checkAceitar = mDialogView.findViewById<CheckBox>(R.id.checkAceitar)
-
-        btnConfirmar.isEnabled = false
-        checkAceitar.setOnCheckedChangeListener { _, isChecked ->
-            btnConfirmar.isEnabled = isChecked
-        }
-
-        btnVoltarPopUp.setOnClickListener { mAlertDialog.dismiss() }
-
-        btnConfirmar.setOnClickListener {
-            mAlertDialog.dismiss()
-            Toast.makeText(this, "Download iniciado!", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // Novo popup baseado no seu print "Escolha como deseja prosseguir"
-    private fun showPopUpEscolhaEmprestimo() {
-        val mView = layoutInflater.inflate(R.layout.dialog_prosseguir, null)
-        val mBuilder = AlertDialog.Builder(this).setView(mView)
-        val mDialog = mBuilder.create()
-
-        mDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        mDialog.show()
-
-        val btnVoltar = mView.findViewById<TextView>(R.id.btnDialogVoltar)
-        val btnIrEmprestimo = mView.findViewById<TextView>(R.id.btnDialogEmprestimo)
-
-        btnVoltar.setOnClickListener { mDialog.dismiss() }
-
-        btnIrEmprestimo.setOnClickListener {
-            mDialog.dismiss()
-            val intent = Intent(this, EmprestimoActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "Solicitando Empréstimo", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun configurarMenuNavegacao() {
-        findViewById<LinearLayout>(R.id.navInicio).setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            })
+        // IDs sincronizados com layout_bottom_nav.xml
+        findViewById<LinearLayout>(R.id.nav_home)?.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navBiblioteca).setOnClickListener {
-            startActivity(Intent(this, TelaBibliotecaActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            })
+        findViewById<LinearLayout>(R.id.nav_library)?.setOnClickListener {
+            startActivity(Intent(this, TelaBibliotecaActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navChatbot).setOnClickListener {
-            startActivity(Intent(this, ChatbotActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            })
+        findViewById<LinearLayout>(R.id.nav_chatbot)?.setOnClickListener {
+            startActivity(Intent(this, ChatbotActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navBuscar).setOnClickListener {
-            startActivity(Intent(this, BuscaActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            })
+        findViewById<LinearLayout>(R.id.nav_search)?.setOnClickListener {
+            startActivity(Intent(this, BuscaActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
-            startActivity(Intent(this, PerfilActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            })
+        findViewById<LinearLayout>(R.id.nav_profile)?.setOnClickListener {
+            startActivity(Intent(this, PerfilActivity::class.java))
         }
     }
 }

@@ -63,7 +63,7 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="24dp">
 
-            <!-- Mensagem de Erro (RF - Fluxo) -->
+            <!-- Mensagem de Erro (IDs sincronizados com KT) -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardErroCriarLivro"
                 android:layout_width="match_parent"
@@ -74,11 +74,11 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp">
                 <TextView
-                    android:id="@+id/txtErroCriarLivro"
+                    android:id="@+id/txtErro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
-                    android:text="Preencha nome, autor e gênero antes de continuar."
+                    android:text="Preencha nome, autor e a URL da capa."
                     android:textColor="#D32F2F"
                     android:textSize="14sp" />
             </androidx.cardview.widget.CardView>
@@ -120,7 +120,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtNomeLivro"
+                        android:id="@+id/edtNome"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -140,7 +140,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtAutorLivro"
+                        android:id="@+id/edtAutor"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -160,7 +160,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtGeneroLivro"
+                        android:id="@+id/edtGenero"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -172,17 +172,27 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnAlterarFoto"
+            <!-- Novo Campo: URL da Capa -->
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/btn_cinza_borda"
-                app:backgroundTint="@null"
-                android:text="@string/btn_alterar_foto"
-                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="URL da Imagem da Capa"
+                android:textColor="@color/texto_secundario"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtUrlCapa"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="Cole aqui o link da imagem (http...)"
+                android:inputType="textUri"
+                android:paddingHorizontal="12dp"
                 android:textColor="@color/texto_principal"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Sinopse -->
             <TextView
@@ -195,9 +205,9 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtSinopseLivro"
+                android:id="@+id/edtSinopse"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/borda_edittext"
                 android:gravity="top"
@@ -206,9 +216,9 @@
                 android:textColor="@color/texto_principal"
                 android:textSize="14sp" />
 
-            <!-- Botão Criar -->
+            <!-- Botão Criar (ID Sincronizado com KT) -->
             <Button
-                android:id="@+id/btnCriarLivro"
+                android:id="@+id/btnCriar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"

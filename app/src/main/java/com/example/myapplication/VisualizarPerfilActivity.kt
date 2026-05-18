@@ -15,22 +15,21 @@ class VisualizarPerfilActivity : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltar)
         val btnVerificarMulta = findViewById<Button>(R.id.btnVerificarMulta)
-        val txtNomeLabel = findViewById<TextView>(R.id.txtNomeLabel)
+        
+        // ID sincronizado com activity_visualizar_perfil.xml
+        val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
 
-        // Simulação: Pegar nome vindo da busca ou usar padrão
-        val nomeUsuario = intent.getStringExtra("USER_NAME") ?: "Nome do Usuário 1"
-        txtNomeLabel.text = "Nome do Usuário : $nomeUsuario"
+        val nomeUsuario = intent.getStringExtra("USER_NAME") ?: "Nome do Usuário"
+        txtNomeUsuario.text = nomeUsuario
 
         btnVoltar.setOnClickListener {
             finish()
         }
 
         btnVerificarMulta.setOnClickListener {
-            // RF26: Navegar para a tela de multas
             val intent = Intent(this, VerificarMultasActivity::class.java)
-            intent.putExtra("USER_NAME", nomeUsuario) // Opcional: passa o nome para filtrar
+            intent.putExtra("USER_NAME", nomeUsuario)
             startActivity(intent)
         }
     }
 }
-

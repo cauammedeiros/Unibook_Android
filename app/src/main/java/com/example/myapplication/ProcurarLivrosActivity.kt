@@ -1,28 +1,32 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-
-import android.content.Intent
-import android.widget.ImageView
-import android.widget.LinearLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ProcurarLivrosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_procurar_livros)
 
-        // RF21.1 - Botão Voltar
-        val btnVoltar = findViewById<ImageView>(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
+        // Botão Voltar (ID sincronizado com o XML)
+        findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
             finish()
         }
 
-        // RF21.3 - Redirecionar para Editar Livros ao clicar no livro (Simulação)
-        val btnLivro1 = findViewById<LinearLayout>(R.id.livro1)
-        btnLivro1.setOnClickListener {
-            val intent = Intent(this, EditarLivroActivity::class.java)
-            startActivity(intent)
-        }
+        // Configuração do RecyclerView que agora está no seu XML
+        val rvLivros = findViewById<RecyclerView>(R.id.rvLivros)
+        rvLivros.layoutManager = GridLayoutManager(this, 3)
+        
+        // Dados de exemplo para preencher a grade
+        val listaExemplo = listOf(
+            Livro(titulo = "Exemplo 1", capaUrl = ""),
+            Livro(titulo = "Exemplo 2", capaUrl = ""),
+            Livro(titulo = "Exemplo 3", capaUrl = "")
+        )
+        
+        rvLivros.adapter = LivroAdapter(listaExemplo)
     }
 }

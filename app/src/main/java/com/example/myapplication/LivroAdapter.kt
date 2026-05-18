@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class LivroAdapter(private val listaLivros: List<Livro>) :
     RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
@@ -26,7 +27,10 @@ class LivroAdapter(private val listaLivros: List<Livro>) :
             holder.itemView.context.startActivity(intent)
         }
         holder.titulo.text = livro.titulo
-        holder.capa.setImageResource(livro.imagem)
+        Glide.with(holder.itemView.context)
+            .load(livro.capaUrl)
+            .placeholder(R.drawable.logo_nome)
+            .into(holder.capa)
     }
 
     override fun getItemCount() = listaLivros.size
