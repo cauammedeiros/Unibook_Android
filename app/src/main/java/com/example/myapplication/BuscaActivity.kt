@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
@@ -10,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.toColorInt
 
 class BuscaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +48,9 @@ class BuscaActivity : AppCompatActivity() {
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
         // Destacar tela atual (Busca)
-        findViewById<ImageView>(R.id.iv_search).setColorFilter(Color.parseColor("#2196F3"))
-        findViewById<TextView>(R.id.tv_search).setTextColor(Color.parseColor("#2196F3"))
+        val corDestaque = "#2196F3".toColorInt()
+        findViewById<ImageView>(R.id.iv_search)?.setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_search)?.setTextColor(corDestaque)
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

@@ -1,12 +1,12 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
 
 class PerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,11 +18,11 @@ class PerfilActivity : AppCompatActivity() {
         val btnBiblioteca = findViewById<LinearLayout>(R.id.nav_library)
         val btnChatbot = findViewById<LinearLayout>(R.id.nav_chatbot)
         val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
-        val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
-        // Destaque da aba Perfil
-        findViewById<ImageView>(R.id.iv_profile)?.setColorFilter(Color.parseColor("#5B7FFF"))
-        findViewById<TextView>(R.id.tv_profile)?.setTextColor(Color.parseColor("#5B7FFF"))
+        // Destaque da aba Perfil usando a extensão toColorInt() do Kotlin
+        val corDestaque = "#5B7FFF".toColorInt()
+        findViewById<ImageView>(R.id.iv_profile)?.setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_profile)?.setTextColor(corDestaque)
 
         // Botão de Logout (Sincronizado com o ImageView no XML)
         findViewById<ImageView>(R.id.btnLogoutIcon)?.setOnClickListener {
@@ -31,7 +31,7 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Navegação
+        // Configuração dos cliques de navegação
         btnInicio?.setOnClickListener { startActivity(Intent(this, HomeActivity::class.java)) }
         btnBiblioteca?.setOnClickListener { startActivity(Intent(this, TelaBibliotecaActivity::class.java)) }
         btnChatbot?.setOnClickListener { startActivity(Intent(this, ChatbotActivity::class.java)) }

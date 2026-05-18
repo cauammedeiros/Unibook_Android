@@ -1,14 +1,13 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.toColorInt
 
 class ChatbotActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +22,9 @@ class ChatbotActivity : AppCompatActivity() {
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
         // Destacar tela atual (Chatbot)
-        findViewById<ImageView>(R.id.iv_chatbot).setColorFilter(Color.parseColor("#2196F3"))
-        findViewById<TextView>(R.id.tv_chatbot).setTextColor(Color.parseColor("#2196F3"))
+        val corDestaque = "#2196F3".toColorInt()
+        findViewById<ImageView>(R.id.iv_chatbot)?.setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_chatbot)?.setTextColor(corDestaque)
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

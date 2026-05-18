@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -10,6 +9,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,9 +56,9 @@ class HomeActivity : AppCompatActivity() {
         val btnBuscar = findViewById<LinearLayout>(R.id.nav_search)
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
-        val corDestaque = Color.parseColor("#5B7FFF")
-        findViewById<ImageView>(R.id.iv_home).setColorFilter(corDestaque)
-        findViewById<TextView>(R.id.tv_home).setTextColor(corDestaque)
+        val corDestaque = "#5B7FFF".toColorInt()
+        findViewById<ImageView>(R.id.iv_home)?.setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_home)?.setTextColor(corDestaque)
 
         btnBiblioteca.setOnClickListener { startActivity(Intent(this, TelaBibliotecaActivity::class.java)) }
         btnChatbot.setOnClickListener { startActivity(Intent(this, ChatbotActivity::class.java)) }

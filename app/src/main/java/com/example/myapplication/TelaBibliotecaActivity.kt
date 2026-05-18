@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -9,6 +8,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +32,9 @@ class TelaBibliotecaActivity : AppCompatActivity() {
         val btnPerfil = findViewById<LinearLayout>(R.id.nav_profile)
 
         // Destacar tela atual (Biblioteca)
-        findViewById<ImageView>(R.id.iv_library).setColorFilter(Color.parseColor("#2196F3"))
-        findViewById<TextView>(R.id.tv_library).setTextColor(Color.parseColor("#2196F3"))
+        val corDestaque = "#2196F3".toColorInt()
+        findViewById<ImageView>(R.id.iv_library)?.setColorFilter(corDestaque)
+        findViewById<TextView>(R.id.tv_library)?.setTextColor(corDestaque)
 
         btnInicio.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

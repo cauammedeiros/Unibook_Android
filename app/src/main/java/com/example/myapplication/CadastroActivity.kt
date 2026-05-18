@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -43,15 +44,15 @@ class CadastroActivity : AppCompatActivity() {
             val senha = edtSenha.text.toString()
 
             if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-                txtErro.text = "Preencha todos os campos!"
+                txtErro.setText(R.string.err_campos_vazios)
                 txtErro.visibility = View.VISIBLE
             }
             else if (email == "aluno@unifor.br" || email == "admin@unifor.br") {
-                txtErro.text = "Este email é reservado para o sistema!"
+                txtErro.setText(R.string.err_email_reservado)
                 txtErro.visibility = View.VISIBLE
             }
             else if (!isSenhaValida(senha)) {
-                txtErro.text = "A senha deve ter no mínimo 8 caracteres, um número e uma letra maiúscula!"
+                txtErro.setText(R.string.msg_requisitos_senha)
                 txtErro.visibility = View.VISIBLE
             }
             else {
@@ -72,7 +73,7 @@ class CadastroActivity : AppCompatActivity() {
                             fb.collection("Usuários")
                                 .add(novoUsuario)
                                 .addOnSuccessListener {
-                                    android.widget.Toast.makeText(this, "Cadastro realizado com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, R.string.msg_cadastro_sucesso, Toast.LENGTH_SHORT).show()
                                     txtErro.visibility = View.GONE
                                     val intent = Intent(this, MainActivity::class.java)
                                     intent.putExtra("TIPO_USUARIO", "aluno")
@@ -80,17 +81,17 @@ class CadastroActivity : AppCompatActivity() {
                                     finish()
                                 }
                                 .addOnFailureListener {
-                                    txtErro.text = "Erro ao salvar os dados. Tente novamente."
+                                    txtErro.setText(R.string.err_salvar_dados)
                                     txtErro.visibility = View.VISIBLE
                                 }
                         } else {
                             // Email já cadastrado
-                            txtErro.text = "O email inserido já está cadastrado!"
+                            txtErro.setText(R.string.err_email_cadastrado)
                             txtErro.visibility = View.VISIBLE
                         }
                     }
                     .addOnFailureListener {
-                        txtErro.text = "Erro ao conectar com o servidor."
+                        txtErro.setText(R.string.err_servidor)
                         txtErro.visibility = View.VISIBLE
                     }
             }
