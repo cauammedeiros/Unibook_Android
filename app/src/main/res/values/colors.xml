@@ -17,11 +17,11 @@
 
     <!-- Cores Adaptáveis para Temas -->
     <color name="fundo_principal">#FFFFFF</color>
-    <color name="texto_principal">#000000</color>
-    <color name="texto_secundario">#666666</color>
-    <color name="cor_icones">#000000</color>
+    <color name="texto_principal">#212121</color>
+    <color name="texto_secundario">#757575</color>
+    <color name="cor_icones">#424242</color>
     <color name="cor_botao">#5B7FFF</color>
-    <color name="cor_card">#F5F5F5</color>
+    <color name="cor_card">#FFFFFF</color>
     <color name="cor_primaria">#1E3A5F</color> <!-- Adicionado para resolver erro de build -->
     <color name="erro_fundo">#FFDADA</color>
     <color name="erro_texto">#CC0000</color>

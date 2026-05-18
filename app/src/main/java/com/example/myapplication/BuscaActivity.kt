@@ -98,12 +98,57 @@ class BuscaActivity : AppCompatActivity() {
             }
         }
 
-        // Escolher Gênero
-        val btnRomances = findViewById<TextView>(R.id.genRomance)
+        // --- Lógica de Gêneros e Coleções ---
 
-        btnRomances.setOnClickListener {
+        val btnVerMais = findViewById<TextView>(R.id.btnVerMais)
+        val gridGeneros = findViewById<android.widget.GridLayout>(R.id.gridGeneros)
+        
+        val genTerror = findViewById<TextView>(R.id.genTerror)
+        val genInfantis = findViewById<TextView>(R.id.genInfantis)
+        val genSuspense = findViewById<TextView>(R.id.genSuspense)
+        val genRomance = findViewById<TextView>(R.id.genRomance)
+        val genFiccao = findViewById<TextView>(R.id.genFiccao)
+        val genJovens = findViewById<TextView>(R.id.genJovens)
+
+        var expandido = false
+        btnVerMais.setOnClickListener {
+            expandido = !expandido
+            val visibility = if (expandido) android.view.View.VISIBLE else android.view.View.GONE
+            
+            genTerror.visibility = visibility
+            genInfantis.visibility = visibility
+            genSuspense.visibility = visibility
+            genRomance.visibility = visibility
+            genFiccao.visibility = visibility
+            genJovens.visibility = visibility
+
+            btnVerMais.text = if (expandido) "Ver menos ⌃" else "Ver mais ⌵"
+        }
+
+        // Função auxiliar para abrir gênero
+        fun abrirGenero(nome: String) {
             val intent = Intent(this, PesquisaGeneroActivity::class.java)
+            intent.putExtra("GENERO_NOME", nome)
             startActivity(intent)
         }
-}
+
+        // Cliques nas Coleções (Conforme seu pedido)
+        findViewById<android.view.View>(R.id.itemAclamados).setOnClickListener { 
+            abrirGenero(getString(R.string.home_cat_aclamados)) 
+        }
+        findViewById<android.view.View>(R.id.itemDocumentarios).setOnClickListener { 
+            abrirGenero(getString(R.string.home_cat_documentarios)) 
+        }
+        findViewById<android.view.View>(R.id.itemEducacao).setOnClickListener { 
+            abrirGenero(getString(R.string.home_cat_educacao)) 
+        }
+
+        // Cliques nos Gêneros da Grade (Exemplos)
+        genRomance.setOnClickListener { abrirGenero(getString(R.string.home_cat_romance)) }
+        genTerror.setOnClickListener { abrirGenero("Terror") }
+        genInfantis.setOnClickListener { abrirGenero("Infantis") }
+        
+        // Você pode adicionar IDs aos outros TextViews do GridLayout no XML 
+        // para dar funcionalidade a todos (Ação, Anime, etc.)
+    }
 }

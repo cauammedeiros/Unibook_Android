@@ -13,56 +13,56 @@
         android:id="@+id/headerNetflix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/txtTituloBusca"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Buscar"
-            android:textColor="@color/texto_principal"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/btnTema"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_light_mode"
-            android:padding="4dp"
-            app:tint="@color/cor_icones"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/desc_alternar_tema"
-            android:background="?attr/selectableItemBackgroundBorderless" />
-    </LinearLayout>
-
-    <!-- Barra de Busca Fixa abaixo do Header -->
-    <LinearLayout
-        android:id="@+id/searchContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/headerNetflix"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
+        android:orientation="vertical"
+        android:background="@color/cor_card"
+        android:elevation="4dp"
         android:paddingBottom="8dp">
 
-        <FrameLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txtTituloBusca"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nav_buscar"
+                android:textColor="@color/texto_principal"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnTema"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_light_mode"
+                android:padding="4dp"
+                app:tint="@color/cor_icones"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/desc_alternar_tema"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+
+        <!-- Barra de Busca -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
 
             <EditText
                 android:id="@+id/edtBusca"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/borda_edittext"
-                android:hint="Encontre livros, autores ou gêneros"
-                android:paddingStart="16dp"
-                android:paddingEnd="48dp"
+                android:hint="Ator, título ou gênero"
+                android:paddingStart="40dp"
+                android:paddingEnd="16dp"
                 android:textColor="@color/texto_principal"
                 android:textColorHint="@color/texto_secundario"
                 android:textSize="14sp"
@@ -70,12 +70,15 @@
 
             <ImageView
                 android:id="@+id/btnLupa"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="12dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="12dp"
                 android:src="@drawable/ic_search"
-                app:tint="@color/cor_icones" />
+                app:tint="@color/texto_secundario"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless" />
         </FrameLayout>
     </LinearLayout>
 
@@ -83,7 +86,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchContainer"
+        android:layout_below="@id/headerNetflix"
         android:layout_above="@+id/layout_bottom_nav_container">
 
         <LinearLayout
@@ -92,38 +95,96 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-            <!-- Título da Seção -->
+            <!-- Título Gêneros -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="12dp"
-                android:text="Explorar Gêneros"
+                android:text="Gêneros"
                 android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Lista de Gêneros -->
+            <!-- Grade de Gêneros (2 colunas) -->
+            <GridLayout
+                android:id="@+id/gridGeneros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:paddingHorizontal="10dp">
+
+                <TextView style="@style/ItemGenero" android:text="Ação e aventura" />
+                <TextView style="@style/ItemGenero" android:text="Anime" />
+                <TextView style="@style/ItemGenero" android:text="Comédia" />
+                <TextView style="@style/ItemGenero" android:text="Documentário" />
+                <TextView style="@style/ItemGenero" android:text="Drama" />
+                <TextView style="@style/ItemGenero" android:text="Fantasia" />
+
+                <!-- Gêneros ocultos inicialmente -->
+                <TextView android:id="@+id/genTerror" style="@style/ItemGenero" android:text="Terror" android:visibility="gone" />
+                <TextView android:id="@+id/genInfantis" style="@style/ItemGenero" android:text="Infantis" android:visibility="gone" />
+                <TextView android:id="@+id/genSuspense" style="@style/ItemGenero" android:text="Suspense e mistério" android:visibility="gone" />
+                <TextView android:id="@+id/genRomance" style="@style/ItemGenero" android:text="@string/home_cat_romance" android:visibility="gone" />
+                <TextView android:id="@+id/genFiccao" style="@style/ItemGenero" android:text="Ficção científica" android:visibility="gone" />
+                <TextView android:id="@+id/genJovens" style="@style/ItemGenero" android:text="Jovens adultos" android:visibility="gone" />
+
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/btnVerMais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver mais ⌵"
+                android:textColor="@color/texto_principal"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
+
+            <!-- Coleções em Destaque -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:text="Coleções em destaque"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Lista de Coleções -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView android:id="@+id/genRomance" style="@style/ItemGenero" android:text="Romance" />
-                <TextView style="@style/ItemGenero" android:text="Fantasia" />
-                <TextView style="@style/ItemGenero" android:text="Ficção Científica" />
-                <TextView style="@style/ItemGenero" android:text="Mistério/Suspense" />
-                <TextView style="@style/ItemGenero" android:text="Terror (Horror)" />
-                <TextView style="@style/ItemGenero" android:text="Aventura" />
-                <TextView style="@style/ItemGenero" android:text="Drama" />
-                <TextView style="@style/ItemGenero" android:text="Biografia / Autobiografia" />
-                <TextView style="@style/ItemGenero" android:text="História" />
-                <TextView style="@style/ItemGenero" android:text="Autoajuda" />
-                <TextView style="@style/ItemGenero" android:text="Educacional / Didático" />
-                <TextView style="@style/ItemGenero" android:text="Ciência / Divulgação Científica" />
+                <RelativeLayout android:id="@+id/itemAclamados" style="@style/ItemColecao" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/home_cat_aclamados" android:textColor="@color/texto_principal" android:textSize="16sp" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/baseline_keyboard_arrow_left_24" android:rotation="180" app:tint="@color/cor_icones" />
+                </RelativeLayout>
+
+                <RelativeLayout android:id="@+id/itemDocumentarios" style="@style/ItemColecao" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/home_cat_documentarios" android:textColor="@color/texto_principal" android:textSize="16sp" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/baseline_keyboard_arrow_left_24" android:rotation="180" app:tint="@color/cor_icones" />
+                </RelativeLayout>
+
+                <RelativeLayout android:id="@+id/itemEducacao" style="@style/ItemColecao" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/home_cat_educacao" android:textColor="@color/texto_principal" android:textSize="16sp" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/baseline_keyboard_arrow_left_24" android:rotation="180" app:tint="@color/cor_icones" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/ItemColecao">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mais coleções" android:textColor="@color/texto_principal" android:textSize="16sp" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/baseline_keyboard_arrow_left_24" android:rotation="180" app:tint="@color/cor_icones" />
+                </RelativeLayout>
 
             </LinearLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

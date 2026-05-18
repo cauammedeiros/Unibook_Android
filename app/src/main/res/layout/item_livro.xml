@@ -4,7 +4,7 @@
     android:layout_width="140dp"
     android:layout_height="170dp"
     android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/fundo_principal"
+    app:cardBackgroundColor="@color/cor_card"
     app:cardCornerRadius="6dp"
     app:cardElevation="0dp">
 
