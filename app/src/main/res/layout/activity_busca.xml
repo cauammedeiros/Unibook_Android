@@ -115,12 +115,12 @@
                 android:columnCount="2"
                 android:paddingHorizontal="10dp">
 
-                <TextView style="@style/ItemGenero" android:text="Ação e aventura" />
-                <TextView style="@style/ItemGenero" android:text="Anime" />
-                <TextView style="@style/ItemGenero" android:text="Comédia" />
-                <TextView style="@style/ItemGenero" android:text="Documentário" />
-                <TextView style="@style/ItemGenero" android:text="Drama" />
-                <TextView style="@style/ItemGenero" android:text="Fantasia" />
+                <TextView android:id="@+id/genAcao" style="@style/ItemGenero" android:text="Ação e aventura" />
+                <TextView android:id="@+id/genAnime" style="@style/ItemGenero" android:text="Anime" />
+                <TextView android:id="@+id/genComedia" style="@style/ItemGenero" android:text="Comédia" />
+                <TextView android:id="@+id/genDocumentarios" style="@style/ItemGenero" android:text="Documentário" />
+                <TextView android:id="@+id/genDrama" style="@style/ItemGenero" android:text="Drama" />
+                <TextView android:id="@+id/genFantasia" style="@style/ItemGenero" android:text="Fantasia" />
 
                 <!-- Gêneros ocultos inicialmente -->
                 <TextView android:id="@+id/genTerror" style="@style/ItemGenero" android:text="Terror" android:visibility="gone" />

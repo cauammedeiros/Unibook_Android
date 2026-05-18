@@ -147,8 +147,15 @@ class BuscaActivity : AppCompatActivity() {
         genRomance.setOnClickListener { abrirGenero(getString(R.string.home_cat_romance)) }
         genTerror.setOnClickListener { abrirGenero("Terror") }
         genInfantis.setOnClickListener { abrirGenero("Infantis") }
-        
-        // Você pode adicionar IDs aos outros TextViews do GridLayout no XML 
-        // para dar funcionalidade a todos (Ação, Anime, etc.)
+        genSuspense.setOnClickListener { abrirGenero("Suspense") }
+        genFiccao.setOnClickListener { abrirGenero("Ficção Científica") }
+        genJovens.setOnClickListener { abrirGenero("Jovens Adultos") }
+
+        findViewById<TextView>(R.id.genAcao).setOnClickListener { abrirGenero("Ação") }
+        findViewById<TextView>(R.id.genAnime).setOnClickListener { abrirGenero("Anime") }
+        findViewById<TextView>(R.id.genComedia).setOnClickListener { abrirGenero("Comédia") }
+        findViewById<TextView>(R.id.genDocumentarios).setOnClickListener { abrirGenero("Documentário") }
+        findViewById<TextView>(R.id.genDrama).setOnClickListener { abrirGenero("Drama") }
+        findViewById<TextView>(R.id.genFantasia).setOnClickListener { abrirGenero("Fantasia") }
     }
 }

@@ -6,4 +6,5 @@
     <color name="cor_icones">#FFFFFF</color>
     <color name="cor_botao">#1E3A5F</color>
     <color name="cor_card">#1A1A1A</color>
+    <color name="cor_borda">#333333</color>
 </resources>

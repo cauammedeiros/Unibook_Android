@@ -68,5 +68,13 @@ class ChatbotActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
+
+        // Botão Buscar no Topo
+        val btnBuscarTop = findViewById<ImageView>(R.id.btnBuscarTop)
+        btnBuscarTop.setOnClickListener {
+            val intent = Intent(this, BuscaActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+        }
     }
 }

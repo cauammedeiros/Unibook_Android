@@ -22,7 +22,10 @@
     <color name="cor_icones">#424242</color>
     <color name="cor_botao">#5B7FFF</color>
     <color name="cor_card">#FFFFFF</color>
-    <color name="cor_primaria">#1E3A5F</color> <!-- Adicionado para resolver erro de build -->
+    <color name="cor_borda">#E0E0E0</color>
+    <color name="cor_primaria">#1E3A5F</color>
+    <color name="netflix_red">#E50914</color>
+    <color name="prime_blue">#00A8E1</color>
     <color name="erro_fundo">#FFDADA</color>
     <color name="erro_texto">#CC0000</color>
     <color name="erro_borda">#FF4444</color>

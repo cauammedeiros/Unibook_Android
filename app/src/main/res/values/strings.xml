@@ -79,6 +79,13 @@
     <string name="nav_chatbot">CHATBOT</string>
     <string name="nav_buscar">Buscar</string>
     <string name="nav_perfil">Perfil</string>
+    <string name="logo_unibook">UNIBOOK</string>
+    <string name="label_voce">VOCÊ</string>
+    <string name="label_unibook_bot">UNIBOOK BOT</string>
+    <string name="hint_pergunte_chatbot">Pergunte sobre algum livro</string>
+    <string name="msg_exemplo_usuario">Certo, quero um livro sobre culinária!</string>
+    <string name="msg_exemplo_bot">Certo! Aqui vai um dos resultados para livros sobre culinária!</string>
+    <string name="desc_botao_enviar">Enviar mensagem</string>
 
     <!-- Erros -->
     <string name="err_busca_vazia">O campo de busca não pode estar vazio!</string>

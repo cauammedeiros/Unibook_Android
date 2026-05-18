@@ -15,23 +15,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
+        android:background="@color/cor_card"
+        android:elevation="4dp"
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/txtTituloChat"
-            android:layout_width="0dp"
+            android:id="@+id/txtLogoHeader"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Chatbot"
-            android:textColor="@color/texto_principal"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:text="@string/logo_unibook"
+            android:textColor="@color/cor_primaria"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02"
+            android:fontFamily="sans-serif-black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/btnTema"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/ic_light_mode"
             android:padding="4dp"
             app:tint="@color/cor_icones"
@@ -46,6 +54,9 @@
             android:layout_height="28dp"
             android:src="@drawable/ic_search"
             android:contentDescription="@string/nav_buscar"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:tint="@color/cor_icones" />
     </LinearLayout>
 
@@ -55,6 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/fundo_principal"
         android:padding="16dp">
 
         <LinearLayout
@@ -67,19 +79,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginBottom="4dp"
+                android:text="@string/label_voce"
+                android:textColor="@color/texto_secundario"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_message_user"
                 android:padding="12dp"
-                android:text="Certo, quero um livro sobre culinária!"
-                android:textColor="@color/texto_principal" />
+                android:maxWidth="280dp"
+                android:text="@string/msg_exemplo_usuario"
+                android:textColor="@color/white" />
 
             <!-- Marcador e Resposta CHATBOT -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CHATBOT"
-                android:textColor="@color/texto_secundario"
-                android:textSize="10sp"
+                android:text="@string/label_unibook_bot"
+                android:textColor="@color/cor_botao"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -88,7 +111,8 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_message_bot"
                 android:padding="12dp"
-                android:text="Certo! Aqui vai um dos resultados para livros sobre culinária!"
+                android:maxWidth="280dp"
+                android:text="@string/msg_exemplo_bot"
                 android:textColor="@color/texto_principal" />
 
         </LinearLayout>
@@ -102,7 +126,8 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="12dp"
-        android:background="@color/fundo_principal">
+        android:background="@color/cor_card"
+        android:elevation="8dp">
 
         <EditText
             android:id="@+id/editPergunta"
@@ -110,11 +135,13 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@drawable/borda_edittext"
-            android:hint="Pergunte sobre algum livro"
+            android:hint="@string/hint_pergunte_chatbot"
             android:paddingHorizontal="16dp"
             android:textColor="@color/texto_principal"
             android:textColorHint="@color/texto_secundario"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:autofillHints="none"
+            android:inputType="textShortMessage" />
 
         <ImageButton
             android:id="@+id/btnEnviar"
@@ -124,7 +151,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:rotation="180"
             android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/cor_icones" />
+            app:tint="@color/cor_icones"
+            android:contentDescription="@string/desc_botao_enviar" />
     </LinearLayout>
 
     <!-- Menu Inferior -->
