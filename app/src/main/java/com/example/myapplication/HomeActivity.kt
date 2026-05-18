@@ -84,6 +84,15 @@ class HomeActivity : AppCompatActivity() {
         configurarRecyclerView(R.id.rvAclamados, listaTeste)
         configurarRecyclerView(R.id.rvEducacao, listaTeste)
         configurarRecyclerView(R.id.rvMinhaLista, listaTeste)
+        configurarRecyclerView(R.id.rvComedias, listaTeste)
+        configurarRecyclerView(R.id.rvSuspense, listaTeste)
+        configurarRecyclerView(R.id.rvFiccao, listaTeste)
+        configurarRecyclerView(R.id.rvTerror, listaTeste)
+        configurarRecyclerView(R.id.rvRomance, listaTeste)
+        configurarRecyclerView(R.id.rvAventura, listaTeste)
+        configurarRecyclerView(R.id.rvDocumentarios, listaTeste)
+        configurarRecyclerView(R.id.rvAnimes, listaTeste)
+        configurarRecyclerView(R.id.rvClassicos, listaTeste)
     }
 
     private fun configurarRecyclerView(id: Int, lista: List<Livro>) {
