@@ -38,15 +38,6 @@
             android:textColor="@color/texto_principal"
             android:textSize="22sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/btnTema"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_light_mode"
-            android:padding="4dp"
-            app:tint="@color/cor_icones"
-            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -117,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="32dp"
-                            android:text="50%"
+                            android:text="100%"
                             android:textColor="@color/texto_principal"
                             android:textSize="24sp"
                             android:textStyle="bold" />

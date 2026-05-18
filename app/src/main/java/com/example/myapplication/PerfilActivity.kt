@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PerfilActivity : AppCompatActivity() {
+class PerfilActivity : BaseActivity() {
 
     private val db = Firebase.firestore
     private lateinit var sharedPref: android.content.SharedPreferences
