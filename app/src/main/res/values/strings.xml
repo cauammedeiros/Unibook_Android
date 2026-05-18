@@ -80,6 +80,20 @@
     <string name="nav_buscar">Buscar</string>
     <string name="nav_perfil">Perfil</string>
 
+    <!-- Erros -->
+    <string name="err_busca_vazia">O campo de busca não pode estar vazio!</string>
+    <string name="err_salvar_dados">Erro ao salvar os dados. Tente novamente.</string>
+    <string name="err_email_cadastrado">Este e-mail já está cadastrado.</string>
+    <string name="err_servidor">Erro de conexão com o servidor. Verifique sua internet.</string>
+    <string name="err_campos_vazios">Preencha todos os campos!</string>
+    <string name="err_admin_senha">Senha administrativa incorreta.</string>
+    <string name="err_login_incorreto">E-mail ou senha incorretos.</string>
+    <string name="err_senha_incorreta">Senha incorreta.</string>
+    <string name="err_usuario_nao_cadastrado">Usuário não cadastrado.</string>
+
+    <!-- Mensagens -->
+    <string name="msg_cadastro_sucesso">Cadastro realizado com sucesso!</string>
+
     <!-- Gerais -->
     <string name="voltar">Voltar</string>
 
@@ -150,8 +164,4 @@
     <string name="label_valor">Valor</string>
     <string name="placeholder_valor_multa">R$ 0,00</string>
     <string name="placeholder_status_pendente">Pendente</string>
-    <string name="msg_cadastro_sucesso">\"Cadastrado com Sucesso\"</string>
-    <string name="err_email_cadastrado">\"Email já Cadastrado\"</string>
-    <string name="err_servidor">\"Erro no Servidor\"</string>
-    <string name="err_salvar_dados">\"Erro ao Salvar Dados\"</string>
 </resources>

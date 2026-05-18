@@ -30,7 +30,7 @@ class BuscaActivity : AppCompatActivity() {
                 intent.putExtra("TERMO_BUSCA", textoBusca)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Digite algo para buscar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.err_busca_vazia), Toast.LENGTH_SHORT).show()
             }
         }
 

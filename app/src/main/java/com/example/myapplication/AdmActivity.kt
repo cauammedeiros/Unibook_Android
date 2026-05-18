@@ -1,11 +1,14 @@
 package com.example.myapplication
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 import android.content.Intent
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 
 class AdmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,29 @@ class AdmActivity : AppCompatActivity() {
         btnConfig.setOnClickListener {
             val intent = Intent(this, ConfiguracoesActivity::class.java)
             startActivity(intent)
+        }
+
+        // Botão Voltar
+        findViewById<ImageView>(R.id.btnVoltar)?.setOnClickListener {
+            finish()
+        }
+
+        configurarBotaoTema()
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        
+        // Define o ícone inicial baseado no tema atual
+        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
         }
     }
 

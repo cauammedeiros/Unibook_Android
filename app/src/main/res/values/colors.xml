@@ -22,8 +22,8 @@
     <color name="cor_icones">#000000</color>
     <color name="cor_botao">#5B7FFF</color>
     <color name="cor_card">#F5F5F5</color>
+    <color name="cor_primaria">#1E3A5F</color> <!-- Adicionado para resolver erro de build -->
     <color name="erro_fundo">#FFDADA</color>
     <color name="erro_texto">#CC0000</color>
     <color name="erro_borda">#FF4444</color>
-    <color name="cor_primaria">#5B7FFF</color>
 </resources>

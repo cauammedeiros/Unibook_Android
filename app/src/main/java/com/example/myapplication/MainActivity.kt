@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
             // 1. Verifica se os campos estão vazios
             if (email.isEmpty() || senha.isEmpty()) {
-                txtErro.text = "Preencha todos os campos!"
+                txtErro.setText(R.string.err_campos_vazios)
                 txtErro.visibility = View.VISIBLE
             }
             // 2. Verifica Logins Hardcoded (Segurança/Fallback)
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("TIPO_USUARIO", if (email == "admin@unifor.br") "admin" else "aluno")
                     startActivity(intent)
                 } else {
-                    txtErro.text = if (email == "admin@unifor.br") "Administradores possuem senhas para logar na conta" else "Email ou senha incorretos!"
+                    txtErro.setText(if (email == "admin@unifor.br") R.string.err_admin_senha else R.string.err_login_incorreto)
                     txtErro.visibility = View.VISIBLE
                 }
             }
@@ -65,16 +65,16 @@ class MainActivity : AppCompatActivity() {
                                 intent.putExtra("TIPO_USUARIO", tipoUsuario)
                                 startActivity(intent)
                             } else {
-                                txtErro.text = "Senha incorreta!"
+                                txtErro.setText(R.string.err_senha_incorreta)
                                 txtErro.visibility = View.VISIBLE
                             }
                         } else {
-                            txtErro.text = "Usuário não cadastrado!"
+                            txtErro.setText(R.string.err_usuario_nao_cadastrado)
                             txtErro.visibility = View.VISIBLE
                         }
                     }
                     .addOnFailureListener {
-                        txtErro.text = "Erro ao conectar com o servidor."
+                        txtErro.setText(R.string.err_servidor)
                         txtErro.visibility = View.VISIBLE
                     }
             }
