@@ -150,4 +150,8 @@
     <string name="label_valor">Valor</string>
     <string name="placeholder_valor_multa">R$ 0,00</string>
     <string name="placeholder_status_pendente">Pendente</string>
+    <string name="msg_cadastro_sucesso">\"Cadastrado com Sucesso\"</string>
+    <string name="err_email_cadastrado">\"Email já Cadastrado\"</string>
+    <string name="err_servidor">\"Erro no Servidor\"</string>
+    <string name="err_salvar_dados">\"Erro ao Salvar Dados\"</string>
 </resources>

@@ -25,4 +25,5 @@
     <color name="erro_fundo">#FFDADA</color>
     <color name="erro_texto">#CC0000</color>
     <color name="erro_borda">#FF4444</color>
+    <color name="cor_primaria">#5B7FFF</color>
 </resources>

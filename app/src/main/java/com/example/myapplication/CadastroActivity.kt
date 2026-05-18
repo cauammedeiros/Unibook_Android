@@ -44,11 +44,11 @@ class CadastroActivity : AppCompatActivity() {
             val senha = edtSenha.text.toString()
 
             if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-                txtErro.setText(R.string.err_campos_vazios)
+                txtErro.text = "Preencha todos os campos!"
                 txtErro.visibility = View.VISIBLE
             }
             else if (email == "aluno@unifor.br" || email == "admin@unifor.br") {
-                txtErro.setText(R.string.err_email_reservado)
+                txtErro.text = "Email já cadastrado!"
                 txtErro.visibility = View.VISIBLE
             }
             else if (!isSenhaValida(senha)) {

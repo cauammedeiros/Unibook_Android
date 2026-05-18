@@ -25,7 +25,7 @@
         <item name="android:paddingEnd">8dp</item>
         <item name="android:clipToPadding">false</item>
         <item name="android:orientation">horizontal</item>
-        <item name="app:layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
     </style>
 
     <style name="ItemGenero">

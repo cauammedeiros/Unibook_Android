@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="rvRomance" type="id">rvRoamnce</item>
-    <item name="rvFiccao" type="id">rvFiccao</item>
-    <item name="rvClassicos" type="id">rvClassicos</item>
-    <item name="rvAnimes" type="id">rvAnimes</item>
-    <item name="rvDocumentarios" type="id">rvDocumentarios</item>
-    <item name="rvAventura" type="id">rvAventura</item>
-    <item name="rvTerror" type="id">rvTerror</item>
-    <item name="txtMinhaListaTitle" type="id">txtMinhaListaTitle</item>
+    <item name="rvRomance" type="id" />
+    <item name="rvFiccao" type="id" />
+    <item name="rvClassicos" type="id" />
+    <item name="rvAnimes" type="id" />
+    <item name="rvDocumentarios" type="id" />
+    <item name="rvAventura" type="id" />
+    <item name="rvTerror" type="id" />
+    <item name="txtMinhaListaTitle" type="id" />
 </resources>
