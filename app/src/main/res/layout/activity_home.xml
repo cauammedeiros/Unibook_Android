@@ -44,10 +44,14 @@
 
         <ImageView
             android:id="@+id/btnBuscarTop"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/ic_search"
             android:contentDescription="@string/nav_buscar"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:tint="@color/cor_icones" />
     </LinearLayout>
 

@@ -34,9 +34,18 @@ class MainActivity : AppCompatActivity() {
             else if (email == "admin@unifor.br" || email == "aluno@unifor.br") {
                 val senhaCorreta = if (email == "admin@unifor.br") "1234" else "aluno123"
                 if (senha == senhaCorreta) {
+                    val tipoUsuario = if (email == "admin@unifor.br") "admin" else "aluno"
+                    val nomeUsuario = if (tipoUsuario == "admin") "Administrador" else "Aluno Teste"
+
+                    val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("USER_EMAIL", email)
+                    editor.putString("USER_NAME", nomeUsuario)
+                    editor.apply()
+
                     txtErro.visibility = View.GONE
                     val intent = Intent(this, tela_Entrando::class.java)
-                    intent.putExtra("TIPO_USUARIO", if (email == "admin@unifor.br") "admin" else "aluno")
+                    intent.putExtra("TIPO_USUARIO", tipoUsuario)
                     startActivity(intent)
                 } else {
                     txtErro.setText(if (email == "admin@unifor.br") R.string.err_admin_senha else R.string.err_login_incorreto)
@@ -55,10 +64,12 @@ class MainActivity : AppCompatActivity() {
                             val tipoUsuario = userDoc.getString("tipo") ?: "aluno"
 
                             if (senhaNoBanco == senha) {
+                                val nomeNoBanco = userDoc.getString("nome") ?: "Usuário"
                                 val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
                                 val editor = sharedPref.edit()
                                 editor.putString("USER_ID", userDoc.id)
                                 editor.putString("USER_EMAIL", email)
+                                editor.putString("USER_NAME", nomeNoBanco)
                                 editor.apply()
                                 txtErro.visibility = View.GONE
                                 val intent = Intent(this, tela_Entrando::class.java)

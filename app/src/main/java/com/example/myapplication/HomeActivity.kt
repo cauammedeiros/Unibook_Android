@@ -27,8 +27,11 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val nomeUsuario = sharedPref.getString("USER_NAME", "Usuário")
+
         val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
-        txtUsuario.text = getString(R.string.home_saudacao, "Carlos")
+        txtUsuario.text = getString(R.string.home_saudacao, nomeUsuario)
 
         configurarNavegacao()
         configurarListasDeLivros()
@@ -64,6 +67,11 @@ class HomeActivity : AppCompatActivity() {
         btnChatbot.setOnClickListener { startActivity(Intent(this, ChatbotActivity::class.java)) }
         btnBuscar.setOnClickListener { startActivity(Intent(this, BuscaActivity::class.java)) }
         btnPerfil.setOnClickListener { startActivity(Intent(this, PerfilActivity::class.java)) }
+
+        // Lupa no topo (Header)
+        findViewById<ImageView>(R.id.btnBuscarTop)?.setOnClickListener {
+            startActivity(Intent(this, BuscaActivity::class.java))
+        }
     }
 
     private fun configurarListasDeLivros() {
