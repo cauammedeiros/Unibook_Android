@@ -35,7 +35,29 @@ class HomeActivity : BaseActivity() {
 
         configurarNavegacao()
         configurarListasDeLivros()
+        configurarCliquesVerTudo()
         configurarBotaoTema()
+    }
+
+    private fun abrirGenero(nome: String) {
+        val intent = Intent(this, PesquisaGeneroActivity::class.java)
+        intent.putExtra("GENERO_NOME", nome)
+        startActivity(intent)
+    }
+
+    private fun configurarCliquesVerTudo() {
+        findViewById<TextView>(R.id.tvVerTudoAclamados)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_aclamados)) }
+        findViewById<TextView>(R.id.tvVerTudoEducacao)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_educacao)) }
+        findViewById<TextView>(R.id.tvVerTudo)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_minha_lista)) }
+        findViewById<TextView>(R.id.tvVerTudoComedias)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_comedias)) }
+        findViewById<TextView>(R.id.tvVerTudoSuspense)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_suspense)) }
+        findViewById<TextView>(R.id.tvVerTudoFiccao)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_ficcao)) }
+        findViewById<TextView>(R.id.tvVerTudoTerror)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_terror)) }
+        findViewById<TextView>(R.id.tvVerTudoRomance)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_romance)) }
+        findViewById<TextView>(R.id.tvVerTudoAventura)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_aventura)) }
+        findViewById<TextView>(R.id.tvVerTudoDocumentarios)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_documentarios)) }
+        findViewById<TextView>(R.id.tvVerTudoAnimes)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_animes)) }
+        findViewById<TextView>(R.id.tvVerTudoClassicos)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_classicos)) }
     }
 
     private fun configurarBotaoTema() {

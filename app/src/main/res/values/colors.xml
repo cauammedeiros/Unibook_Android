@@ -16,7 +16,7 @@
     <color name="azul_item_lista">#1C70AB</color> <!-- Azul dos cards de lista -->
 
     <!-- Cores Adaptáveis para Temas -->
-    <color name="fundo_principal">#FFFFFF</color>
+    <color name="fundo_principal">@color/cinza_claro</color>
     <color name="texto_principal">#212121</color>
     <color name="texto_secundario">#757575</color>
     <color name="cor_icones">#424242</color>

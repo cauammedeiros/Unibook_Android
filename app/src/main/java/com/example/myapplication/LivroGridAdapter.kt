@@ -12,7 +12,7 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
     RecyclerView.Adapter<LivroGridAdapter.LivroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LivroViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_livro_grid, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_livro, parent, false)
         return LivroViewHolder(view)
     }
 
@@ -38,7 +38,7 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
     override fun getItemCount() = listaLivros.size
 
     class LivroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //val imgCapa: ImageView = view.findViewById(R.id.imgLivroGrid)
-        //val txtNome: TextView = view.findViewById(R.id.txtNomeLivroGrid)
+        val imgCapa: ImageView = view.findViewById(R.id.imgCapa)
+        val txtNome: TextView = view.findViewById(R.id.txtTituloLivro)
     }
 }
