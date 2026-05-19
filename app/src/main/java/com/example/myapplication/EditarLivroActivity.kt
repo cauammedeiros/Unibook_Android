@@ -22,15 +22,16 @@ class EditarLivroActivity : AppCompatActivity() {
     private lateinit var edtAutor: EditText
     private lateinit var edtGenero: EditText
     private lateinit var edtSinopse: EditText
+    private lateinit var btnRemover: Button
     private lateinit var btnSalvar: Button
     private lateinit var txtErro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_livro)
+        setContentView(R.layout.activity_editar_livro)
 
         // Ajustando o título da tela para "Editar"
-        findViewById<TextView>(R.id.txtTituloCriar).text = "Editar Livro"
+        findViewById<TextView>(R.id.txtTituloEditar).text = "Editar Livro"
 
         // Inicialização
         imgCapa = findViewById(R.id.imgCapaLivro)
@@ -39,7 +40,8 @@ class EditarLivroActivity : AppCompatActivity() {
         edtAutor = findViewById(R.id.edtAutor)
         edtGenero = findViewById(R.id.edtGenero)
         edtSinopse = findViewById(R.id.edtSinopse)
-        btnSalvar = findViewById(R.id.btnCriar)
+        btnRemover = findViewById(R.id.btnRemover)
+        btnSalvar = findViewById(R.id.btnEditar)
         btnSalvar.text = "Salvar Alterações"
         txtErro = findViewById(R.id.txtErro)
 
@@ -68,6 +70,10 @@ class EditarLivroActivity : AppCompatActivity() {
         // 2. Lógica de update no Firebase
         btnSalvar.setOnClickListener {
             salvarAlteracoes()
+        }
+
+        btnRemover.setOnClickListener {
+            mostrarDialogConfirmacao()
         }
     }
 
@@ -144,5 +150,58 @@ class EditarLivroActivity : AppCompatActivity() {
             .placeholder(R.drawable.logo_nome1) // mude para o seu placeholder se necessário
             .error(R.drawable.logo_nome1)
             .into(imgCapa)
+    }
+
+    private fun mostrarDialogConfirmacao() {
+        // 1. Infla o seu layout XML customizado
+        val inflater = layoutInflater
+        // Substitua "dialog_confirmar_exclusao" pelo nome exato do seu arquivo XML
+        val dialogView = inflater.inflate(R.layout.dialog_confirmar_exclusao, null)
+
+        // 2. Cria o AlertDialog passando o seu layout
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+
+        // 3. Vincula os botões de SIM e NÃO que estão DENTRO do seu XML do dialog
+        // Substitua os IDs abaixo pelos IDs reais que você colocou no seu XML
+        val btnSim = dialogView.findViewById<Button>(R.id.layoutExcluir)
+        val btnNao = dialogView.findViewById<Button>(R.id.layoutVoltar)
+
+        // Se o seu XML tiver textos como Título ou Mensagem e você quiser mudar via código:
+        // dialogView.findViewById<TextView>(R.id.txtDialogTitulo).text = "Excluir Livro"
+
+        // 4. Configura as ações dos cliques nos botões do seu XML
+        btnSim.setOnClickListener {
+            removerLivroDoFirestore() // Executa a exclusão que criamos antes
+            dialog.dismiss()          // Fecha o dialog
+        }
+
+        btnNao.setOnClickListener {
+            dialog.dismiss()          // Apenas fecha o dialog se desistir
+        }
+
+        // 5. Mostra o seu dialog customizado na tela
+        dialog.show()
+    }
+
+    private fun removerLivroDoFirestore() {
+        // Verifica se temos o ID do livro antes de tentar deletar
+        livroId?.let { id ->
+            // Aponta para a coleção "Livros" (L maiúsculo) e deleta o documento
+            db.collection("Livros").document(id)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Livro removido com sucesso!", Toast.LENGTH_SHORT).show()
+                    finish() // Fecha a tela de edição e volta para a listagem
+                }
+                .addOnFailureListener { exception ->
+                    txtErro.text = "Erro ao remover livro: ${exception.message}"
+                    txtErro.visibility = View.VISIBLE
+                }
+        } ?: run {
+            Toast.makeText(this, "Erro: ID do livro inválido.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -218,17 +218,30 @@
 
             <!-- Botão Criar (ID Sincronizado com KT) -->
             <Button
+                android:id="@+id/btnRemover"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_vermelho"
+                android:text="Remover Livro"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Button
                 android:id="@+id/btnEditar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/btn_azul"
-                app:backgroundTint="@null"
-                android:text="Editar"
+                android:text="Salvar Alterações"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
