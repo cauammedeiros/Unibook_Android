@@ -56,27 +56,63 @@
                     android:maxLines="2"
                     tools:text="Título do Livro" />
 
-                <TextView
-                    android:id="@+id/txtAutorBusca"
+                <!-- Grid de Info (Gênero e Autor) - Padrão Unibook -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/texto_secundario"
-                    android:textSize="14sp"
-                    tools:text="Autor do Livro" />
-
-                <TextView
-                    android:id="@+id/txtGeneroBusca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/borda_edittext"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
-                    android:textColor="@color/cor_primaria"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    tools:text="Mistério" />
+                    android:baselineAligned="false">
+
+                    <!-- Seção Gênero -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_genero"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true" />
+                        <TextView
+                            android:id="@+id/txtGeneroBusca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="---"
+                            android:textColor="@color/cor_primaria"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            tools:text="Fantasia" />
+                    </LinearLayout>
+
+                    <!-- Seção Autor -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_autor"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true" />
+                        <TextView
+                            android:id="@+id/txtAutorBusca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="---"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="13sp"
+                            tools:text="Autor do Livro" />
+                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
@@ -92,7 +128,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sinopse"
+            android:text="@string/label_sinopse"
             android:textColor="@color/texto_principal"
             android:textSize="14sp"
             android:textStyle="bold" />

@@ -43,8 +43,12 @@ class BuscaFiltradaActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        // Criamos uma lista fictícia para que o layout 'item_livro_busca_filtrada' apareça
-        val listaExemplo = listOf("Livro 1", "Livro 2", "Livro 3")
+        // Agora usamos objetos Livro de verdade para o Adapter funcionar
+        val listaExemplo = listOf(
+            Livro(id = "1", titulo = "O Senhor dos Anéis", autor = "J.R.R. Tolkien", genero = "Fantasia", sinopse = "Uma jornada épica pela Terra Média."),
+            Livro(id = "2", titulo = "1984", autor = "George Orwell", genero = "Distopia", sinopse = "Uma crítica profunda ao totalitarismo."),
+            Livro(id = "3", titulo = "O Hobbit", autor = "J.R.R. Tolkien", genero = "Aventura", sinopse = "A história de Bilbo Bolseiro.")
+        )
         
         val adapter = BuscaFiltradaAdapter(listaExemplo)
         rvBuscaFiltrada.adapter = adapter

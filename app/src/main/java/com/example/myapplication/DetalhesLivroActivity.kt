@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 
 class DetalhesLivroActivity : AppCompatActivity() {
 
@@ -22,8 +23,27 @@ class DetalhesLivroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detalhes_livro)
 
         inicializarViews()
+        carregarDadosLivro()
         configurarBotoes()
         configurarMenuNavegacao()
+    }
+
+    private fun carregarDadosLivro() {
+        val titulo = intent.getStringExtra("TITULO")
+        val autor = intent.getStringExtra("AUTOR")
+        val genero = intent.getStringExtra("GENERO")
+        val sinopse = intent.getStringExtra("SINOPSE")
+        val capaUrl = intent.getStringExtra("CAPA_URL")
+
+        txtNomeLivro.text = titulo ?: "Título Indisponível"
+        txtAutor.text = autor ?: "Autor Desconhecido"
+        txtGenero.text = genero ?: "Gênero não informado"
+        txtSinopse.text = sinopse ?: "Sem sinopse disponível."
+
+        Glide.with(this)
+            .load(capaUrl)
+            .placeholder(R.drawable.logo_nome1)
+            .into(imgCapaLivro)
     }
 
     private fun inicializarViews() {
