@@ -67,8 +67,8 @@
 
             <ImageView
                 android:id="@+id/logo6"
-                android:layout_width="240dp"
-                android:layout_height="160dp"
+                android:layout_width="200dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
@@ -78,48 +78,108 @@
                 android:id="@+id/txtInsira"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@string/label_insira_nova_senha"
                 android:textColor="@color/texto_principal"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtRequisitosSenha"
+            <!-- Card de Requisitos para Contraste Profissional -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cor_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REQUISITOS DA SENHA"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/txtRequisitosSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@string/msg_requisitos_senha"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card de Inputs para Contraste Profissional -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/fundo_requisitos_senha"
-                android:padding="16dp"
-                android:lineSpacingExtra="4sp"
-                android:text="@string/msg_requisitos_senha"
-                android:textColor="@color/texto_secundario"
-                android:textSize="13sp" />
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cor_card">
 
-            <EditText
-                android:id="@+id/txtNovaSenha"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/borda_edittext"
-                android:hint="@string/hint_nova_senha"
-                android:textColorHint="@color/texto_secundario"
-                android:textColor="@color/texto_principal"
-                android:paddingHorizontal="16dp"
-                android:inputType="textPassword" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <EditText
-                android:id="@+id/txtRepetirSenha"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/borda_edittext"
-                android:hint="@string/hint_confirmar_senha"
-                android:textColorHint="@color/texto_secundario"
-                android:textColor="@color/texto_principal"
-                android:paddingHorizontal="16dp"
-                android:inputType="textPassword" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NOVA SENHA"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true" />
+
+                    <EditText
+                        android:id="@+id/txtNovaSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/borda_edittext"
+                        android:hint="@string/hint_nova_senha"
+                        android:textColorHint="@color/texto_secundario"
+                        android:textColor="@color/texto_principal"
+                        android:paddingHorizontal="16dp"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="CONFIRMAR SENHA"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true" />
+
+                    <EditText
+                        android:id="@+id/txtRepetirSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/borda_edittext"
+                        android:hint="@string/hint_confirmar_senha"
+                        android:textColorHint="@color/texto_secundario"
+                        android:textColor="@color/texto_principal"
+                        android:paddingHorizontal="16dp"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/btnRedefinir"

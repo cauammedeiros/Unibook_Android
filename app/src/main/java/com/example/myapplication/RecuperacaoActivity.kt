@@ -1,14 +1,17 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
@@ -31,6 +34,8 @@ class RecuperacaoActivity : AppCompatActivity() {
         btnVoltar.setOnClickListener {
             finish()
         }
+
+        configurarBotaoTema()
 
         val btnSolicitar = findViewById<Button>(R.id.btnSolicitar)
         val edtEmail = findViewById<EditText>(R.id.txtEmail2)
@@ -71,6 +76,20 @@ class RecuperacaoActivity : AppCompatActivity() {
                         txtErro.text = "Erro ao conectar com o servidor."
                         txtErro.visibility = View.VISIBLE
                     }
+            }
+        }
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
     }
