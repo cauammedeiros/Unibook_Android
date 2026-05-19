@@ -12,8 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class EditarPerfilActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
-    // No futuro, aqui você pegará o ID do usuário logado via Firebase Auth
-    // Por enquanto, usaremos um ID fixo para teste que deve existir no seu Firebase
+
      private lateinit var sharedPref: SharedPreferences
      private var userId: String = ""
 
@@ -70,11 +69,9 @@ class EditarPerfilActivity : AppCompatActivity() {
             "email" to email
         )
 
-        // Tenta atualizar o documento na coleção "Usuários"
         db.collection("Usuários").document(userId)
             .update(dados)
             .addOnSuccessListener {
-                sharedPref.edit().putString("USER_EMAIL", email).apply()
                 Toast.makeText(this, "Perfil atualizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
