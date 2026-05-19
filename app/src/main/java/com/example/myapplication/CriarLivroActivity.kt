@@ -51,8 +51,8 @@ class CriarLivroActivity : AppCompatActivity() {
                 if (url.isNotEmpty()) {
                     Glide.with(this)
                         .load(url)
-                        .placeholder(R.drawable.logo_nome)
-                        .error(R.drawable.logo_nome)
+                        .placeholder(R.drawable.logo_nome1)
+                        .error(R.drawable.logo_nome1)
                         .into(imgCapa)
                 }
             }

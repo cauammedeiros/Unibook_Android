@@ -90,7 +90,7 @@
                         android:layout_width="90dp"
                         android:layout_height="130dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logo_nome"
+                        android:src="@drawable/logo_nome1"
                         android:background="@color/cinza_borda"/>
 
                     <LinearLayout
@@ -162,7 +162,7 @@
                         android:layout_width="90dp"
                         android:layout_height="130dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logo_nome"
+                        android:src="@drawable/logo_nome1"
                         android:background="@color/cinza_borda"/>
 
                     <LinearLayout
@@ -239,7 +239,7 @@
                             android:layout_width="90dp"
                             android:layout_height="130dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo_nome"
+                            android:src="@drawable/logo_nome1"
                             android:background="@color/cinza_borda"/>
 
                         <LinearLayout

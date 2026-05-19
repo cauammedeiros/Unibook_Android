@@ -82,7 +82,7 @@
                         android:layout_height="220dp"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logo_nome"
+                        android:src="@drawable/logo_nome1"
                         android:layout_marginBottom="24dp"
                         android:background="@color/cinza_borda"/>
 

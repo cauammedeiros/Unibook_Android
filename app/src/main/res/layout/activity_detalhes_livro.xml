@@ -96,7 +96,8 @@
                         android:id="@+id/imgCapaLivro"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/logo_nome1"
                         android:contentDescription="@string/desc_capa_livro" />
                 </androidx.cardview.widget.CardView>
 
@@ -143,51 +144,111 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Info Básica (Gênero e Autor) -->
-            <LinearLayout
+            <!-- Info Básica (Gênero e Autor) em Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cor_card">
 
-                <TextView
-                    android:id="@+id/txtGenero"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Gênero: Ficção"
-                    android:textColor="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:baselineAligned="false">
 
-                <TextView
-                    android:id="@+id/txtAutor"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Autor: J.R.R. Tolkien"
-                    android:textColor="@color/texto_secundario"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-            <!-- Sinopse -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gênero"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true" />
+
+                        <TextView
+                            android:id="@+id/txtGenero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="---"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#22FFFFFF"
+                        android:layout_marginHorizontal="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Autor"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true" />
+
+                        <TextView
+                            android:id="@+id/txtAutor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="---"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sinopse com Design Profissional -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/label_sinopse"
                 android:textColor="@color/texto_principal"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtSinopse"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Aqui vai ficar a Sinopse do Livro..."
-                android:textColor="@color/texto_secundario"
-                android:textSize="15sp"
-                android:lineSpacingExtra="4dp" />
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cor_card">
+
+                <TextView
+                    android:id="@+id/txtSinopse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Explore uma narrativa fascinante que mergulha em universos inexplorados e dilemas humanos profundos. Esta obra, aclamada por sua originalidade, combina uma escrita elegante com um enredo que mantém o suspense até a última página, tornando-se uma leitura indispensável para os amantes da boa literatura."
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="8dp"
+                    android:justificationMode="inter_word"
+                    android:alpha="0.9" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

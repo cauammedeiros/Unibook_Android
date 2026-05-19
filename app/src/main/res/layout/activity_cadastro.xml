@@ -38,7 +38,7 @@
                 android:id="@+id/logo3"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/logo_nome" />
+                app:srcCompat="@drawable/logo_nome1" />
 
             <TextView
                 android:id="@+id/txtCrieconta"

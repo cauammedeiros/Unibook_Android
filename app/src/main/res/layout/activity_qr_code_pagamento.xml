@@ -84,7 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/logo_nome"
+                        android:src="@drawable/logo_nome1"
                         tools:ignore="ContentDescription" />
 
                     <!-- Overlay de Carregamento ou Placeholder -->

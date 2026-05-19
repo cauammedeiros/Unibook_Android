@@ -141,8 +141,8 @@ class EditarLivroActivity : AppCompatActivity() {
     private fun carregarImagemCapa(url: String) {
         Glide.with(this)
             .load(url)
-            .placeholder(R.drawable.logo_nome) // mude para o seu placeholder se necessário
-            .error(R.drawable.logo_nome)
+            .placeholder(R.drawable.logo_nome1) // mude para o seu placeholder se necessário
+            .error(R.drawable.logo_nome1)
             .into(imgCapa)
     }
 }

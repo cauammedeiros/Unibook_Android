@@ -72,7 +72,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/logo_nome" />
+                app:srcCompat="@drawable/logo_nome1" />
 
             <TextView
                 android:id="@+id/txtEsqueceu"

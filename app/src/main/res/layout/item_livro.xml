@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/desc_capa_livro"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo_nome" />
+            android:src="@drawable/logo_nome1" />
 
         <!-- Scrim gradient for better text readability -->
         <View

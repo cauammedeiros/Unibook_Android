@@ -43,7 +43,7 @@ class LivroAdapter(
         holder.titulo.text = livro.titulo
         Glide.with(context)
             .load(livro.capaUrl)
-            .placeholder(R.drawable.logo_nome)
+            .placeholder(R.drawable.logo_nome1)
             .into(holder.capa)
     }
 

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="274dp"
         android:layout_gravity="center|top"
-        app:srcCompat="@drawable/logo_nome" />
+        app:srcCompat="@drawable/logo_nome1" />
 
     <TextView
         android:id="@+id/bemvindo2"
