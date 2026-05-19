@@ -81,8 +81,9 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="12dp"
                 android:clipToPadding="false"
+                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
+                app:spanCount="3"
                 tools:listitem="@layout/item_livro" />
 
         </LinearLayout>
