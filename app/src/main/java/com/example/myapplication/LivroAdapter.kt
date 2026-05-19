@@ -9,25 +9,39 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class LivroAdapter(private val listaLivros: List<Livro>) :
-    RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
+// Adicionamos o "isAdmin" no construtor. Por padrão, ele é false (assim não quebra as outras telas se você esquecer de passar)
+class LivroAdapter(
+    private val listaLivros: List<Livro>,
+    private val isAdmin: Boolean = false
+) : RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
 
-    // 1. Cria o visual do item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LivroViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_livro, parent, false)
         return LivroViewHolder(view)
     }
 
-    // 2. Coloca os dados (texto e imagem) no item
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
+        val context = holder.itemView.context
+
+        // Lógica do Clique Dinâmica baseada no isAdmin
         holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, DetalhesLivroActivity::class.java)
-            //intent.putExtra("TITULO_LIVRO", livro.titulo)
-            holder.itemView.context.startActivity(intent)
+            if (isAdmin) {
+                // Se for Administrador, vai para a tela de Editar
+                val intent = Intent(context, EditarLivroActivity::class.java)
+                // IMPORTANTE: Passa o ID do livro para o Firebase da próxima tela saber quem atualizar
+                intent.putExtra("LIVRO_ID", livro.id)
+                context.startActivity(intent)
+            } else {
+                // Se for Aluno, vai para a tela de Detalhes padrão
+                val intent = Intent(context, DetalhesLivroActivity::class.java)
+                intent.putExtra("LIVRO_ID", livro.id)
+                context.startActivity(intent)
+            }
         }
+
         holder.titulo.text = livro.titulo
-        Glide.with(holder.itemView.context)
+        Glide.with(context)
             .load(livro.capaUrl)
             .placeholder(R.drawable.logo_nome)
             .into(holder.capa)

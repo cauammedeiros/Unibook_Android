@@ -56,14 +56,13 @@
         android:id="@+id/rvBuscaFiltrada"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerNetflix"
         android:layout_above="@id/bottomNavigation"
+        android:layout_below="@id/headerNetflix"
+        android:clipToPadding="false"
         android:paddingHorizontal="10dp"
         android:paddingBottom="20dp"
-        android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3"
-        tools:listitem="@layout/item_livro" />
+        tools:listitem="@layout/item_livro_busca_filtrada" />
 
     <!-- Bottom Navigation -->
     <include

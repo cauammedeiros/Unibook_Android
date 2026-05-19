@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fundo_principal"
-    tools:context=".EditarLivroActivity">
+    tools:context=".CriarLivroActivity">
 
     <!-- Header Estilo Netflix -->
     <LinearLayout
@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/title_editar"
+            android:text="@string/editar_livros"
             android:textColor="@color/texto_principal"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -63,6 +63,26 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="24dp">
 
+            <!-- Mensagem de Erro (IDs sincronizados com KT) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardErroCriarLivro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#FFD2D2"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+                <TextView
+                    android:id="@+id/txtErro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="Preencha nome, autor e a URL da capa."
+                    android:textColor="#D32F2F"
+                    android:textSize="14sp" />
+            </androidx.cardview.widget.CardView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,25 +96,12 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="@color/cor_card">
-                    <FrameLayout
+                    <ImageView
+                        android:id="@+id/imgCapaLivro"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <ImageView
-                            android:id="@+id/imgCapaLivroEditar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/logo_nome" />
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_edit"
-                            android:padding="4dp"
-                            android:background="@drawable/scrim_gradient"
-                            app:tint="@color/white" />
-                    </FrameLayout>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo_nome" />
                 </androidx.cardview.widget.CardView>
 
                 <!-- Campos Nome, Autor, Gênero -->
@@ -113,7 +120,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtNomeLivroEditar"
+                        android:id="@+id/edtNome"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -133,7 +140,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtAutorLivroEditar"
+                        android:id="@+id/edtAutor"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -153,7 +160,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtGeneroLivroEditar"
+                        android:id="@+id/edtGenero"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="4dp"
@@ -164,6 +171,28 @@
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <!-- Novo Campo: URL da Capa -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="URL da Imagem da Capa"
+                android:textColor="@color/texto_secundario"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtUrlCapa"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="Cole aqui o link da imagem (http...)"
+                android:inputType="textUri"
+                android:paddingHorizontal="12dp"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp" />
 
             <!-- Sinopse -->
             <TextView
@@ -176,9 +205,9 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtSinopseEditar"
+                android:id="@+id/edtSinopse"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/borda_edittext"
                 android:gravity="top"
@@ -187,37 +216,19 @@
                 android:textColor="@color/texto_principal"
                 android:textSize="14sp" />
 
-            <!-- Botões Salvar e Excluir -->
-            <LinearLayout
+            <!-- Botão Criar (ID Sincronizado com KT) -->
+            <Button
+                android:id="@+id/btnEditar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginTop="32dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btnSalvarLivro"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:background="@drawable/btn_azul"
-                    app:backgroundTint="@null"
-                    android:text="@string/btn_salvar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnExcluirLivro"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_vermelho_borda"
-                    app:backgroundTint="@null"
-                    android:text="@string/btn_excluir"
-                    android:textAllCaps="false"
-                    android:textColor="@color/vermelho_botao"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                android:background="@drawable/btn_azul"
+                app:backgroundTint="@null"
+                android:text="Editar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

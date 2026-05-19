@@ -66,6 +66,7 @@ dependencies {
     implementation("com.google.firebase:firebase-common")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
