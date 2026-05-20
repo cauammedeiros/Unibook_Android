@@ -25,23 +25,22 @@ class MainActivity : BaseActivity() {
             val senha = edtSenha.text.toString()
             val txtErro = findViewById<TextView>(R.id.txtMensagemErro)
 
-            // 1. Verifica se os campos estão vazios
             if (email.isEmpty() || senha.isEmpty()) {
                 txtErro.setText(R.string.err_campos_vazios)
                 txtErro.visibility = View.VISIBLE
             }
-            // 2. Verifica Logins Hardcoded (Segurança/Fallback)
+
             else if (email == "admin@unifor.br" || email == "aluno@unifor.br") {
                 val senhaCorreta = if (email == "admin@unifor.br") "1234" else "aluno123"
                 if (senha == senhaCorreta) {
                     val tipoUsuario = if (email == "admin@unifor.br") "admin" else "aluno"
                     val nomeUsuario = if (tipoUsuario == "admin") "Administrador" else "Aluno Teste"
 
-                    val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
-                    val editor = sharedPref.edit()
-                    editor.putString("USER_EMAIL", email)
-                    editor.putString("USER_NAME", nomeUsuario)
-                    editor.apply()
+//                    val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+//                    val editor = sharedPref.edit()
+//                    editor.putString("USER_EMAIL", email)
+//                    editor.putString("USER_NAME", nomeUsuario)
+//                    editor.apply()
 
                     txtErro.visibility = View.GONE
                     val intent = Intent(this, tela_Entrando::class.java)
@@ -52,7 +51,6 @@ class MainActivity : BaseActivity() {
                     txtErro.visibility = View.VISIBLE
                 }
             }
-            // 3. Busca no Firebase Firestore
             else {
                 fb.collection("Usuários")
                     .whereEqualTo("email", email)
@@ -68,8 +66,8 @@ class MainActivity : BaseActivity() {
                                 val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
                                 val editor = sharedPref.edit()
                                 editor.putString("USER_ID", userDoc.id)
-                                editor.putString("USER_EMAIL", email)
-                                editor.putString("USER_NAME", nomeNoBanco)
+//                                editor.putString("USER_EMAIL", email)
+//                                editor.putString("USER_NAME", nomeNoBanco)
                                 editor.apply()
                                 txtErro.visibility = View.GONE
                                 val intent = Intent(this, tela_Entrando::class.java)

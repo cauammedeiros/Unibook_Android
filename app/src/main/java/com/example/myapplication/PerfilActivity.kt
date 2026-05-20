@@ -27,7 +27,6 @@ class PerfilActivity : BaseActivity() {
         sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
         userId = sharedPref.getString("USER_ID", "") ?: ""
 
-        // Configuração dos botões e navegação
         configurarBotoes()
         configurarBotaoTema()
 
