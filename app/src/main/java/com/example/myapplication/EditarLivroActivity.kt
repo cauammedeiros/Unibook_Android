@@ -131,7 +131,7 @@ class EditarLivroActivity : AppCompatActivity() {
 
         // Atualiza o documento no Firestore
         livroId?.let { id ->
-            db.collection("livros").document(id)
+            db.collection("Livros").document(id)
                 .update(dadosAtualizados as Map<String, Any>)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Alterações salvas com sucesso!", Toast.LENGTH_SHORT).show()
