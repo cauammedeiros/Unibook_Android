@@ -5,13 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ListenerRegistration
 
 class HomeViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
+    private var favoritesListener: ListenerRegistration? = null
     
     private val _books = MutableLiveData<List<Livro>>()
     val books: LiveData<List<Livro>> get() = _books
+
+    private val _favorites = MutableLiveData<List<Livro>>()
+    val favorites: LiveData<List<Livro>> get() = _favorites
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -22,6 +27,33 @@ class HomeViewModel : ViewModel() {
     private var lastVisible: DocumentSnapshot? = null
     private var isLastPage = false
     private val PAGE_SIZE = 10L
+
+    fun fetchFavorites(userId: String) {
+        // Remove listener anterior se existir
+        favoritesListener?.remove()
+
+        // Usamos SnapshotListener para que a Home atualize em tempo real 
+        // quando o usuário favoritar/desfavoritar em outra tela
+        favoritesListener = db.collection("Favoritos")
+            .whereEqualTo("userId", userId)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    _error.value = "Erro ao carregar favoritos: ${e.message}"
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    val favBooks = snapshot.documents.mapNotNull { doc ->
+                        val livro = doc.toObject(Livro::class.java)
+                        // IMPORTANTE: Garantir que o ID do livro seja o ID original (livroId)
+                        // e não o ID do documento do favorito (que é userId_livroId)
+                        livro?.id = doc.getString("livroId") ?: doc.id
+                        livro
+                    }
+                    _favorites.value = favBooks
+                }
+            }
+    }
 
     fun fetchBooks(isFirstPage: Boolean) {
         if (loading.value == true) return
@@ -42,7 +74,13 @@ class HomeViewModel : ViewModel() {
 
         query.get()
             .addOnSuccessListener { documents ->
-                val newBooks = documents.toObjects(Livro::class.java)
+                val newBooks = documents.map { doc ->
+                    val livro = doc.toObject(Livro::class.java)
+                    // IMPORTANTE: Se o documento não tem o campo 'id' dentro dele,
+                    // pegamos o ID do documento do Firestore.
+                    livro.id = doc.id 
+                    livro
+                }
                 
                 if (isFirstPage) {
                     _books.value = newBooks
@@ -63,5 +101,10 @@ class HomeViewModel : ViewModel() {
                 _error.value = exception.message
                 _loading.value = false
             }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        favoritesListener?.remove()
     }
 }

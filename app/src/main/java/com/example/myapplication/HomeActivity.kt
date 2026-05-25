@@ -64,6 +64,7 @@ class HomeActivity : BaseActivity() {
         }
 
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
         val nomeUsuario = sharedPref.getString("USER_NAME", "Usuário")
 
         val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
@@ -78,6 +79,20 @@ class HomeActivity : BaseActivity() {
 
         // Inicia a busca dos livros do Firebase
         viewModel.fetchBooks(isFirstPage = true)
+        
+        if (userId != null) {
+            viewModel.fetchFavorites(userId)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Atualiza favoritos toda vez que volta para a Home (ex: após favoritar/desfavoritar nos Detalhes)
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+        if (userId != null) {
+            viewModel.fetchFavorites(userId)
+        }
     }
 
     private fun setupRecyclerViews() {
@@ -131,16 +146,12 @@ class HomeActivity : BaseActivity() {
             } else {
                 txtVazio?.visibility = View.GONE
                 
-                // Distribuindo os livros pelas categorias para a Home não ficar vazia
-                // Em um cenário real, você faria queries por gênero no ViewModel
                 listaAclamados.clear()
                 listaAclamados.addAll(livros)
                 adapterAclamados.notifyDataSetChanged()
 
-                // Populando as outras categorias com filtros simples ou apenas fatias da lista
-                // para que o usuário veja livros em todas as seções
                 atualizarCategoria(livros, "Educação", listaEducacao, adapterEducacao)
-                atualizarCategoria(livros, "Lista", listaMinhaLista, adapterMinhaLista)
+                // Removido atualizarCategoria manual para "Lista" pois agora vem do fetchFavorites
                 atualizarCategoria(livros, "Comédia", listaComedias, adapterComedias)
                 atualizarCategoria(livros, "Suspense", listaSuspense, adapterSuspense)
                 atualizarCategoria(livros, "Ficção", listaFiccao, adapterFiccao)
@@ -151,6 +162,12 @@ class HomeActivity : BaseActivity() {
                 atualizarCategoria(livros, "Anime", listaAnimes, adapterAnimes)
                 atualizarCategoria(livros, "Clássico", listaClassicos, adapterClassicos)
             }
+        })
+
+        viewModel.favorites.observe(this, Observer { favoritos ->
+            listaMinhaLista.clear()
+            listaMinhaLista.addAll(favoritos)
+            adapterMinhaLista.notifyDataSetChanged()
         })
 
         viewModel.loading.observe(this, Observer { isLoading ->
