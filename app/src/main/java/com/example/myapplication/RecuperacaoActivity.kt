@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
-class RecuperacaoActivity : AppCompatActivity() {
+class RecuperacaoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,7 +51,7 @@ class RecuperacaoActivity : AppCompatActivity() {
             // Simulação de e-mails cadastrados no sistema do Unibook
             else if (email == "aluno@unifor.br") {
                 txtErro.visibility = View.GONE
-                val intent = Intent(this, SolicitacaoActivity::class.java)
+                val intent = Intent(this, RedefinirActivity::class.java)
                 startActivity(intent)
             } else if (email == "admin@unifor.br") {
                 txtErro.visibility = View.GONE
@@ -83,9 +83,9 @@ class RecuperacaoActivity : AppCompatActivity() {
     private fun configurarBotaoTema() {
         val btnTema = findViewById<ImageView>(R.id.btnTema)
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
 
-        btnTema.setOnClickListener {
+        btnTema?.setOnClickListener {
             if (isDarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             } else {

@@ -99,10 +99,9 @@ class BuscaActivity : BaseActivity() {
         }
 
         // --- Lógica de Gêneros e Coleções ---
-
         val btnVerMais = findViewById<TextView>(R.id.btnVerMais)
-        val gridGeneros = findViewById<android.widget.GridLayout>(R.id.gridGeneros)
         
+        // Gêneros que começam visíveis
         val genTerror = findViewById<TextView>(R.id.genTerror)
         val genInfantis = findViewById<TextView>(R.id.genInfantis)
         val genSuspense = findViewById<TextView>(R.id.genSuspense)
@@ -110,25 +109,35 @@ class BuscaActivity : BaseActivity() {
         val genFiccao = findViewById<TextView>(R.id.genFiccao)
         val genJovens = findViewById<TextView>(R.id.genJovens)
 
+        // Gêneros que começam ocultos (Ver mais)
+        val genAcao = findViewById<TextView>(R.id.genAcao)
+        val genAnime = findViewById<TextView>(R.id.genAnime)
+        val genComedia = findViewById<TextView>(R.id.genComedia)
+        val genDocumentarios = findViewById<TextView>(R.id.genDocumentarios)
+        val genDrama = findViewById<TextView>(R.id.genDrama)
+        val genFantasia = findViewById<TextView>(R.id.genFantasia)
+
         var expandido = false
         btnVerMais.setOnClickListener {
             expandido = !expandido
             val visibility = if (expandido) android.view.View.VISIBLE else android.view.View.GONE
             
-            genTerror.visibility = visibility
-            genInfantis.visibility = visibility
-            genSuspense.visibility = visibility
-            genRomance.visibility = visibility
-            genFiccao.visibility = visibility
-            genJovens.visibility = visibility
+            genAcao.visibility = visibility
+            genAnime.visibility = visibility
+            genComedia.visibility = visibility
+            genDocumentarios.visibility = visibility
+            genDrama.visibility = visibility
+            genFantasia.visibility = visibility
 
             btnVerMais.text = if (expandido) "Ver menos ⌃" else "Ver mais ⌵"
         }
 
         // Função auxiliar para abrir gênero
         fun abrirGenero(nome: String) {
+            // Padroniza o nome do gênero antes de enviar (ex: "terror" -> "Terror")
+            val nomePadronizado = nome.trim().lowercase().replaceFirstChar { it.uppercase() }
             val intent = Intent(this, PesquisaGeneroActivity::class.java)
-            intent.putExtra("GENERO_NOME", nome)
+            intent.putExtra("GENERO_NOME", nomePadronizado)
             startActivity(intent)
         }
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class LivroGridAdapter(private val listaLivros: List<Livro>) :
     RecyclerView.Adapter<LivroGridAdapter.LivroViewHolder>() {
@@ -19,25 +18,21 @@ class LivroGridAdapter(private val listaLivros: List<Livro>) :
 
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = listaLivros[position]
-        
-        holder.txtNome.text = livro.titulo
-        
-        Glide.with(holder.itemView.context)
-            .load(livro.capaUrl)
-            .placeholder(R.drawable.logo_nome1)
-            .into(holder.imgCapa)
-
         holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, DetalhesLivroActivity::class.java).apply {
-                putExtra("LIVRO_ID", livro.id)
-                putExtra("TITULO", livro.titulo)
-                putExtra("AUTOR", livro.autor)
-                putExtra("GENERO", livro.genero)
-                putExtra("SINOPSE", livro.sinopse)
-                putExtra("CAPA_URL", livro.capaUrl)
-            }
-            it.context.startActivity(intent)
+            val intent = Intent(it.context, DetalhesLivroActivity::class.java)
+            //intent.putExtra("TITULO_LIVRO", livro.titulo)
+            holder.itemView.context.startActivity(intent)
         }
+        /*
+        holder.txtNome.text = livro.titulo
+        if (livro.imagem != 0) {
+            holder.imgCapa.setImageResource(livro.imagem)
+            holder.imgCapa.visibility = View.VISIBLE
+        } else {
+            holder.imgCapa.visibility = View.GONE
+        }
+
+         */
     }
 
     override fun getItemCount() = listaLivros.size

@@ -230,9 +230,9 @@ class HomeActivity : BaseActivity() {
     private fun configurarBotaoTema() {
         val btnTema = findViewById<ImageView>(R.id.btnTema)
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
 
-        btnTema.setOnClickListener {
+        btnTema?.setOnClickListener {
             if (isDarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             } else {

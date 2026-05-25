@@ -1,15 +1,17 @@
 package com.example.myapplication
 
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.firestore.FirebaseFirestore
 
-class EditarPerfilActivity : AppCompatActivity() {
+class EditarPerfilActivity : BaseActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -42,6 +44,21 @@ class EditarPerfilActivity : AppCompatActivity() {
             }
         }
         carregarDadosAtuais(edtNome, edtEmail)
+        configurarBotaoTema()
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema?.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
     }
 
 
