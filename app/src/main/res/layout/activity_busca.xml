@@ -115,20 +115,20 @@
                 android:columnCount="2"
                 android:paddingHorizontal="10dp">
 
-                <TextView android:id="@+id/genAcao" style="@style/ItemGenero" android:text="Ação e aventura" />
-                <TextView android:id="@+id/genAnime" style="@style/ItemGenero" android:text="Anime" />
-                <TextView android:id="@+id/genComedia" style="@style/ItemGenero" android:text="Comédia" />
-                <TextView android:id="@+id/genDocumentarios" style="@style/ItemGenero" android:text="Documentário" />
-                <TextView android:id="@+id/genDrama" style="@style/ItemGenero" android:text="Drama" />
-                <TextView android:id="@+id/genFantasia" style="@style/ItemGenero" android:text="Fantasia" />
+                <TextView android:id="@+id/genAcao" style="@style/ItemGenero" android:text="Ação e aventura" android:visibility="gone" />
+                <TextView android:id="@+id/genAnime" style="@style/ItemGenero" android:text="Anime" android:visibility="gone" />
+                <TextView android:id="@+id/genComedia" style="@style/ItemGenero" android:text="Comédia" android:visibility="gone" />
+                <TextView android:id="@+id/genDocumentarios" style="@style/ItemGenero" android:text="Documentário" android:visibility="gone" />
+                <TextView android:id="@+id/genDrama" style="@style/ItemGenero" android:text="Drama" android:visibility="gone" />
+                <TextView android:id="@+id/genFantasia" style="@style/ItemGenero" android:text="Fantasia" android:visibility="gone" />
 
-                <!-- Gêneros ocultos inicialmente -->
-                <TextView android:id="@+id/genTerror" style="@style/ItemGenero" android:text="Terror" android:visibility="gone" />
-                <TextView android:id="@+id/genInfantis" style="@style/ItemGenero" android:text="Infantis" android:visibility="gone" />
-                <TextView android:id="@+id/genSuspense" style="@style/ItemGenero" android:text="Suspense e mistério" android:visibility="gone" />
-                <TextView android:id="@+id/genRomance" style="@style/ItemGenero" android:text="@string/home_cat_romance" android:visibility="gone" />
-                <TextView android:id="@+id/genFiccao" style="@style/ItemGenero" android:text="Ficção científica" android:visibility="gone" />
-                <TextView android:id="@+id/genJovens" style="@style/ItemGenero" android:text="Jovens adultos" android:visibility="gone" />
+                <!-- Gêneros agora visíveis inicialmente -->
+                <TextView android:id="@+id/genTerror" style="@style/ItemGenero" android:text="Terror" />
+                <TextView android:id="@+id/genInfantis" style="@style/ItemGenero" android:text="Infantis" />
+                <TextView android:id="@+id/genSuspense" style="@style/ItemGenero" android:text="Suspense e mistério" />
+                <TextView android:id="@+id/genRomance" style="@style/ItemGenero" android:text="@string/home_cat_romance" />
+                <TextView android:id="@+id/genFiccao" style="@style/ItemGenero" android:text="Ficção científica" />
+                <TextView android:id="@+id/genJovens" style="@style/ItemGenero" android:text="Jovens adultos" />
 
             </GridLayout>
 

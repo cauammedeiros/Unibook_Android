@@ -1,16 +1,19 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
-class EmprestimoActivity : AppCompatActivity() {
+class EmprestimoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emprestimo)
@@ -38,6 +41,21 @@ class EmprestimoActivity : AppCompatActivity() {
         }
 
         configurarMenuNavegacao()
+        configurarBotaoTema()
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema?.setOnClickListener {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
     }
 
     private fun configurarMenuNavegacao() {

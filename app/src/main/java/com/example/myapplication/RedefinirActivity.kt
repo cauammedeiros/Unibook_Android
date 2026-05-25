@@ -81,8 +81,8 @@ class RedefinirActivity : AppCompatActivity() {
         val btnTema = findViewById<ImageView>(R.id.btnTema)
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         
-        // Define o ícone inicial: Lua se estiver no modo escuro, Sol se estiver no claro
-        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_dark_mode else R.drawable.ic_light_mode)
+        // Define o ícone inicial: Sol se estiver no modo escuro, Lua se estiver no claro
+        btnTema.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
 
         btnTema.setOnClickListener {
             if (isDarkMode) {

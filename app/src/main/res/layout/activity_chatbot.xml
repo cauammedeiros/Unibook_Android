@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -61,62 +62,15 @@
     </LinearLayout>
 
     <!-- Área de Chat -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/chatScrollView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/fundo_principal"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Mensagem do Usuário -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="4dp"
-                android:text="@string/label_voce"
-                android:textColor="@color/texto_secundario"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_message_user"
-                android:padding="12dp"
-                android:maxWidth="280dp"
-                android:text="@string/msg_exemplo_usuario"
-                android:textColor="@color/white" />
-
-            <!-- Marcador e Resposta CHATBOT -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_unibook_bot"
-                android:textColor="@color/cor_botao"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_message_bot"
-                android:padding="12dp"
-                android:maxWidth="280dp"
-                android:text="@string/msg_exemplo_bot"
-                android:textColor="@color/texto_principal" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
     <!-- Campo de Entrada -->
     <LinearLayout

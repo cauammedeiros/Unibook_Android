@@ -77,10 +77,13 @@ class CriarLivroActivity : AppCompatActivity() {
     }
 
     private fun salvarLivroNoFirebase(nome: String, autor: String, genero: String, sinopse: String, capaUrl: String) {
+        // Padroniza o gênero: primeira letra maiúscula, restante minúscula (ex: "terror" -> "Terror")
+        val generoPadronizado = genero.trim().lowercase().replaceFirstChar { it.uppercase() }
+
         val novoLivro = Livro(
             titulo = nome,
             autor = autor,
-            genero = genero,
+            genero = generoPadronizado,
             sinopse = sinopse,
             capaUrl = capaUrl
         )

@@ -46,29 +46,19 @@ class ConfiguracoesActivity : BaseActivity() {
         val btnPadrao = findViewById<Button>(R.id.btnPadrao)
         val btnContraste = findViewById<Button>(R.id.btnContraste)
 
-        // Inicializar textos dos botões baseado no estado atual
-        if (prefs.isDarkMode) {
-            btnContraste.text = "Escuro"
-            btnPadrao.text = "Padrão"
-        } else {
-            btnPadrao.text = "Claro"
-            btnContraste.text = "Contraste"
-        }
+        // Inicializar textos e cores dos botões baseado no estado atual
+        updateThemeButtonsUI(btnPadrao, btnContraste)
 
         btnPadrao.setOnClickListener {
-            btnPadrao.text = "Claro"
-            btnContraste.text = "Contraste"
             prefs.isDarkMode = false
             prefs.applyTheme()
-            // Recriar para aplicar imediatamente se necessário, 
-            // embora applyTheme com setDefaultNightMode geralmente faça isso.
+            updateThemeButtonsUI(btnPadrao, btnContraste)
         }
 
         btnContraste.setOnClickListener {
-            btnContraste.text = "Escuro"
-            btnPadrao.text = "Padrão"
             prefs.isDarkMode = true
             prefs.applyTheme()
+            updateThemeButtonsUI(btnPadrao, btnContraste)
         }
 
         // Botão Salvar
@@ -83,5 +73,17 @@ class ConfiguracoesActivity : BaseActivity() {
     private fun updateFontSizeUI(textView: TextView) {
         val percentage = (currentFontSize * 100).toInt()
         textView.text = "$percentage%"
+    }
+
+    private fun updateThemeButtonsUI(btnPadrao: Button, btnContraste: Button) {
+        if (prefs.isDarkMode) {
+            btnContraste.text = "Escuro"
+            btnPadrao.text = "Padrão"
+            btnPadrao.setTextColor(android.graphics.Color.BLACK)
+        } else {
+            btnPadrao.text = "Claro"
+            btnContraste.text = "Contraste"
+            btnPadrao.setTextColor(resources.getColor(R.color.texto_principal, theme))
+        }
     }
 }

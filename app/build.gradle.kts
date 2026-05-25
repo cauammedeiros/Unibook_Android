@@ -64,7 +64,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-common")
-
+    implementation(libs.generativeai)
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.androidx.room.ktx)
 

@@ -1,19 +1,26 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
-class BuscaFiltradaActivity : AppCompatActivity() {
+class BuscaFiltradaActivity : BaseActivity() {
 
     private lateinit var rvBuscaFiltrada: RecyclerView
     private lateinit var btnVoltar: ImageButton
     private lateinit var txtNomeBusca: TextView
+    private val db = FirebaseFirestore.getInstance()
+    private val listaResultados = mutableListOf<Livro>()
+    private lateinit var adapter: BuscaFiltradaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,62 +31,107 @@ class BuscaFiltradaActivity : AppCompatActivity() {
         btnVoltar = findViewById(R.id.btnVoltar)
         txtNomeBusca = findViewById(R.id.txtNomeBusca)
 
-        // 2. Recupera o termo da busca e mantém o título (que você gostou)
-        val termo = intent.getStringExtra("TERMO_BUSCA")
-        if (termo != null) {
-            txtNomeBusca.text = termo
+        // 2. Recupera o termo da busca e limpa espaços
+        val termoBusca = intent.getStringExtra("TERMO_BUSCA")?.trim() ?: ""
+        txtNomeBusca.text = termoBusca
+
+        // 3. Configura a lista (RecyclerView)
+        adapter = BuscaFiltradaAdapter(listaResultados)
+        rvBuscaFiltrada.adapter = adapter
+        rvBuscaFiltrada.layoutManager = LinearLayoutManager(this)
+
+        // 4. Executa a busca
+        if (termoBusca.isNotEmpty()) {
+            buscarLivrosNoFirestore(termoBusca)
         }
 
-        // 3. Configura a lista (RecyclerView) com dados de exemplo para aparecer na tela
-        setupRecyclerView()
-
-        // 4. Configura o botão voltar
-        btnVoltar.setOnClickListener {
-            finish()
-        }
-
-        // 5. Configura a navegação inferior
+        btnVoltar.setOnClickListener { finish() }
+        configurarBotaoTema()
         setupBottomNavigation()
     }
 
-    private fun setupRecyclerView() {
-        // Agora usamos objetos Livro de verdade para o Adapter funcionar
-        val listaExemplo = listOf(
-            Livro(id = "1", titulo = "O Senhor dos Anéis", autor = "J.R.R. Tolkien", genero = "Fantasia", sinopse = "Uma jornada épica pela Terra Média."),
-            Livro(id = "2", titulo = "1984", autor = "George Orwell", genero = "Distopia", sinopse = "Uma crítica profunda ao totalitarismo."),
-            Livro(id = "3", titulo = "O Hobbit", autor = "J.R.R. Tolkien", genero = "Aventura", sinopse = "A história de Bilbo Bolseiro.")
-        )
+    private fun buscarLivrosNoFirestore(termo: String) {
+        // Tenta buscar com a primeira letra maiúscula (Padrão mais comum)
+        val termoCapitalizado = termo.lowercase().replaceFirstChar { it.uppercase() }
         
-        val adapter = BuscaFiltradaAdapter(listaExemplo)
-        rvBuscaFiltrada.adapter = adapter
-        rvBuscaFiltrada.layoutManager = LinearLayoutManager(this)
+        db.collection("Livros")
+            .whereGreaterThanOrEqualTo("Titulo", termoCapitalizado)
+            .whereLessThanOrEqualTo("Titulo", termoCapitalizado + "\uf8ff")
+            .get()
+            .addOnSuccessListener { documents ->
+                listaResultados.clear()
+                for (document in documents) {
+                    val livro = document.toObject(Livro::class.java)
+                    livro.id = document.id
+                    listaResultados.add(livro)
+                }
+
+                if (listaResultados.isEmpty() && termo != termoCapitalizado) {
+                     db.collection("Livros")
+                        .whereGreaterThanOrEqualTo("Titulo", termo)
+                        .whereLessThanOrEqualTo("Titulo", termo + "\uf8ff")
+                        .get()
+                        .addOnSuccessListener { docs ->
+                            for (doc in docs) {
+                                val livro = doc.toObject(Livro::class.java)
+                                livro.id = doc.id
+                                listaResultados.add(livro)
+                            }
+                            adapter.notifyDataSetChanged()
+                            verificarResultados(termo)
+                        }
+                } else {
+                    adapter.notifyDataSetChanged()
+                    verificarResultados(termo)
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erro na busca: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun verificarResultados(termo: String) {
+        if (listaResultados.isEmpty()) {
+            Toast.makeText(this, "Nenhum livro encontrado para: $termo", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupBottomNavigation() {
         findViewById<LinearLayout>(R.id.nav_home)?.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivity(intent)
+            startActivity(Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            })
         }
         findViewById<LinearLayout>(R.id.nav_library)?.setOnClickListener {
-            val intent = Intent(this, TelaBibliotecaActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivity(intent)
+            startActivity(Intent(this, TelaBibliotecaActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            })
         }
         findViewById<LinearLayout>(R.id.nav_chatbot)?.setOnClickListener {
-            val intent = Intent(this, ChatbotActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivity(intent)
+            startActivity(Intent(this, ChatbotActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            })
         }
         findViewById<LinearLayout>(R.id.nav_search)?.setOnClickListener {
-            val intent = Intent(this, BuscaActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivity(intent)
+            startActivity(Intent(this, BuscaActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            })
         }
         findViewById<LinearLayout>(R.id.nav_profile)?.setOnClickListener {
-            val intent = Intent(this, PerfilActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivity(intent)
+            startActivity(Intent(this, PerfilActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            })
+        }
+    }
+
+    private fun configurarBotaoTema() {
+        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
+
+        btnTema?.setOnClickListener {
+            val modo = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
+            AppCompatDelegate.setDefaultNightMode(modo)
         }
     }
 }
