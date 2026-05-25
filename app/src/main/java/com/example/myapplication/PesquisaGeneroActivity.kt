@@ -59,6 +59,7 @@ class PesquisaGeneroActivity : BaseActivity() {
                 listaLivros.clear()
                 for (document in documents) {
                     val livro = document.toObject(Livro::class.java)
+                    livro.id = document.id
                     listaLivros.add(livro)
                 }
                 adapter.notifyDataSetChanged()

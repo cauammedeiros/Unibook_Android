@@ -64,6 +64,13 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_livro_busca_filtrada" />
 
+    <ProgressBar
+        android:id="@+id/progressLoadingBusca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <!-- Bottom Navigation -->
     <include
         android:id="@+id/bottomNavigation"

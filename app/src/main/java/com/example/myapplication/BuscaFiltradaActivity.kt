@@ -2,57 +2,84 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
-class BuscaFiltradaActivity : AppCompatActivity() {
+class BuscaFiltradaActivity : BaseActivity() {
 
     private lateinit var rvBuscaFiltrada: RecyclerView
     private lateinit var btnVoltar: ImageButton
     private lateinit var txtNomeBusca: TextView
+    private lateinit var progressLoading: ProgressBar
+    private val db = FirebaseFirestore.getInstance()
+    private val listaResultados = mutableListOf<Livro>()
+    private lateinit var adapter: BuscaFiltradaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_busca_filtrada)
 
-        // 1. Inicialização dos componentes
         rvBuscaFiltrada = findViewById(R.id.rvBuscaFiltrada)
         btnVoltar = findViewById(R.id.btnVoltar)
         txtNomeBusca = findViewById(R.id.txtNomeBusca)
+        progressLoading = findViewById(R.id.progressLoadingBusca)
 
-        // 2. Recupera o termo da busca e mantém o título (que você gostou)
-        val termo = intent.getStringExtra("TERMO_BUSCA")
-        if (termo != null) {
-            txtNomeBusca.text = termo
-        }
+        val termo = intent.getStringExtra("TERMO_BUSCA") ?: ""
+        txtNomeBusca.text = termo
 
-        // 3. Configura a lista (RecyclerView) com dados de exemplo para aparecer na tela
         setupRecyclerView()
-
-        // 4. Configura o botão voltar
-        btnVoltar.setOnClickListener {
-            finish()
+        
+        if (termo.isNotEmpty()) {
+            realizarBusca(termo)
         }
 
-        // 5. Configura a navegação inferior
+        btnVoltar.setOnClickListener { finish() }
         setupBottomNavigation()
     }
 
     private fun setupRecyclerView() {
-        // Agora usamos objetos Livro de verdade para o Adapter funcionar
-        val listaExemplo = listOf(
-            Livro(id = "1", titulo = "O Senhor dos Anéis", autor = "J.R.R. Tolkien", genero = "Fantasia", sinopse = "Uma jornada épica pela Terra Média."),
-            Livro(id = "2", titulo = "1984", autor = "George Orwell", genero = "Distopia", sinopse = "Uma crítica profunda ao totalitarismo."),
-            Livro(id = "3", titulo = "O Hobbit", autor = "J.R.R. Tolkien", genero = "Aventura", sinopse = "A história de Bilbo Bolseiro.")
-        )
-        
-        val adapter = BuscaFiltradaAdapter(listaExemplo)
+        adapter = BuscaFiltradaAdapter(listaResultados)
         rvBuscaFiltrada.adapter = adapter
         rvBuscaFiltrada.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun realizarBusca(termo: String) {
+        progressLoading.visibility = View.VISIBLE
+        
+        // Buscamos todos os livros e filtramos localmente para permitir busca parcial/case-insensitive
+        // (Firestore não suporta busca parcial nativa sem serviços externos)
+        db.collection("Livros")
+            .get()
+            .addOnSuccessListener { documents ->
+                listaResultados.clear()
+                for (doc in documents) {
+                    val livro = doc.toObject(Livro::class.java)
+                    livro.id = doc.id
+                    
+                    // Filtra por título ou autor (case-insensitive)
+                    if (livro.titulo.contains(termo, ignoreCase = true) || 
+                        livro.autor.contains(termo, ignoreCase = true)) {
+                        listaResultados.add(livro)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+                progressLoading.visibility = View.GONE
+                
+                if (listaResultados.isEmpty()) {
+                    Toast.makeText(this, "Nenhum resultado encontrado para \"$termo\"", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                progressLoading.visibility = View.GONE
+                Toast.makeText(this, "Erro na busca: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun setupBottomNavigation() {

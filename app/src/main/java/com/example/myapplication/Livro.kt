@@ -6,7 +6,7 @@ import com.google.firebase.firestore.PropertyName
  * Modelo de dados para o Livro com mapeamento para o Firebase
  */
 data class Livro(
-    val id: String = "",
+    var id: String = "",
 
     @get:PropertyName("Titulo")
     @set:PropertyName("Titulo")
