@@ -119,6 +119,7 @@
     <string name="home_cat_documentarios">Documentários</string>
     <string name="home_cat_animes">Animes</string>
     <string name="home_cat_classicos">Clássicos da Literatura</string>
+    <string name="home_lista_vazia">Nenhum livro encontrado</string>
     <string name="desc_alternar_tema">Alternar entre modo claro e escuro</string>
     <string name="title_detalhes">Detalhes</string>
     <string name="btn_baixar">Baixar</string>

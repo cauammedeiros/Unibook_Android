@@ -52,7 +52,10 @@ class BuscaFiltradaActivity : AppCompatActivity() {
         
         val adapter = BuscaFiltradaAdapter(listaExemplo)
         rvBuscaFiltrada.adapter = adapter
-        rvBuscaFiltrada.layoutManager = LinearLayoutManager(this)
+
+        // Agora o número de colunas muda sozinho: 1 para celular, 2 para tablet
+        val colunas = resources.getInteger(R.integer.grid_columns)
+        rvBuscaFiltrada.layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, colunas)
     }
 
     private fun setupBottomNavigation() {

@@ -29,13 +29,18 @@ class LivroAdapter(
             if (isAdmin) {
                 // Se for Administrador, vai para a tela de Editar
                 val intent = Intent(context, EditarLivroActivity::class.java)
-                // IMPORTANTE: Passa o ID do livro para o Firebase da próxima tela saber quem atualizar
                 intent.putExtra("LIVRO_ID", livro.id)
                 context.startActivity(intent)
             } else {
                 // Se for Aluno, vai para a tela de Detalhes padrão
                 val intent = Intent(context, DetalhesLivroActivity::class.java)
+                // Passando todos os dados que a DetalhesLivroActivity espera
                 intent.putExtra("LIVRO_ID", livro.id)
+                intent.putExtra("TITULO", livro.titulo)
+                intent.putExtra("AUTOR", livro.autor)
+                intent.putExtra("GENERO", livro.genero)
+                intent.putExtra("SINOPSE", livro.sinopse)
+                intent.putExtra("CAPA_URL", livro.capaUrl)
                 context.startActivity(intent)
             }
         }

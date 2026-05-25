@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
 
 class DetalhesLivroActivity : AppCompatActivity() {
 
@@ -18,14 +20,29 @@ class DetalhesLivroActivity : AppCompatActivity() {
     private lateinit var txtAutor: TextView
     private lateinit var txtSinopse: TextView
 
+    private var isFavoritado = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_livro)
 
         inicializarViews()
         carregarDadosLivro()
+        verificarFavorito()
         configurarBotoes()
         configurarMenuNavegacao()
+    }
+
+    private fun inicializarViews() {
+        btnVoltar = findViewById(R.id.btnVoltar)
+        txtNomeLivro = findViewById(R.id.txtNomeLivro)
+        imgCapaLivro = findViewById(R.id.imgCapaLivro)
+        btnBaixar = findViewById(R.id.btnBaixar)
+        btnFavoritar = findViewById(R.id.btnFavoritar)
+        btnAlugar = findViewById(R.id.btnAlugar)
+        txtGenero = findViewById(R.id.txtGenero)
+        txtAutor = findViewById(R.id.txtAutor)
+        txtSinopse = findViewById(R.id.txtSinopse)
     }
 
     private fun carregarDadosLivro() {
@@ -46,16 +63,33 @@ class DetalhesLivroActivity : AppCompatActivity() {
             .into(imgCapaLivro)
     }
 
-    private fun inicializarViews() {
-        btnVoltar = findViewById(R.id.btnVoltar)
-        txtNomeLivro = findViewById(R.id.txtNomeLivro)
-        imgCapaLivro = findViewById(R.id.imgCapaLivro)
-        btnBaixar = findViewById(R.id.btnBaixar)
-        btnFavoritar = findViewById(R.id.btnFavoritar)
-        btnAlugar = findViewById(R.id.btnAlugar)
-        txtGenero = findViewById(R.id.txtGenero)
-        txtAutor = findViewById(R.id.txtAutor)
-        txtSinopse = findViewById(R.id.txtSinopse)
+    private fun verificarFavorito() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+        val livroId = intent.getStringExtra("LIVRO_ID")
+
+        if (userId != null && livroId != null) {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("Favoritos")
+                .document("${userId}_${livroId}")
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        isFavoritado = true
+                        atualizarBotaoFavorito()
+                    }
+                }
+        }
+    }
+
+    private fun atualizarBotaoFavorito() {
+        if (isFavoritado) {
+            btnFavoritar.text = "Favoritado"
+            btnFavoritar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_star_filled, 0, 0, 0)
+        } else {
+            btnFavoritar.text = "Favoritar"
+            btnFavoritar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_star_outline, 0, 0, 0)
+        }
     }
 
     private fun configurarBotoes() {
@@ -66,7 +100,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
         }
 
         btnFavoritar.setOnClickListener {
-            Toast.makeText(this, "Livro favoritado!", Toast.LENGTH_SHORT).show()
+            favoritarLivro()
         }
 
         btnAlugar.setOnClickListener {
@@ -74,8 +108,49 @@ class DetalhesLivroActivity : AppCompatActivity() {
         }
     }
 
+    private fun favoritarLivro() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+        val livroId = intent.getStringExtra("LIVRO_ID")
+
+        if (userId == null || livroId == null) {
+            Toast.makeText(this, "Erro ao identificar usuário ou livro.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("Favoritos").document("${userId}_${livroId}")
+
+        if (isFavoritado) {
+            docRef.delete()
+                .addOnSuccessListener {
+                    isFavoritado = false
+                    atualizarBotaoFavorito()
+                    Toast.makeText(this, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            val favorito = hashMapOf(
+                "userId" to userId,
+                "livroId" to livroId,
+                "id" to livroId,
+                "Titulo" to intent.getStringExtra("TITULO"),
+                "CapaUrl" to intent.getStringExtra("CAPA_URL"),
+                "Autor" to intent.getStringExtra("AUTOR"),
+                "Genero" to intent.getStringExtra("GENERO"),
+                "Sinopse" to intent.getStringExtra("SINOPSE"),
+                "dataFavoritado" to Timestamp.now()
+            )
+
+            docRef.set(favorito)
+                .addOnSuccessListener {
+                    isFavoritado = true
+                    atualizarBotaoFavorito()
+                    Toast.makeText(this, "Adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
     private fun configurarMenuNavegacao() {
-        // IDs sincronizados com layout_bottom_nav.xml
         findViewById<LinearLayout>(R.id.nav_home)?.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }

@@ -15,7 +15,43 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.Observer
+
 class HomeActivity : BaseActivity() {
+
+    private val viewModel: HomeViewModel by viewModels()
+    
+    private lateinit var adapterAclamados: LivroAdapter
+    private lateinit var adapterEducacao: LivroAdapter
+    private lateinit var adapterMinhaLista: LivroAdapter
+    private lateinit var adapterComedias: LivroAdapter
+    private lateinit var adapterSuspense: LivroAdapter
+    private lateinit var adapterFiccao: LivroAdapter
+    private lateinit var adapterTerror: LivroAdapter
+    private lateinit var adapterRomance: LivroAdapter
+    private lateinit var adapterAventura: LivroAdapter
+    private lateinit var adapterDocumentarios: LivroAdapter
+    private lateinit var adapterAnimes: LivroAdapter
+    private lateinit var adapterClassicos: LivroAdapter
+
+    private val listaAclamados = mutableListOf<Livro>()
+    private val listaEducacao = mutableListOf<Livro>()
+    private val listaMinhaLista = mutableListOf<Livro>()
+    private val listaComedias = mutableListOf<Livro>()
+    private val listaSuspense = mutableListOf<Livro>()
+    private val listaFiccao = mutableListOf<Livro>()
+    private val listaTerror = mutableListOf<Livro>()
+    private val listaRomance = mutableListOf<Livro>()
+    private val listaAventura = mutableListOf<Livro>()
+    private val listaDocumentarios = mutableListOf<Livro>()
+    private val listaAnimes = mutableListOf<Livro>()
+    private val listaClassicos = mutableListOf<Livro>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,9 +70,123 @@ class HomeActivity : BaseActivity() {
         txtUsuario.text = getString(R.string.home_saudacao, nomeUsuario)
 
         configurarNavegacao()
-        configurarListasDeLivros()
+        setupRecyclerViews()
+        observeViewModel()
+        setupInfiniteScroll()
         configurarCliquesVerTudo()
         configurarBotaoTema()
+
+        // Inicia a busca dos livros do Firebase
+        viewModel.fetchBooks(isFirstPage = true)
+    }
+
+    private fun setupRecyclerViews() {
+        // Inicializa os adapters
+        adapterAclamados = LivroAdapter(listaAclamados)
+        adapterEducacao = LivroAdapter(listaEducacao)
+        adapterMinhaLista = LivroAdapter(listaMinhaLista)
+        adapterComedias = LivroAdapter(listaComedias)
+        adapterSuspense = LivroAdapter(listaSuspense)
+        adapterFiccao = LivroAdapter(listaFiccao)
+        adapterTerror = LivroAdapter(listaTerror)
+        adapterRomance = LivroAdapter(listaRomance)
+        adapterAventura = LivroAdapter(listaAventura)
+        adapterDocumentarios = LivroAdapter(listaDocumentarios)
+        adapterAnimes = LivroAdapter(listaAnimes)
+        adapterClassicos = LivroAdapter(listaClassicos)
+
+        configurarRV(R.id.rvAclamados, adapterAclamados)
+        configurarRV(R.id.rvEducacao, adapterEducacao)
+        configurarRV(R.id.rvMinhaLista, adapterMinhaLista)
+        configurarRV(R.id.rvComedias, adapterComedias)
+        configurarRV(R.id.rvSuspense, adapterSuspense)
+        configurarRV(R.id.rvFiccao, adapterFiccao)
+        configurarRV(R.id.rvTerror, adapterTerror)
+        configurarRV(R.id.rvRomance, adapterRomance)
+        configurarRV(R.id.rvAventura, adapterAventura)
+        configurarRV(R.id.rvDocumentarios, adapterDocumentarios)
+        configurarRV(R.id.rvAnimes, adapterAnimes)
+        configurarRV(R.id.rvClassicos, adapterClassicos)
+    }
+
+    private fun configurarRV(id: Int, adapter: LivroAdapter) {
+        val rv = findViewById<RecyclerView>(id) ?: return
+        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.adapter = adapter
+    }
+
+    private fun configurarRecyclerViewEstatico(id: Int) {
+        val rv = findViewById<RecyclerView>(id) ?: return
+        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.adapter = LivroAdapter(emptyList())
+    }
+
+    private fun observeViewModel() {
+        val progressBar = findViewById<ProgressBar>(R.id.progressLoading)
+        val txtVazio = findViewById<TextView>(R.id.txtListaVazia)
+
+        viewModel.books.observe(this, Observer { livros ->
+            if (livros.isNullOrEmpty()) {
+                if (listaAclamados.isEmpty()) txtVazio?.visibility = View.VISIBLE
+            } else {
+                txtVazio?.visibility = View.GONE
+                
+                // Distribuindo os livros pelas categorias para a Home não ficar vazia
+                // Em um cenário real, você faria queries por gênero no ViewModel
+                listaAclamados.clear()
+                listaAclamados.addAll(livros)
+                adapterAclamados.notifyDataSetChanged()
+
+                // Populando as outras categorias com filtros simples ou apenas fatias da lista
+                // para que o usuário veja livros em todas as seções
+                atualizarCategoria(livros, "Educação", listaEducacao, adapterEducacao)
+                atualizarCategoria(livros, "Lista", listaMinhaLista, adapterMinhaLista)
+                atualizarCategoria(livros, "Comédia", listaComedias, adapterComedias)
+                atualizarCategoria(livros, "Suspense", listaSuspense, adapterSuspense)
+                atualizarCategoria(livros, "Ficção", listaFiccao, adapterFiccao)
+                atualizarCategoria(livros, "Terror", listaTerror, adapterTerror)
+                atualizarCategoria(livros, "Romance", listaRomance, adapterRomance)
+                atualizarCategoria(livros, "Aventura", listaAventura, adapterAventura)
+                atualizarCategoria(livros, "Documentário", listaDocumentarios, adapterDocumentarios)
+                atualizarCategoria(livros, "Anime", listaAnimes, adapterAnimes)
+                atualizarCategoria(livros, "Clássico", listaClassicos, adapterClassicos)
+            }
+        })
+
+        viewModel.loading.observe(this, Observer { isLoading ->
+            progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
+
+        viewModel.error.observe(this, Observer { errorMsg ->
+            if (errorMsg != null) {
+                Toast.makeText(this, "Erro ao carregar livros: $errorMsg", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun atualizarCategoria(todosLivros: List<Livro>, genero: String, listaLocal: MutableList<Livro>, adapter: LivroAdapter) {
+        listaLocal.clear()
+        // Tenta filtrar por gênero (ignorando maiúsculas/minúsculas)
+        val filtrados = todosLivros.filter { it.genero.contains(genero, ignoreCase = true) }
+        
+        if (filtrados.isNotEmpty()) {
+            listaLocal.addAll(filtrados)
+        } else {
+            // Se não houver do gênero específico, coloca alguns aleatórios para não ficar vazio
+            listaLocal.addAll(todosLivros.shuffled().take(5))
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+
+    private fun setupInfiniteScroll() {
+        val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
+        nestedScrollView?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+            // Se o usuário scrollar até o fim do conteúdo
+            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+                viewModel.fetchBooks(isFirstPage = false)
+            }
+        })
     }
 
     private fun abrirGenero(nome: String) {
@@ -96,30 +246,4 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    private fun configurarListasDeLivros() {
-        val listaTeste = mutableListOf<Livro>()
-        // Criando lista vazia ou com placeholders para não dar erro de parâmetro 'imagem'
-        for (i in 1..15) {
-            listaTeste.add(Livro(titulo = "Livro $i", capaUrl = ""))
-        }
-
-        configurarRecyclerView(R.id.rvAclamados, listaTeste)
-        configurarRecyclerView(R.id.rvEducacao, listaTeste)
-        configurarRecyclerView(R.id.rvMinhaLista, listaTeste)
-        configurarRecyclerView(R.id.rvComedias, listaTeste)
-        configurarRecyclerView(R.id.rvSuspense, listaTeste)
-        configurarRecyclerView(R.id.rvFiccao, listaTeste)
-        configurarRecyclerView(R.id.rvTerror, listaTeste)
-        configurarRecyclerView(R.id.rvRomance, listaTeste)
-        configurarRecyclerView(R.id.rvAventura, listaTeste)
-        configurarRecyclerView(R.id.rvDocumentarios, listaTeste)
-        configurarRecyclerView(R.id.rvAnimes, listaTeste)
-        configurarRecyclerView(R.id.rvClassicos, listaTeste)
-    }
-
-    private fun configurarRecyclerView(id: Int, lista: List<Livro>) {
-        val rv = findViewById<RecyclerView>(id) ?: return
-        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rv.adapter = LivroAdapter(lista)
-    }
 }
