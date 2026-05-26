@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
                     intent.putExtra("TIPO_USUARIO", tipoUsuario)
                     startActivity(intent)
                 } else {
-                    txtErro.setText(if (email == "admin@unifor.br") R.string.err_admin_senha else R.string.err_login_incorreto)
+                    txtErro.setText(R.string.err_login_incorreto)
                     txtErro.visibility = View.VISIBLE
                 }
             }
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity() {
                             val senhaNoBanco = userDoc.getString("senha")
                             val tipoUsuario = userDoc.getString("tipo") ?: "aluno"
 
-                            if (senhaNoBanco == senha) {
+                            if (senhaNoBanco == hashSenha(senha)) {
                                 val nomeNoBanco = userDoc.getString("nome") ?: "Usuário"
                                 val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
                                 val editor = sharedPref.edit()
@@ -74,11 +74,11 @@ class MainActivity : BaseActivity() {
                                 intent.putExtra("TIPO_USUARIO", tipoUsuario)
                                 startActivity(intent)
                             } else {
-                                txtErro.setText(R.string.err_senha_incorreta)
+                                txtErro.setText(R.string.err_login_incorreto)
                                 txtErro.visibility = View.VISIBLE
                             }
                         } else {
-                            txtErro.setText(R.string.err_usuario_nao_cadastrado)
+                            txtErro.setText(R.string.err_login_incorreto)
                             txtErro.visibility = View.VISIBLE
                         }
                     }
@@ -102,5 +102,10 @@ class MainActivity : BaseActivity() {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun hashSenha(senha: String): String {
+        val bytes = java.security.MessageDigest.getInstance("SHA-256").digest(senha.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

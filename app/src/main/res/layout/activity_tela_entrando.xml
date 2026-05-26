@@ -21,7 +21,7 @@
         android:layout_height="117dp"
         android:fontFamily="@font/angkor"
         android:gravity="center"
-        android:text="Bem vindo ao Unibook !"
+        android:text="@string/bem_vindo"
         android:textColor="#1C70AB"
         android:textSize="24sp" />
 
