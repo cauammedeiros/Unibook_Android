@@ -72,6 +72,7 @@
 
             <!-- Categoria 1 -->
             <RelativeLayout
+                android:id="@+id/headerAclamados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -111,6 +112,7 @@
 
             <!-- Categoria 2 -->
             <RelativeLayout
+                android:id="@+id/headerEducacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -150,6 +152,7 @@
 
             <!-- Minha Lista -->
             <RelativeLayout
+                android:id="@+id/headerMinhaLista"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -193,6 +196,7 @@
 
             <!-- Categoria 4 -->
             <RelativeLayout
+                android:id="@+id/headerComedias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -231,6 +235,7 @@
 
             <!-- Categoria 5 -->
             <RelativeLayout
+                android:id="@+id/headerSuspense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -269,6 +274,7 @@
 
             <!-- Categoria 6 -->
             <RelativeLayout
+                android:id="@+id/headerFiccao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -307,6 +313,7 @@
 
             <!-- Categoria 7 -->
             <RelativeLayout
+                android:id="@+id/headerTerror"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -345,6 +352,7 @@
 
             <!-- Categoria 8 -->
             <RelativeLayout
+                android:id="@+id/headerRomance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -383,6 +391,7 @@
 
             <!-- Categoria 9 -->
             <RelativeLayout
+                android:id="@+id/headerAventura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -421,6 +430,7 @@
 
             <!-- Categoria 10 -->
             <RelativeLayout
+                android:id="@+id/headerDocumentarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -459,6 +469,7 @@
 
             <!-- Categoria 11 -->
             <RelativeLayout
+                android:id="@+id/headerAnimes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -497,6 +508,7 @@
 
             <!-- Categoria 12 -->
             <RelativeLayout
+                android:id="@+id/headerClassicos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -524,6 +536,45 @@
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvClassicos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="40dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_livro" />
+
+            <!-- Categoria 13 - Fantasia -->
+            <RelativeLayout
+                android:id="@+id/headerFantasia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:paddingHorizontal="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/home_cat_fantasia"
+                    android:textColor="@color/texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvVerTudoFantasia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/home_ver_tudo"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="12sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"/>
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFantasia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"

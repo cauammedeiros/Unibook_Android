@@ -38,6 +38,7 @@ class HomeActivity : BaseActivity() {
     private lateinit var adapterDocumentarios: LivroAdapter
     private lateinit var adapterAnimes: LivroAdapter
     private lateinit var adapterClassicos: LivroAdapter
+    private lateinit var adapterFantasia: LivroAdapter
 
     private val listaAclamados = mutableListOf<Livro>()
     private val listaEducacao = mutableListOf<Livro>()
@@ -51,6 +52,7 @@ class HomeActivity : BaseActivity() {
     private val listaDocumentarios = mutableListOf<Livro>()
     private val listaAnimes = mutableListOf<Livro>()
     private val listaClassicos = mutableListOf<Livro>()
+    private val listaFantasia = mutableListOf<Livro>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +111,7 @@ class HomeActivity : BaseActivity() {
         adapterDocumentarios = LivroAdapter(listaDocumentarios)
         adapterAnimes = LivroAdapter(listaAnimes)
         adapterClassicos = LivroAdapter(listaClassicos)
+        adapterFantasia = LivroAdapter(listaFantasia)
 
         configurarRV(R.id.rvAclamados, adapterAclamados)
         configurarRV(R.id.rvEducacao, adapterEducacao)
@@ -122,6 +125,7 @@ class HomeActivity : BaseActivity() {
         configurarRV(R.id.rvDocumentarios, adapterDocumentarios)
         configurarRV(R.id.rvAnimes, adapterAnimes)
         configurarRV(R.id.rvClassicos, adapterClassicos)
+        configurarRV(R.id.rvFantasia, adapterFantasia)
     }
 
     private fun configurarRV(id: Int, adapter: LivroAdapter) {
@@ -161,12 +165,21 @@ class HomeActivity : BaseActivity() {
                 atualizarCategoria(livros, "Documentário", listaDocumentarios, adapterDocumentarios)
                 atualizarCategoria(livros, "Anime", listaAnimes, adapterAnimes)
                 atualizarCategoria(livros, "Clássico", listaClassicos, adapterClassicos)
+                atualizarCategoria(livros, "Fantasia", listaFantasia, adapterFantasia)
             }
         })
 
         viewModel.favorites.observe(this, Observer { favoritos ->
             listaMinhaLista.clear()
             listaMinhaLista.addAll(favoritos)
+            
+            val headerMinhaLista = findViewById<View>(R.id.headerMinhaLista)
+            val rvMinhaLista = findViewById<View>(R.id.rvMinhaLista)
+            val visibilidade = if (favoritos.isNotEmpty()) View.VISIBLE else View.GONE
+            
+            headerMinhaLista?.visibility = visibilidade
+            rvMinhaLista?.visibility = visibilidade
+            
             adapterMinhaLista.notifyDataSetChanged()
         })
 
@@ -183,15 +196,63 @@ class HomeActivity : BaseActivity() {
 
     private fun atualizarCategoria(todosLivros: List<Livro>, genero: String, listaLocal: MutableList<Livro>, adapter: LivroAdapter) {
         listaLocal.clear()
-        // Tenta filtrar por gênero (ignorando maiúsculas/minúsculas)
-        val filtrados = todosLivros.filter { it.genero.contains(genero, ignoreCase = true) }
         
-        if (filtrados.isNotEmpty()) {
-            listaLocal.addAll(filtrados)
-        } else {
-            // Se não houver do gênero específico, coloca alguns aleatórios para não ficar vazio
-            listaLocal.addAll(todosLivros.shuffled().take(5))
+        // Tenta filtrar por gênero (ignorando maiúsculas/minúsculas)
+        // Mapeamos os nomes das categorias para os termos que buscamos no Firebase
+        val termoBusca = when(genero) {
+            "Educação" -> "Educação"
+            "Comédia" -> "Comédia"
+            "Suspense" -> "Suspense"
+            "Ficção" -> "Ficção"
+            "Terror" -> "Terror"
+            "Romance" -> "Romance"
+            "Aventura" -> "Aventura"
+            "Documentário" -> "Documentário"
+            "Anime" -> "Anime"
+            "Clássico" -> "Clássico"
+            "Fantasia" -> "Fantasia"
+            else -> genero
         }
+
+        val filtrados = todosLivros.filter { it.genero.contains(termoBusca, ignoreCase = true) }
+        
+        listaLocal.addAll(filtrados)
+        
+        // Esconde o header e o recyclerview se não houver livros para essa categoria
+        val headerId = when(genero) {
+            "Educação" -> R.id.headerEducacao
+            "Comédia" -> R.id.headerComedias
+            "Suspense" -> R.id.headerSuspense
+            "Ficção" -> R.id.headerFiccao
+            "Terror" -> R.id.headerTerror
+            "Romance" -> R.id.headerRomance
+            "Aventura" -> R.id.headerAventura
+            "Documentário" -> R.id.headerDocumentarios
+            "Anime" -> R.id.headerAnimes
+            "Clássico" -> R.id.headerClassicos
+            "Fantasia" -> R.id.headerFantasia
+            else -> null
+        }
+
+        val rvId = when(genero) {
+            "Educação" -> R.id.rvEducacao
+            "Comédia" -> R.id.rvComedias
+            "Suspense" -> R.id.rvSuspense
+            "Ficção" -> R.id.rvFiccao
+            "Terror" -> R.id.rvTerror
+            "Romance" -> R.id.rvRomance
+            "Aventura" -> R.id.rvAventura
+            "Documentário" -> R.id.rvDocumentarios
+            "Anime" -> R.id.rvAnimes
+            "Clássico" -> R.id.rvClassicos
+            "Fantasia" -> R.id.rvFantasia
+            else -> null
+        }
+
+        val visibilidade = if (filtrados.isNotEmpty()) View.VISIBLE else View.GONE
+        headerId?.let { findViewById<View>(it)?.visibility = visibilidade }
+        rvId?.let { findViewById<View>(it)?.visibility = visibilidade }
+
         adapter.notifyDataSetChanged()
     }
 
@@ -225,6 +286,7 @@ class HomeActivity : BaseActivity() {
         findViewById<TextView>(R.id.tvVerTudoDocumentarios)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_documentarios)) }
         findViewById<TextView>(R.id.tvVerTudoAnimes)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_animes)) }
         findViewById<TextView>(R.id.tvVerTudoClassicos)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_classicos)) }
+        findViewById<TextView>(R.id.tvVerTudoFantasia)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_fantasia)) }
     }
 
     private fun configurarBotaoTema() {
