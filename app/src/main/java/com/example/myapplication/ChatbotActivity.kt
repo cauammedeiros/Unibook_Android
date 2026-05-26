@@ -57,6 +57,20 @@ class ChatbotActivity : AppCompatActivity() {
         }
 
         recyclerViewChat = findViewById(R.id.recyclerViewChat)
+
+        if (savedInstanceState != null) {
+            val savedMessages = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                savedInstanceState.getParcelableArrayList("messages_list", Message::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                savedInstanceState.getParcelableArrayList("messages_list")
+            }
+            savedMessages?.let {
+                messages.clear()
+                messages.addAll(it)
+            }
+        }
+
         adapter = MessageAdapter(messages)
         recyclerViewChat.adapter = adapter
         recyclerViewChat.layoutManager = LinearLayoutManager(this).apply {
