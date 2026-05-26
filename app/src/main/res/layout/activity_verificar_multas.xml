@@ -38,18 +38,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btnTema"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_light_mode"
-            android:padding="4dp"
-            app:tint="@color/cor_icones"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/desc_alternar_tema"
-            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
     <!-- Campo de Busca Estilizado -->
