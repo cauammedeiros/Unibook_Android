@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.launch
+import com.example.myapplication.BuildConfig
 
 class ChatbotActivity : AppCompatActivity() {
 
@@ -28,11 +30,11 @@ class ChatbotActivity : AppCompatActivity() {
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-3.5-flash",
-        apiKey = "AIzaSyAqQNK-O34gdu6LwBphck7q1ZrPokMMzXE",
+        apiKey = BuildConfig.GEMINI_API_KEY,
         systemInstruction = content {
             text("Você é um assistente virtual do Unibook. Sua função é ajudar os alunos da Unifor com informações sobre livros. " +
                  "Sempre que o usuário perguntar sobre um livro ou sobre recomendar um livro de uma determinada área, gênero ou livros aclamados pela crítica, responda nesse formato: \n" +
-                 "Inicie com uma mensagem de boas vinda bem calorosa dizendo que é o chatbot do Unibook e que está a disposição para ajudar em relação a livros " + 
+                 "Inicie com uma mensagem de boas vinda bem calorosa dizendo que é o chatbot do Unibook e que está a disposição para ajudar em relação a livros " +
                     "Nome: [Nome do Livro]\n" +
                  "Autor: [Autor]\n" +
                  "Gênero: [Gênero]\n" +
@@ -47,15 +49,10 @@ class ChatbotActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_chatbot)
 
-        // Recuperar mensagens salvas
-        savedInstanceState?.getParcelableArrayList<Message>("messages_list")?.let {
-            messages.addAll(it)
-        }
-
         val mainLayout = findViewById<LinearLayout>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -86,11 +83,24 @@ class ChatbotActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+                // Verificação básica de segurança para a API Key
+                if (BuildConfig.GEMINI_API_KEY.isEmpty() || BuildConfig.GEMINI_API_KEY == "UNSPECIFIED") {
+                    adicionarMensagem(Message("Erro: Chave de API não configurada no projeto.", false))
+                    return@launch
+                }
+
                 val response = generativeModel.generateContent(texto)
                 val respostaBot = response.text ?: "Desculpe, não consegui processar sua pergunta."
                 adicionarMensagem(Message(respostaBot, false))
             } catch (e: Exception) {
-                adicionarMensagem(Message("Erro de conexão: Verifique sua internet.", false))
+                Log.e("ChatbotError", "Falha na chamada do Gemini: ", e)
+                
+                val erroMsg = when {
+                    e.message?.contains("404") == true -> "Erro: Modelo IA não encontrado (Verifique o nome)."
+                    e.message?.contains("403") == true -> "Erro: Chave de API inválida ou sem permissão."
+                    else -> "Erro técnico: ${e.localizedMessage ?: "Falha na comunicação."}"
+                }
+                adicionarMensagem(Message(erroMsg, false))
             }
         }
     }

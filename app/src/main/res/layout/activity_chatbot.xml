@@ -22,25 +22,21 @@
 
         <TextView
             android:id="@+id/txtLogoHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/logo_unibook"
             android:textColor="@color/cor_primaria"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:letterSpacing="0.02"
             android:fontFamily="sans-serif-black" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/btnTema"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/ic_light_mode"
             android:padding="4dp"
             app:tint="@color/cor_icones"
@@ -51,10 +47,11 @@
 
         <ImageView
             android:id="@+id/btnBuscarTop"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/ic_search"
             android:contentDescription="@string/nav_buscar"
+            android:padding="4dp"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
