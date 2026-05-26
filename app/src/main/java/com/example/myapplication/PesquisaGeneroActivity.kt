@@ -18,7 +18,7 @@ class PesquisaGeneroActivity : BaseActivity() {
     private lateinit var rvLivrosGenero: RecyclerView
     private val db = FirebaseFirestore.getInstance()
     private lateinit var adapter: LivroGridAdapter
-    private val listaLivros = mutableListOf<Livro>() // Inicialização correta
+    private val listaLivros = mutableListOf<Livro>()
     private lateinit var btnVoltar: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
