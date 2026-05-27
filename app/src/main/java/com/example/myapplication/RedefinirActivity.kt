@@ -54,8 +54,9 @@ class RedefinirActivity : AppCompatActivity() {
                     .addOnSuccessListener { documents ->
                         if (!documents.isEmpty) {
                             val docId = documents.documents[0].id
+                            val senhaHash = hashSenha(novaSenha)
                             fb.collection("Usuários").document(docId)
-                                .update("senha", novaSenha)
+                                .update("senha", senhaHash)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show()
                                     startActivity(Intent(this, MainActivity::class.java))
@@ -75,6 +76,11 @@ class RedefinirActivity : AppCompatActivity() {
         val temNumero = senha.any { it.isDigit() }
         val temMaiuscula = senha.any { it.isUpperCase() }
         return temOitoDigitos && temNumero && temMaiuscula
+    }
+
+    private fun hashSenha(senha: String): String {
+        val bytes = java.security.MessageDigest.getInstance("SHA-256").digest(senha.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 
     private fun configurarBotaoTema() {

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Unibook</string>
     <string name="termos">Clicando em continuar, você concorda com nossos <b>Termos de Serviço</b> e <b>Políticas de Privacidade</b></string>
-    <string name="cadastre_se">Não tem uma conta? Cadastre-se.</string>
-    <string name="esqueceu_a_senha">Esqueceu a Senha ?</string>
+    <string name="cadastre_se">Não tem uma conta? Cadastre-se</string>
+    <string name="esqueceu_a_senha">Esqueceu a senha?</string>
     <string name="continuar">Continuar</string>
-    <string name="bem_vindo">Bem vindo ao Unibook</string>
+    <string name="bem_vindo">Bem-vindo ao Unibook!</string>
     <string name="login">Faça o Login</string>
     <string name="insira_o_e_mail">Insira o E-mail</string>
     <string name="insira_a_senha">Insira a senha</string>
@@ -90,11 +90,11 @@
     <!-- Erros -->
     <string name="err_busca_vazia">O campo de busca não pode estar vazio!</string>
     <string name="err_salvar_dados">Erro ao salvar os dados. Tente novamente.</string>
-    <string name="err_email_cadastrado">Este e-mail já está cadastrado.</string>
+    <string name="err_email_cadastrado">O email inserido já está cadastrado</string>
     <string name="err_servidor">Erro de conexão com o servidor. Verifique sua internet.</string>
-    <string name="err_campos_vazios">Preencha todos os campos!</string>
+    <string name="err_campos_vazios">Preencha todos os campos</string>
     <string name="err_admin_senha">Senha administrativa incorreta.</string>
-    <string name="err_login_incorreto">E-mail ou senha incorretos.</string>
+    <string name="err_login_incorreto">Email ou senha incorretos</string>
     <string name="err_senha_incorreta">Senha incorreta.</string>
     <string name="err_usuario_nao_cadastrado">Usuário não cadastrado.</string>
 
@@ -133,7 +133,7 @@
     <string name="hint_email_exemplo">email@domain.com</string>
     <string name="hint_crie_senha">Crie uma senha</string>
     <string name="btn_cadastrar">Cadastrar</string>
-    <string name="msg_ja_tem_conta">Já possui uma conta? Faça o login.</string>
+    <string name="msg_ja_tem_conta">Já possui uma conta? Faça o login</string>
     <string name="title_visualizar_perfil">Visualizar Perfil</string>
     <string name="label_livro_emprestimo">Livro em Empréstimo</string>
     <string name="label_status_v2">Status:</string>
@@ -167,8 +167,8 @@
     <string name="label_valor_multa_v2">Valor da Multa :</string>
     <string name="label_status_pagamento">Status :</string>
     <string name="msg_instrucao_pagamento">Após realizar o pagamento,\nenvie o comprovante via imagem.</string>
-    <string name="msg_requisitos_senha">A senha deve possuir:\n\u2022 Mínimo de 8 caracteres com pelo menos um número e uma letra maiúscula.</string>
-    <string name="msg_erro_email_inexistente">O e-mail inserido não existe!</string>
+    <string name="msg_requisitos_senha">A senha deve ter pelo menos 8 caracteres, incluindo um número e uma letra maiuscula</string>
+    <string name="msg_erro_email_inexistente">O email inserido não existe</string>
     <string name="btn_enviar_comprovante">Enviar Comprovante</string>
     <string name="label_valor">Valor</string>
     <string name="placeholder_valor_multa">R$ 0,00</string>
