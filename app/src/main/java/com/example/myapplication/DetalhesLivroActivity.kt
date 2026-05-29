@@ -96,7 +96,8 @@ class DetalhesLivroActivity : AppCompatActivity() {
         btnVoltar.setOnClickListener { finish() }
 
         btnBaixar.setOnClickListener {
-            Toast.makeText(this, "Funcionalidade de Download", Toast.LENGTH_SHORT).show()
+            salvarHistorico("Download")
+            Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
         }
 
         btnFavoritar.setOnClickListener {
@@ -104,8 +105,38 @@ class DetalhesLivroActivity : AppCompatActivity() {
         }
 
         btnAlugar.setOnClickListener {
-            Toast.makeText(this, "Solicitando Empréstimo", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EmprestimoActivity::class.java)
+            intent.putExtra("LIVRO_ID", getIntent().getStringExtra("LIVRO_ID"))
+            intent.putExtra("TITULO", getIntent().getStringExtra("TITULO"))
+            intent.putExtra("AUTOR", getIntent().getStringExtra("AUTOR"))
+            intent.putExtra("CAPA_URL", getIntent().getStringExtra("CAPA_URL"))
+            startActivity(intent)
         }
+    }
+
+    private fun salvarHistorico(tipoAcao: String) {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+        val livroId = intent.getStringExtra("LIVRO_ID")
+
+        if (userId == null || livroId == null) return
+
+        val db = FirebaseFirestore.getInstance()
+        val historico = hashMapOf(
+            "userId" to userId,
+            "livroId" to livroId,
+            "titulo" to intent.getStringExtra("TITULO"),
+            "autor" to intent.getStringExtra("AUTOR"),
+            "capaUrl" to intent.getStringExtra("CAPA_URL"),
+            "data" to Timestamp.now(),
+            "tipoAcao" to tipoAcao
+        )
+
+        db.collection("Historico")
+            .add(historico)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Livro adicionado ao histórico!", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun favoritarLivro() {

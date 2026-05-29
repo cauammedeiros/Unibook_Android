@@ -5,18 +5,29 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class HistoricoLivrosActivity : AppCompatActivity() {
+
+    private lateinit var recyclerHistorico: RecyclerView
+    private lateinit var adapter: HistoricoAdapter
+    private val listaHistorico = mutableListOf<Historico>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_livros)
 
-        val btnAnalisarAtraso = findViewById<Button>(R.id.btnAnalisarAtraso)
-        btnAnalisarAtraso.setOnClickListener {
-            val intent = Intent(this, AtrasoActivity::class.java)
-            startActivity(intent)
-        }
+        recyclerHistorico = findViewById(R.id.recyclerHistorico)
+        recyclerHistorico.layoutManager = LinearLayoutManager(this)
+        adapter = HistoricoAdapter(listaHistorico)
+        recyclerHistorico.adapter = adapter
+
+        carregarHistorico()
 
         val btnVoltar = findViewById<ImageView>(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
@@ -59,5 +70,34 @@ class HistoricoLivrosActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
+    }
+//
+    private fun carregarHistorico() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+
+        if (userId == null) {
+            Toast.makeText(this, "Usuário não logado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Historico")
+            .whereEqualTo("userId", userId)
+            .orderBy("data", Query.Direction.DESCENDING)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    Toast.makeText(this, "Erro ao carregar histórico", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                listaHistorico.clear()
+                for (doc in value!!) {
+                    val item = doc.toObject(Historico::class.java)
+                    item.id = doc.id
+                    listaHistorico.add(item)
+                }
+                adapter.notifyDataSetChanged()
+            }
     }
 }

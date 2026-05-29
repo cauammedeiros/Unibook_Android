@@ -4,14 +4,11 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
 
 class EmprestimoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,19 +26,47 @@ class EmprestimoActivity : BaseActivity() {
 
         btnConfirmar.setOnClickListener {
             if (checkTermos.isChecked) {
-                // Se estiver marcado, esconde o erro e segue o jogo
                 txtErro.visibility = View.GONE
-
-                // Coloque aqui a sua lógica de sucesso (ex: ir para outra tela ou salvar no banco)
-                Toast.makeText(this, "Empréstimo realizado!", Toast.LENGTH_SHORT).show()
+                salvarHistorico()
             } else {
-                // Se NÃO estiver marcado, mostra a mensagem vermelha
                 txtErro.visibility = View.VISIBLE
             }
         }
 
         configurarMenuNavegacao()
         configurarBotaoTema()
+    }
+
+    private fun salvarHistorico() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null)
+        val livroId = intent.getStringExtra("LIVRO_ID")
+
+        if (userId == null || livroId == null) {
+            Toast.makeText(this, "Erro ao processar empréstimo.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val db = FirebaseFirestore.getInstance()
+        val historico = hashMapOf(
+            "userId" to userId,
+            "livroId" to livroId,
+            "titulo" to intent.getStringExtra("TITULO"),
+            "autor" to intent.getStringExtra("AUTOR"),
+            "capaUrl" to intent.getStringExtra("CAPA_URL"),
+            "data" to Timestamp.now(),
+            "tipoAcao" to "Empréstimo"
+        )
+
+        db.collection("Historico")
+            .add(historico)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Empréstimo realizado e salvo no histórico!", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao salvar no histórico", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun configurarBotaoTema() {
