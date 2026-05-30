@@ -42,21 +42,11 @@ class RecuperacaoActivity : BaseActivity() {
         val txtErro = findViewById<TextView>(R.id.txtErroRecuperacao)
 
         btnSolicitar.setOnClickListener {
-            val email = edtEmail.text.toString()
+            val email = edtEmail.text.toString().trim()
 
             if (email.isEmpty()) {
                 txtErro.text = "Preencha o campo de email!"
                 txtErro.visibility = View.VISIBLE
-            }
-            // Simulação de e-mails cadastrados no sistema do Unibook
-            else if (email == "aluno@unifor.br") {
-                txtErro.visibility = View.GONE
-                val intent = Intent(this, RedefinirActivity::class.java)
-                startActivity(intent)
-            } else if (email == "admin@unifor.br") {
-                txtErro.visibility = View.GONE
-                // Admin pode ter fluxo direto ou o mesmo, manteremos o finish ou redirecionamento se desejar
-                finish()
             } else {
                 fb.collection("Usuários")
                     .whereEqualTo("email", email)
@@ -68,7 +58,7 @@ class RecuperacaoActivity : BaseActivity() {
                             intent.putExtra("EMAIL_RECUPERACAO", email)
                             startActivity(intent)
                         } else {
-                            txtErro.text = "O email inserido não existe !"
+                            txtErro.text = "O email inserido não existe!"
                             txtErro.visibility = View.VISIBLE
                         }
                     }

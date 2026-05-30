@@ -97,6 +97,19 @@ class HistoricoLivrosActivity : AppCompatActivity() {
                     item.id = doc.id
                     listaHistorico.add(item)
                 }
+
+                // Adiciona um exemplo de livro atrasado ao final para demonstração do fluxo de multa
+                listaHistorico.add(
+                    Historico(
+                        id = "exemplo_atraso",
+                        titulo = "Dom Casmurro (Exemplo Atraso)",
+                        autor = "Machado de Assis",
+                        tipoAcao = "Empréstimo",
+                        status = "Atrasado",
+                        capaUrl = "https://m.media-amazon.com/images/I/8179u8E6WpL.jpg"
+                    )
+                )
+
                 adapter.notifyDataSetChanged()
             }
     }

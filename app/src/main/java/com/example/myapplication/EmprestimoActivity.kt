@@ -5,24 +5,79 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 
 class EmprestimoActivity : BaseActivity() {
+
+    private lateinit var imgCapaLivro: ImageView
+    private lateinit var txtNomeLivro: TextView
+    private lateinit var txtAutorLivro: TextView
+    private lateinit var btnVoltarTopo: ImageButton
+    private lateinit var btnVoltar: Button
+    private lateinit var btnConfirmar: Button
+    private lateinit var checkTermos: CheckBox
+    private lateinit var btnAceitarTermos: TextView
+    private lateinit var txtErro: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emprestimo)
 
-        val btnVoltar = findViewById<Button>(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
-            finish() // Volta para a tela de detalhes do livro
+        inicializarViews()
+        carregarDadosLivro()
+        configurarBotoes()
+        configurarMenuNavegacao()
+        configurarBotaoTema()
+    }
+
+    private fun inicializarViews() {
+        imgCapaLivro = findViewById(R.id.imgCapaLivro)
+        txtNomeLivro = findViewById(R.id.txtNomeLivro)
+        txtAutorLivro = findViewById(R.id.txtAutorLivro)
+        btnVoltarTopo = findViewById(R.id.btnVoltarTopo)
+        btnVoltar = findViewById(R.id.btnVoltar)
+        btnConfirmar = findViewById(R.id.btnConfirmar)
+        checkTermos = findViewById(R.id.checkTermos)
+        btnAceitarTermos = findViewById(R.id.btnAceitarTermos)
+        txtErro = findViewById(R.id.txtErroTermos)
+    }
+
+    private fun carregarDadosLivro() {
+        val titulo = intent.getStringExtra("TITULO")
+        val autor = intent.getStringExtra("AUTOR")
+        val capaUrl = intent.getStringExtra("CAPA_URL")
+
+        txtNomeLivro.text = titulo ?: "Título Indisponível"
+        txtAutorLivro.text = autor ?: "Autor Desconhecido"
+
+        Glide.with(this)
+            .load(capaUrl)
+            .placeholder(R.drawable.logo_nome1)
+            .into(imgCapaLivro)
+        
+        // Datas fictícias para exibição (como na imagem)
+        findViewById<TextView>(R.id.txtDataEntrega).text = "10/07/2023"
+        findViewById<TextView>(R.id.txtDataDevolucao).text = "24/07/2023"
+    }
+
+    private fun configurarBotoes() {
+        // Seta de voltar no topo
+        btnVoltarTopo.setOnClickListener {
+            finish()
         }
 
-        val btnConfirmar = findViewById<Button>(R.id.btnConfirmar)
-        val checkTermos = findViewById<CheckBox>(R.id.checkTermos) // Use o ID da sua CheckBox
-        val txtErro = findViewById<TextView>(R.id.txtErroTermos)
+        // Botão cancelar (voltar)
+        btnVoltar.setOnClickListener {
+            finish()
+        }
+
+        // Texto ao lado do checkbox para facilitar o clique
+        btnAceitarTermos.setOnClickListener {
+            checkTermos.isChecked = !checkTermos.isChecked
+        }
 
         btnConfirmar.setOnClickListener {
             if (checkTermos.isChecked) {
@@ -32,9 +87,6 @@ class EmprestimoActivity : BaseActivity() {
                 txtErro.visibility = View.VISIBLE
             }
         }
-
-        configurarMenuNavegacao()
-        configurarBotaoTema()
     }
 
     private fun salvarHistorico() {
@@ -61,7 +113,7 @@ class EmprestimoActivity : BaseActivity() {
         db.collection("Historico")
             .add(historico)
             .addOnSuccessListener {
-                Toast.makeText(this, "Empréstimo realizado e salvo no histórico!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Empréstimo realizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener {

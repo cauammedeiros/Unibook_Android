@@ -54,14 +54,17 @@ class RedefinirActivity : AppCompatActivity() {
                     .addOnSuccessListener { documents ->
                         if (!documents.isEmpty) {
                             val docId = documents.documents[0].id
-                            val senhaHash = hashSenha(novaSenha)
                             fb.collection("Usuários").document(docId)
-                                .update("senha", senhaHash)
+                                .update("senha", novaSenha)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this, MainActivity::class.java))
+                                    val intent = Intent(this, MainActivity::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
                                     finish()
                                 }
+                        } else {
+                            Toast.makeText(this, "Usuário não encontrado para este e-mail.", Toast.LENGTH_SHORT).show()
                         }
                     }
                     .addOnFailureListener {
@@ -78,13 +81,8 @@ class RedefinirActivity : AppCompatActivity() {
         return temOitoDigitos && temNumero && temMaiuscula
     }
 
-    private fun hashSenha(senha: String): String {
-        val bytes = java.security.MessageDigest.getInstance("SHA-256").digest(senha.toByteArray())
-        return bytes.joinToString("") { "%02x".format(it) }
-    }
-
     private fun configurarBotaoTema() {
-        val btnTema = findViewById<ImageView>(R.id.btnTema)
+        val btnTema = findViewById<ImageView>(R.id.btnTema) ?: return
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         
         // Define o ícone inicial: Sol se estiver no modo escuro, Lua se estiver no claro

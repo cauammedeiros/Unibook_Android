@@ -40,15 +40,11 @@ class CadastroActivity : AppCompatActivity() {
 
         btnCadastrar.setOnClickListener {
             val nome = edtNome.text.toString()
-            val email = edtEmail.text.toString()
+            val email = edtEmail.text.toString().trim()
             val senha = edtSenha.text.toString()
 
             if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                 txtErro.setText(R.string.err_campos_vazios)
-                txtErro.visibility = View.VISIBLE
-            }
-            else if (email == "aluno@unifor.br" || email == "admin@unifor.br") {
-                txtErro.setText(R.string.err_email_cadastrado)
                 txtErro.visibility = View.VISIBLE
             }
             else if (!isSenhaValida(senha)) {
@@ -63,11 +59,10 @@ class CadastroActivity : AppCompatActivity() {
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
                             // Criar novo usuário no banco
-                            val senhaHash = hashSenha(senha)
                             val novoUsuario = hashMapOf(
                                 "nome" to nome,
                                 "email" to email,
-                                "senha" to senhaHash,
+                                "senha" to senha,
                                 "tipo" to "aluno"
                             )
 
@@ -111,10 +106,5 @@ class CadastroActivity : AppCompatActivity() {
         val temMaiuscula = senha.any { it.isUpperCase() }
 
         return temOitoDigitos && temNumero && temMaiuscula
-    }
-
-    private fun hashSenha(senha: String): String {
-        val bytes = java.security.MessageDigest.getInstance("SHA-256").digest(senha.toByteArray())
-        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

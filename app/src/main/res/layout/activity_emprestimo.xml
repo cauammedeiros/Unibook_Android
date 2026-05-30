@@ -38,14 +38,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btnTema"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_light_mode"
-            android:padding="4dp"
-            app:tint="@color/cor_icones"
-            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -183,9 +175,11 @@
 
                         <CheckBox
                             android:id="@+id/checkTermos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/azul_botao" />
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:button="@null"
+                            android:background="@drawable/selector_checkbox_termos"
+                            android:layout_marginEnd="8dp"/>
 
                         <TextView
                             android:id="@+id/btnAceitarTermos"

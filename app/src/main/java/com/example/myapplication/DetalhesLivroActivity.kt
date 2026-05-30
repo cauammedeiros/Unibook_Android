@@ -96,8 +96,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
         btnVoltar.setOnClickListener { finish() }
 
         btnBaixar.setOnClickListener {
-            salvarHistorico("Download")
-            Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
+            exibirDialogoTermos()
         }
 
         btnFavoritar.setOnClickListener {
@@ -105,13 +104,59 @@ class DetalhesLivroActivity : AppCompatActivity() {
         }
 
         btnAlugar.setOnClickListener {
+            exibirDialogoEscolhaAcao()
+        }
+    }
+
+    private fun exibirDialogoEscolhaAcao() {
+        val dialog = android.app.Dialog(this)
+        dialog.setContentView(R.layout.dialog_prosseguir)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnDialogEmprestimo = dialog.findViewById<LinearLayout>(R.id.btnDialogEmprestimo)
+        val btnDialogVoltar = dialog.findViewById<Button>(R.id.btnDialogVoltar)
+
+        btnDialogEmprestimo.setOnClickListener {
             val intent = Intent(this, EmprestimoActivity::class.java)
             intent.putExtra("LIVRO_ID", getIntent().getStringExtra("LIVRO_ID"))
             intent.putExtra("TITULO", getIntent().getStringExtra("TITULO"))
             intent.putExtra("AUTOR", getIntent().getStringExtra("AUTOR"))
             intent.putExtra("CAPA_URL", getIntent().getStringExtra("CAPA_URL"))
             startActivity(intent)
+            dialog.dismiss()
         }
+
+        btnDialogVoltar.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun exibirDialogoTermos() {
+        val dialog = android.app.Dialog(this)
+        dialog.setContentView(R.layout.dialog_termos)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnConfirmar = dialog.findViewById<Button>(R.id.btnConfirmarBaixar)
+        val btnVoltarDialog = dialog.findViewById<Button>(R.id.btnVoltar)
+        val checkAceitar = dialog.findViewById<CheckBox>(R.id.checkAceitar)
+
+        btnConfirmar.setOnClickListener {
+            if (checkAceitar.isChecked) {
+                salvarHistorico("Download")
+                Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "Você precisa aceitar os termos para baixar.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnVoltarDialog.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun salvarHistorico(tipoAcao: String) {
