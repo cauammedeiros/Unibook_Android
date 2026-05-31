@@ -108,7 +108,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Data de Retirada:"
+                            android:text="@string/label_data_entrega"
                             android:textColor="@color/texto_secundario"
                             android:textSize="14sp" />
                         <TextView
@@ -130,7 +130,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Data de Devolução:"
+                            android:text="@string/label_data_devolucao"
                             android:textColor="@color/texto_secundario"
                             android:textSize="14sp" />
                         <TextView
@@ -152,7 +152,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Status:"
+                            android:text="@string/label_status_v2"
                             android:textColor="@color/texto_secundario"
                             android:textSize="14sp" />
                         <TextView
@@ -185,7 +185,7 @@
                             android:id="@+id/btnAceitarTermos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Aceito os Termos de Serviço"
+                            android:text="@string/btn_aceitar_termos_v2"
                             android:textColor="@color/texto_principal"
                             android:textSize="14sp"
                             android:clickable="true"
@@ -214,7 +214,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/btn_azul"
                 app:backgroundTint="@null"
-                android:text="Confirmar Empréstimo"
+                android:text="@string/btn_confirmar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -226,7 +226,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/btn_cinza_borda"
                 app:backgroundTint="@null"
-                android:text="Cancelar"
+                android:text="@string/voltar"
                 android:textAllCaps="false"
                 android:textColor="@color/texto_principal" />
 

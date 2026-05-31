@@ -140,6 +140,9 @@
     <string name="title_visualizar_perfil">Visualizar Perfil</string>
     <string name="label_livro_emprestimo">Livro em Empréstimo</string>
     <string name="label_status_v2">Status:</string>
+    <string name="label_data_entrega">Data de Entrega:</string>
+    <string name="label_data_devolucao">Data de Devolução:</string>
+    <string name="btn_aceitar_termos_v2">Aceitar os Termos</string>
     <string name="btn_verificar_multa">Verificar Multa</string>
     <string name="title_informacoes_conta">Informações da Conta</string>
     <string name="title_emprestimo_ativo">Empréstimo Ativo</string>
