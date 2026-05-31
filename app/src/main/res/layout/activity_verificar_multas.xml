@@ -91,12 +91,5 @@
         tools:listitem="@layout/item_multa" />
 
     <!-- Container para o Bottom Navigation -->
-    <LinearLayout
-        android:id="@+id/layout_bottom_nav_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-        <include layout="@layout/layout_bottom_nav" />
-    </LinearLayout>
 
 </RelativeLayout>

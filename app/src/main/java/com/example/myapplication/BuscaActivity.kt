@@ -22,13 +22,48 @@ class BuscaActivity : BaseActivity() {
 
 // 2. Ação ao clicar na lupa
         btnLupa.setOnClickListener {
-            val textoBusca = editBusca.text.toString()
+            val textoBusca = editBusca.text.toString().trim()
 
             if (textoBusca.isNotEmpty()) {
-                val intent = Intent(this, BuscaFiltradaActivity::class.java)
-                // Passa o que foi digitado para a próxima tela
-                intent.putExtra("TERMO_BUSCA", textoBusca)
-                startActivity(intent)
+                val generosMap = mapOf(
+                    "terror" to "Terror",
+                    "infantis" to "Infantis",
+                    "suspense" to "Suspense",
+                    "romance" to "Romance",
+                    "ficcao cientifica" to "Ficção Científica",
+                    "ficção científica" to "Ficção Científica",
+                    "ficcao" to "Ficção Científica",
+                    "jovens adultos" to "Jovens Adultos",
+                    "jovens" to "Jovens Adultos",
+                    "acao" to "Ação",
+                    "ação" to "Ação",
+                    "anime" to "Anime",
+                    "comedia" to "Comédia",
+                    "comédia" to "Comédia",
+                    "documentario" to "Documentário",
+                    "documentário" to "Documentário",
+                    "drama" to "Drama",
+                    "fantasia" to "Fantasia",
+                    "educacao" to "Educação",
+                    "educação" to "Educação",
+                    "aventura" to "Aventura",
+                    "classico" to "Clássico",
+                    "clássico" to "Clássico"
+                )
+
+                val generoEncontrado = generosMap[textoBusca.lowercase()]
+
+                if (generoEncontrado != null) {
+                    // Se for um gênero, vai para a tela de gênero
+                    val intent = Intent(this, PesquisaGeneroActivity::class.java)
+                    intent.putExtra("GENERO_NOME", generoEncontrado)
+                    startActivity(intent)
+                } else {
+                    // Se não for gênero, vai para a busca de livros/autores
+                    val intent = Intent(this, BuscaFiltradaActivity::class.java)
+                    intent.putExtra("TERMO_BUSCA", textoBusca)
+                    startActivity(intent)
+                }
             } else {
                 Toast.makeText(this, getString(R.string.err_busca_vazia), Toast.LENGTH_SHORT).show()
             }
