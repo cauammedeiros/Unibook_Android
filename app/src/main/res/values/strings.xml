@@ -59,8 +59,10 @@
     <string name="label_nome_usuario">Nome do Usuário :</string>
     <string name="label_email">E-mail :</string>
     <string name="label_livros_emprestimo">Livros em Empréstimo :</string>
-    <string name="label_devolver_em">Devolver em :</string>
-    <string name="label_tempo_restante">Tempo restante :</string>
+    <string name="label_devolver_em">Devolver em: %1$s</string>
+    <string name="label_tempo_restante">Tempo restante: %1$d dias</string>
+    <string name="status_atrasado">Atrasado!</string>
+    <string name="livro_desconhecido">Livro Desconhecido</string>
     <string name="btn_livros_favoritos">Livros favoritos</string>
     <string name="btn_historico_livros">Histórico de Livros</string>
 
