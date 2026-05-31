@@ -39,7 +39,7 @@
             android:minWidth="160dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:text="Nome do Usuário 1"
+            android:text="Ana Clara"
             android:textColor="@color/black"
             android:textSize="13sp" />
 
@@ -54,7 +54,7 @@
             android:minWidth="140dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:text="Valor da multa: R$"
+            android:text="Valor da multa: R$ 10,00"
             android:textColor="@color/black"
             android:textSize="13sp" />
 
@@ -83,7 +83,7 @@
             android:minWidth="170dp"
             android:paddingHorizontal="20dp"
             android:paddingVertical="1dp"
-            android:text="Status: Pago/Não Pago"
+            android:text="Status: Não Pago"
             android:textColor="@color/black"
             android:textSize="13sp" />
     </LinearLayout>
