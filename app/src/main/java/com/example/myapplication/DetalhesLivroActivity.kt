@@ -141,6 +141,11 @@ class DetalhesLivroActivity : AppCompatActivity() {
         val btnConfirmar = dialog.findViewById<Button>(R.id.btnConfirmarBaixar)
         val btnVoltarDialog = dialog.findViewById<Button>(R.id.btnVoltar)
         val checkAceitar = dialog.findViewById<CheckBox>(R.id.checkAceitar)
+        val txtAceitar = dialog.findViewById<TextView>(R.id.btnAceitarTermosDialog)
+
+        txtAceitar.setOnClickListener {
+            checkAceitar.isChecked = !checkAceitar.isChecked
+        }
 
         btnConfirmar.setOnClickListener {
             if (checkAceitar.isChecked) {
