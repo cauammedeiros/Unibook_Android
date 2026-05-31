@@ -153,7 +153,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
                 Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
-                Toast.makeText(this, "Você precisa aceitar os termos para baixar.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.err_aceitar_termos), Toast.LENGTH_SHORT).show()
             }
         }
 

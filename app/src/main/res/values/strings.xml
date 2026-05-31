@@ -180,5 +180,6 @@
     <string name="placeholder_valor_multa">R$ 0,00</string>
     <string name="placeholder_status_pendente">Pendente</string>
     <string name="editar_livros">Editar Livros</string>
+    <string name="err_aceitar_termos">Por favor, aceite os termos para continuar.</string>
     <string name="btn_ver_detalhes_livro">Ver Detalhes do Livro</string>
 </resources>

@@ -196,7 +196,7 @@
                         android:id="@+id/txtErroTermos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Por favor, aceite os termos para continuar."
+                        android:text="@string/err_aceitar_termos"
                         android:textColor="@color/vermelho_botao"
                         android:textSize="12sp"
                         android:gravity="center"
