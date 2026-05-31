@@ -118,6 +118,29 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
 
         btnExcluir.setOnClickListener {
             dialog.dismiss()
+            mostrarDialogConfirmarExclusao(idDoDocumento)
+        }
+
+        btnVoltarDialog.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun mostrarDialogConfirmarExclusao(idDoDocumento: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmar_exclusao, null)
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnConfirmarExcluir = dialogView.findViewById<Button>(R.id.layoutExcluir)
+        val btnVoltar = dialogView.findViewById<Button>(R.id.layoutVoltar)
+
+        btnConfirmarExcluir.setOnClickListener {
+            dialog.dismiss()
             db.collection("Usuários").document(idDoDocumento).delete()
                 .addOnSuccessListener {
                     Toast.makeText(this, "Usuário removido com sucesso!", Toast.LENGTH_SHORT).show()
@@ -127,7 +150,7 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
                 }
         }
 
-        btnVoltarDialog.setOnClickListener {
+        btnVoltar.setOnClickListener {
             dialog.dismiss()
         }
 
