@@ -71,7 +71,7 @@ class CadastroActivity : AppCompatActivity() {
                                 .addOnSuccessListener {
                                     Toast.makeText(this, R.string.msg_cadastro_sucesso, Toast.LENGTH_SHORT).show()
                                     txtErro.visibility = View.GONE
-                                    val intent = Intent(this, tela_Entrando::class.java)
+                                    val intent = Intent(this, MainActivity::class.java)
                                     intent.putExtra("TIPO_USUARIO", "aluno")
                                     startActivity(intent)
                                     finish()
