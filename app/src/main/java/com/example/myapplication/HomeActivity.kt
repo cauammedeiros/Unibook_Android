@@ -79,7 +79,7 @@ class HomeActivity : BaseActivity() {
         configurarCliquesVerTudo()
         configurarBotaoTema()
 
-        // Inicia a busca dos livros do Firebase
+        // Firebase1
         viewModel.fetchBooks(isFirstPage = true)
         
         if (userId != null) {
@@ -144,15 +144,17 @@ class HomeActivity : BaseActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressLoading)
         val txtVazio = findViewById<TextView>(R.id.txtListaVazia)
 
+        //Firebase2
         viewModel.books.observe(this, Observer { livros ->
             if (livros.isNullOrEmpty()) {
                 if (listaAclamados.isEmpty()) txtVazio?.visibility = View.VISIBLE
             } else {
                 txtVazio?.visibility = View.GONE
-                
+
+                //Os livros vão para “Aclamados”
                 listaAclamados.clear()
                 listaAclamados.addAll(livros)
-                adapterAclamados.notifyDataSetChanged()
+                adapterAclamados.notifyDataSetChanged() //recicleview
 
                 atualizarCategoria(livros, "Educação", listaEducacao, adapterEducacao)
                 // Removido atualizarCategoria manual para "Lista" pois agora vem do fetchFavorites
