@@ -17,7 +17,7 @@ class CriarLivroActivity : AppCompatActivity() {
 
     // Declaração das Views
     private lateinit var imgCapa: ImageView
-    private lateinit var edtUrlCapa: EditText
+    private lateinit var btnAlterarFoto: Button
     private lateinit var edtNome: EditText
     private lateinit var edtAutor: EditText
     private lateinit var edtGenero: EditText
@@ -25,13 +25,15 @@ class CriarLivroActivity : AppCompatActivity() {
     private lateinit var btnCriar: Button
     private lateinit var txtErro: TextView
 
+    private var urlCapaSelecionada: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_livro)
 
-        // Inicialização das Views (IDs sincronizados com o seu novo XML)
+        // Inicialização das Views
         imgCapa = findViewById(R.id.imgCapaLivro)
-        edtUrlCapa = findViewById(R.id.edtUrlCapa)
+        btnAlterarFoto = findViewById(R.id.btnAlterarFoto)
         edtNome = findViewById(R.id.edtNome)
         edtAutor = findViewById(R.id.edtAutor)
         edtGenero = findViewById(R.id.edtGenero)
@@ -44,18 +46,9 @@ class CriarLivroActivity : AppCompatActivity() {
             finish()
         }
 
-        // Lógica para mostrar prévia da imagem quando o link for colado
-        edtUrlCapa.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val url = edtUrlCapa.text.toString().trim()
-                if (url.isNotEmpty()) {
-                    Glide.with(this)
-                        .load(url)
-                        .placeholder(R.drawable.logo_nome1)
-                        .error(R.drawable.logo_nome1)
-                        .into(imgCapa)
-                }
-            }
+        // Lógica para abrir o Dialog de Alterar Foto
+        btnAlterarFoto.setOnClickListener {
+            mostrarDialogAlterarCapa()
         }
 
         // Lógica do botão Criar
@@ -64,16 +57,55 @@ class CriarLivroActivity : AppCompatActivity() {
             val autor = edtAutor.text.toString().trim()
             val genero = edtGenero.text.toString().trim()
             val sinopse = edtSinopse.text.toString().trim()
-            val urlCapa = edtUrlCapa.text.toString().trim()
 
-            if (nome.isEmpty() || autor.isEmpty() || urlCapa.isEmpty()) {
-                txtErro.text = "Preencha o nome, autor e a URL da capa."
+            if (nome.isEmpty() || autor.isEmpty() || urlCapaSelecionada.isEmpty()) {
+                txtErro.text = "Preencha o nome, autor e adicione uma capa."
                 txtErro.visibility = View.VISIBLE
             } else {
                 txtErro.visibility = View.GONE
-                salvarLivroNoFirebase(nome, autor, genero, sinopse, urlCapa)
+                salvarLivroNoFirebase(nome, autor, genero, sinopse, urlCapaSelecionada)
             }
         }
+    }
+
+    private fun mostrarDialogAlterarCapa() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_alterar_capa, null)
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val edtUrl = dialogView.findViewById<EditText>(R.id.edtUrlDialog)
+        val btnConfirmar = dialogView.findViewById<Button>(R.id.btnConfirmarUrl)
+        val btnCancelar = dialogView.findViewById<Button>(R.id.btnCancelarUrl)
+
+        // Preenche com a URL atual se já existir
+        if (urlCapaSelecionada.isNotEmpty()) {
+            edtUrl.setText(urlCapaSelecionada)
+        }
+
+        btnConfirmar.setOnClickListener {
+            val novaUrl = edtUrl.text.toString().trim()
+            if (novaUrl.isNotEmpty()) {
+                urlCapaSelecionada = novaUrl
+                // Atualiza a prévia da imagem na tela principal
+                Glide.with(this)
+                    .load(urlCapaSelecionada)
+                    .placeholder(R.drawable.logo_nome1)
+                    .error(R.drawable.logo_nome1)
+                    .into(imgCapa)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "Insira uma URL válida", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnCancelar.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun salvarLivroNoFirebase(nome: String, autor: String, genero: String, sinopse: String, capaUrl: String) {
