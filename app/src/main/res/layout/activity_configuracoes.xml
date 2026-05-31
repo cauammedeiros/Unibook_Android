@@ -98,7 +98,7 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:gravity="center"
-                            android:text="—"
+                            android:text="-"
                             android:textColor="@color/texto_principal"
                             android:textSize="24sp"
                             android:background="?attr/selectableItemBackgroundBorderless" />
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="CORES E CONTRASTE"
+                        android:text="COR DA FONTE"
                         android:textColor="@color/texto_secundario"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -200,7 +200,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/btn_azul"
                 app:backgroundTint="@null"
-                android:text="Salvar Alterações"
+                android:text="Salvar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
