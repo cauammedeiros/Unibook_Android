@@ -30,7 +30,7 @@
     <string name="btn_excluir_perfil">Excluir Perfil</string>
     <string name="btn_criar_pequeno">Criar</string>
     <string name="btn_procurar_pequeno">Procurar</string>
-    <string name="title_escolha_acao">Escolha uma ação</string>
+    <string name="title_escolha_prosseguir">Escolha como deseja prosseguir:</string>
     <string name="msg_pergunta_livro">O que deseja fazer com este livro?</string>
     <string name="btn_emprestimo">Empréstimo</string>
     <string name="title_gerenciar_livros">Gerenciar Livros</string>
@@ -59,8 +59,10 @@
     <string name="label_nome_usuario">Nome do Usuário :</string>
     <string name="label_email">E-mail :</string>
     <string name="label_livros_emprestimo">Livros em Empréstimo :</string>
-    <string name="label_devolver_em">Devolver em :</string>
-    <string name="label_tempo_restante">Tempo restante :</string>
+    <string name="label_devolver_em">Devolver em: %1$s</string>
+    <string name="label_tempo_restante">Tempo restante: %1$d dias</string>
+    <string name="status_atrasado">Atrasado!</string>
+    <string name="livro_desconhecido">Livro Desconhecido</string>
     <string name="btn_livros_favoritos">Livros favoritos</string>
     <string name="btn_historico_livros">Histórico de Livros</string>
 
@@ -93,6 +95,7 @@
     <string name="err_email_cadastrado">O email inserido já está cadastrado</string>
     <string name="err_servidor">Erro de conexão com o servidor. Verifique sua internet.</string>
     <string name="err_campos_vazios">Preencha todos os campos</string>
+    <string name="err_email_invalido">Por favor, insira um e-mail válido</string>
     <string name="err_admin_senha">Senha administrativa incorreta.</string>
     <string name="err_login_incorreto">Email ou senha incorretos</string>
     <string name="err_senha_incorreta">Senha incorreta.</string>
@@ -125,7 +128,7 @@
     <string name="title_detalhes">Detalhes</string>
     <string name="btn_baixar">Baixar</string>
     <string name="btn_favoritar">Favoritar</string>
-    <string name="btn_emprestimo_v2">Empréstimo</string>
+    <string name="btn_emprestimo_v2">Alugar/Empréstimo</string>
     <string name="label_genero_v2">Gênero: %1$s</string>
     <string name="label_autor_v2">Autor: %1$s</string>
     <string name="desc_capa_livro">Capa do Livro</string>
@@ -137,6 +140,9 @@
     <string name="title_visualizar_perfil">Visualizar Perfil</string>
     <string name="label_livro_emprestimo">Livro em Empréstimo</string>
     <string name="label_status_v2">Status:</string>
+    <string name="label_data_entrega">Data de Entrega:</string>
+    <string name="label_data_devolucao">Data de Devolução:</string>
+    <string name="btn_aceitar_termos_v2">Aceitar os Termos de Serviços</string>
     <string name="btn_verificar_multa">Verificar Multa</string>
     <string name="title_informacoes_conta">Informações da Conta</string>
     <string name="title_emprestimo_ativo">Empréstimo Ativo</string>
@@ -174,4 +180,6 @@
     <string name="placeholder_valor_multa">R$ 0,00</string>
     <string name="placeholder_status_pendente">Pendente</string>
     <string name="editar_livros">Editar Livros</string>
+    <string name="err_aceitar_termos">Por favor, aceite os termos para continuar.</string>
+    <string name="btn_ver_detalhes_livro">Ver Detalhes do Livro</string>
 </resources>

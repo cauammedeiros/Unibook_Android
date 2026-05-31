@@ -2,8 +2,11 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -16,20 +19,55 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var rvUsuarios: RecyclerView
+    private lateinit var edtBusca: EditText
+
+    private val listaUsuariosCompleta = mutableListOf<Usuario>()
+    private val listaIdsCompleta = mutableMapOf<String, String>() // Email to ID mapping
+    private var listaFiltrada = mutableListOf<Usuario>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_procurar_usuarios)
 
-        val btnVoltar = findViewById<ImageView>(R.id.btnVoltar)
+        val btnVoltar = findViewById<View>(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
             finish()
         }
 
+        edtBusca = findViewById(R.id.edtBuscaUsuarios)
         rvUsuarios = findViewById(R.id.rvUsuarios)
         rvUsuarios.layoutManager = LinearLayoutManager(this)
 
+        configurarBusca()
         escutarUsuariosNoFirestore()
+    }
+
+    private fun configurarBusca() {
+        edtBusca.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filtrarUsuarios(s.toString())
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filtrarUsuarios(texto: String) {
+        val busca = texto.lowercase().trim()
+        listaFiltrada = if (busca.isEmpty()) {
+            listaUsuariosCompleta.toMutableList()
+        } else {
+            listaUsuariosCompleta.filter {
+                it.nome.lowercase().contains(busca) || it.email.lowercase().contains(busca)
+            }.toMutableList()
+        }
+
+        rvUsuarios.adapter = UsuarioAdapter(listaFiltrada) { usuarioClicado ->
+            val idDoDocumento = listaIdsCompleta[usuarioClicado.email]
+            if (idDoDocumento != null) {
+                mostrarDialogAcaoUsuario(usuarioClicado, idDoDocumento)
+            }
+        }
     }
 
     private fun escutarUsuariosNoFirestore() {
@@ -41,55 +79,46 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
                 }
 
                 if (snapshot != null) {
-                    val listaUsuarios = mutableListOf<Usuario>()
-                    val listaIds = mutableListOf<String>()
+                    listaUsuariosCompleta.clear()
+                    listaIdsCompleta.clear()
 
                     for (document in snapshot.documents) {
                         val usuario = document.toObject(Usuario::class.java)
                         if (usuario != null) {
-                            listaUsuarios.add(usuario)
-                            listaIds.add(document.id) // Guarda o e-mail/id do documento separadamente
+                            listaUsuariosCompleta.add(usuario)
+                            listaIdsCompleta[usuario.email] = document.id
                         }
                     }
-
-                    // Passamos a posição do clique para sabermos qual ID deletar ou visualizar
-                    rvUsuarios.adapter = UsuarioAdapter(listaUsuarios) { usuarioClicado ->
-                        val index = listaUsuarios.indexOf(usuarioClicado)
-                        val idDoDocumento = listaIds[index]
-                        mostrarDialogAcaoUsuario(usuarioClicado, idDoDocumento)
-                    }
+                    filtrarUsuarios(edtBusca.text.toString())
                 }
             }
     }
 
     private fun mostrarDialogAcaoUsuario(usuario: Usuario, idDoDocumento: String) {
-        val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_acao_usuario, null)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_acao_usuario, null)
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-        builder.setView(dialogView)
-
-        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val btnVisualizar = dialogView.findViewById<LinearLayout>(R.id.layoutVisualizarPerfil)
         val btnExcluir = dialogView.findViewById<LinearLayout>(R.id.layoutExcluirPerfil)
-        val btnVoltar = dialogView.findViewById<Button>(R.id.layoutVoltarAcao)
+        val btnVoltarDialog = dialogView.findViewById<Button>(R.id.layoutVoltarAcao)
 
-        // Visualizar Perfil
         btnVisualizar.setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(this, VisualizarPerfilActivity::class.java)
-            intent.putExtra("USUARIO_ID", idDoDocumento)
-            intent.putExtra("USUARIO_NOME", usuario.nome)
-            intent.putExtra("USUARIO_EMAIL", usuario.email)
+            val intent = Intent(this, VisualizarPerfilActivity::class.java).apply {
+                putExtra("USUARIO_ID", idDoDocumento)
+                putExtra("USUARIO_NOME", usuario.nome)
+                putExtra("USUARIO_EMAIL", usuario.email)
+            }
             startActivity(intent)
         }
 
-        // Excluir Perfil
         btnExcluir.setOnClickListener {
             dialog.dismiss()
-            db.collection("Usuários").document(idDoDocumento)
-                .delete()
+            db.collection("Usuários").document(idDoDocumento).delete()
                 .addOnSuccessListener {
                     Toast.makeText(this, "Usuário removido com sucesso!", Toast.LENGTH_SHORT).show()
                 }
@@ -98,7 +127,7 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
                 }
         }
 
-        btnVoltar.setOnClickListener {
+        btnVoltarDialog.setOnClickListener {
             dialog.dismiss()
         }
 

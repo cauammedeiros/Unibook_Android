@@ -34,17 +34,38 @@ class EditarPerfilActivity : BaseActivity() {
             finish()
         }
         btnSalvar.setOnClickListener {
-            val novoNome = edtNome.text.toString()
-            val novoEmail = edtEmail.text.toString()
+            val novoNome = edtNome.text.toString().trim()
+            val novoEmail = edtEmail.text.toString().trim()
 
-            if (novoNome.isNotEmpty() && novoEmail.isNotEmpty()) {
+            if (validarCampos(novoNome, novoEmail, edtNome, edtEmail)) {
                 salvarAlteracoesNoFirebase(novoNome, novoEmail)
-            } else {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
             }
         }
         carregarDadosAtuais(edtNome, edtEmail)
         configurarBotaoTema()
+    }
+
+    private fun validarCampos(nome: String, email: String, edtNome: EditText, edtEmail: EditText): Boolean {
+        var isValid = true
+
+        if (nome.isEmpty()) {
+            edtNome.error = getString(R.string.err_campos_vazios)
+            isValid = false
+        }
+
+        if (email.isEmpty()) {
+            edtEmail.error = getString(R.string.err_campos_vazios)
+            isValid = false
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.error = getString(R.string.err_email_invalido)
+            isValid = false
+        }
+
+        if (!isValid) {
+            Toast.makeText(this, R.string.err_campos_vazios, Toast.LENGTH_SHORT).show()
+        }
+
+        return isValid
     }
 
     private fun configurarBotaoTema() {

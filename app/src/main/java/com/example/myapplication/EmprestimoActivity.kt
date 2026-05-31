@@ -85,6 +85,7 @@ class EmprestimoActivity : BaseActivity() {
                 salvarHistorico()
             } else {
                 txtErro.visibility = View.VISIBLE
+                Toast.makeText(this, getString(R.string.err_aceitar_termos), Toast.LENGTH_SHORT).show()
             }
         }
     }

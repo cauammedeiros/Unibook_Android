@@ -65,6 +65,7 @@ class ConfiguracoesActivity : BaseActivity() {
         val btnSalvar = findViewById<Button>(R.id.btnSalvar)
         btnSalvar.setOnClickListener {
             prefs.fontSize = currentFontSize
+            android.widget.Toast.makeText(this, "Configurações salvas com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
             // Para aplicar a fonte globalmente imediatamente, recarregamos a activity
             recreate()
         }

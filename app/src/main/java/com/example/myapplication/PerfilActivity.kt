@@ -11,8 +11,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class PerfilActivity : BaseActivity() {
 
@@ -73,6 +78,7 @@ class PerfilActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         carregarDadosUsuario()
+        carregarEmprestimoAtivo()
     }
 
     private fun carregarDadosUsuario() {
@@ -88,6 +94,65 @@ class PerfilActivity : BaseActivity() {
                     }
                 }
         }
+    }
+
+    private fun carregarEmprestimoAtivo() {
+        val cardEmprestimo = findViewById<View>(R.id.cardEmprestimo)
+        val txtNomeLivro = findViewById<TextView>(R.id.txtNomeLivroCard)
+        val txtDevolucao = findViewById<TextView>(R.id.txtDevolucaoCard)
+        val txtTempo = findViewById<TextView>(R.id.txtTempoCard)
+
+        if (userId.isEmpty()) return
+
+        db.collection("Historico")
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("tipoAcao", "Empréstimo")
+            .orderBy("data", Query.Direction.DESCENDING)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val doc = documents.documents[0]
+                    val titulo = doc.getString("titulo") ?: getString(R.string.livro_desconhecido)
+                    val dataEmprestimo = doc.getTimestamp("data")?.toDate()
+
+                    if (dataEmprestimo != null) {
+                        // Calcula data de devolução (14 dias depois)
+                        val cal = Calendar.getInstance()
+                        cal.time = dataEmprestimo
+                        cal.add(Calendar.DAY_OF_YEAR, 14)
+                        val dataDevolucao = cal.time
+
+                        // Formatação para exibição
+                        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        val dataFormatada = sdf.format(dataDevolucao)
+
+                        // Cálculo de dias restantes
+                        val hoje = Date()
+                        val diff = dataDevolucao.time - hoje.time
+                        val diasRestantes = TimeUnit.MILLISECONDS.toDays(diff)
+
+                        // Atualiza UI usando strings.xml com placeholders
+                        txtNomeLivro.text = titulo
+                        txtDevolucao.text = getString(R.string.label_devolver_em, dataFormatada)
+                        
+                        if (diasRestantes >= 0) {
+                            txtTempo.text = getString(R.string.label_tempo_restante, diasRestantes.toInt())
+                            txtTempo.setTextColor(if (diasRestantes <= 2) Color.RED else Color.parseColor("#757575"))
+                        } else {
+                            txtTempo.text = getString(R.string.status_atrasado)
+                            txtTempo.setTextColor(Color.RED)
+                        }
+                        
+                        cardEmprestimo.visibility = View.VISIBLE
+                    }
+                } else {
+                    cardEmprestimo.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener {
+                cardEmprestimo.visibility = View.GONE
+            }
     }
 
     private fun configurarBotoes() {

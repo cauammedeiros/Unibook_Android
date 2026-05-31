@@ -15,9 +15,9 @@
         android:padding="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Termos de Serviço"
+            android:text="Alterar Capa do Livro"
             android:textColor="@color/texto_principal"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -25,52 +25,38 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Para realizar o empréstimo, você deve aceitar os termos de uso da biblioteca."
+            android:layout_marginTop="8dp"
+            android:text="Cole abaixo o link da nova imagem:"
             android:textColor="@color/texto_secundario"
             android:textSize="14sp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/edtUrlDialog"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/checkAceitar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:button="@null"
-                android:background="@drawable/selector_checkbox_termos" />
-
-            <TextView
-                android:id="@+id/btnAceitarTermosDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="@string/btn_aceitar_termos_v2"
-                android:textColor="@color/texto_principal"
-                android:textSize="14sp"
-                android:clickable="true"
-                android:focusable="true"/>
-        </LinearLayout>
+            android:background="@drawable/borda_edittext"
+            android:hint="https://link-da-imagem.com/foto.jpg"
+            android:inputType="textUri"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/texto_principal"
+            android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btnConfirmarBaixar"
+            android:id="@+id/btnConfirmarUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/btn_azul"
             app:backgroundTint="@null"
-            android:text="Baixar"
+            android:text="@string/btn_confirmar"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnVoltar"
+            android:id="@+id/btnCancelarUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

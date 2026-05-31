@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import com.example.myapplication.BuildConfig
 
@@ -27,6 +28,7 @@ class ChatbotActivity : AppCompatActivity() {
     private lateinit var adapter: MessageAdapter
     private val messages = mutableListOf<Message>()
     private lateinit var recyclerViewChat: RecyclerView
+    private val db = FirebaseFirestore.getInstance()
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-3.5-flash",
@@ -97,25 +99,64 @@ class ChatbotActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                // Verificação básica de segurança para a API Key
                 if (BuildConfig.GEMINI_API_KEY.isEmpty() || BuildConfig.GEMINI_API_KEY == "UNSPECIFIED") {
-                    adicionarMensagem(Message("Erro: Chave de API não configurada no projeto.", false))
+                    adicionarMensagem(Message("Erro: Chave de API não configurada.", false))
                     return@launch
                 }
 
                 val response = generativeModel.generateContent(texto)
                 val respostaBot = response.text ?: "Desculpe, não consegui processar sua pergunta."
-                adicionarMensagem(Message(respostaBot, false))
+                
+                // Tenta extrair o nome do livro para vincular o botão "Ver Detalhes"
+                vincularLivroEResponder(respostaBot)
+
             } catch (e: Exception) {
                 Log.e("ChatbotError", "Falha na chamada do Gemini: ", e)
-                
-                val erroMsg = when {
-                    e.message?.contains("404") == true -> "Erro: Modelo IA não encontrado (Verifique o nome)."
-                    e.message?.contains("403") == true -> "Erro: Chave de API inválida ou sem permissão."
-                    else -> "Erro técnico: ${e.localizedMessage ?: "Falha na comunicação."}"
-                }
+                val erroMsg = "Desculpe, tive um problema técnico. Tente novamente."
                 adicionarMensagem(Message(erroMsg, false))
             }
+        }
+    }
+
+    private fun vincularLivroEResponder(respostaBot: String) {
+        // Regex para capturar o que vem depois de "Nome: "
+        val regex = Regex("Nome:\\s*([^\\n\\r]*)", RegexOption.IGNORE_CASE)
+        val match = regex.find(respostaBot)
+        val nomeLivro = match?.groupValues?.get(1)?.trim()
+
+        if (nomeLivro != null && nomeLivro.length > 2) {
+            // Busca o livro no Firestore para pegar o ID e dados completos
+            db.collection("Livros")
+                .whereGreaterThanOrEqualTo("Titulo", nomeLivro)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        val doc = documents.documents[0]
+                        val livro = doc.toObject(Livro::class.java)
+                        // Verifica se o título é realmente parecido (simulando um fuzzy match básico)
+                        if (livro != null && livro.titulo.contains(nomeLivro, ignoreCase = true)) {
+                            val msg = Message(
+                                text = respostaBot,
+                                isUser = false,
+                                livroId = doc.id,
+                                livroTitulo = livro.titulo,
+                                livroAutor = livro.autor,
+                                livroGenero = livro.genero,
+                                livroSinopse = livro.sinopse,
+                                livroCapaUrl = livro.capaUrl
+                            )
+                            adicionarMensagem(msg)
+                            return@addOnSuccessListener
+                        }
+                    }
+                    adicionarMensagem(Message(respostaBot, false))
+                }
+                .addOnFailureListener {
+                    adicionarMensagem(Message(respostaBot, false))
+                }
+        } else {
+            adicionarMensagem(Message(respostaBot, false))
         }
     }
 

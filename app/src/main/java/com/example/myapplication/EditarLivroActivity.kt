@@ -42,7 +42,6 @@ class EditarLivroActivity : AppCompatActivity() {
         edtSinopse = findViewById(R.id.edtSinopse)
         btnRemover = findViewById(R.id.btnRemover)
         btnSalvar = findViewById(R.id.btnEditar)
-        btnSalvar.text = "Salvar Alterações"
         txtErro = findViewById(R.id.txtErro)
 
         findViewById<View>(R.id.btnVoltar).setOnClickListener { finish() }
@@ -153,36 +152,26 @@ class EditarLivroActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogConfirmacao() {
-        // 1. Infla o seu layout XML customizado
-        val inflater = layoutInflater
-        // Substitua "dialog_confirmar_exclusao" pelo nome exato do seu arquivo XML
-        val dialogView = inflater.inflate(R.layout.dialog_confirmar_exclusao, null)
-
-        // 2. Cria o AlertDialog passando o seu layout
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmar_exclusao, null)
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setView(dialogView)
 
         val dialog = builder.create()
+        // Define o fundo como transparente para que os cantos arredondados do CardView apareçam
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        // 3. Vincula os botões de SIM e NÃO que estão DENTRO do seu XML do dialog
-        // Substitua os IDs abaixo pelos IDs reais que você colocou no seu XML
         val btnSim = dialogView.findViewById<Button>(R.id.layoutExcluir)
         val btnNao = dialogView.findViewById<Button>(R.id.layoutVoltar)
 
-        // Se o seu XML tiver textos como Título ou Mensagem e você quiser mudar via código:
-        // dialogView.findViewById<TextView>(R.id.txtDialogTitulo).text = "Excluir Livro"
-
-        // 4. Configura as ações dos cliques nos botões do seu XML
         btnSim.setOnClickListener {
-            removerLivroDoFirestore() // Executa a exclusão que criamos antes
-            dialog.dismiss()          // Fecha o dialog
+            removerLivroDoFirestore()
+            dialog.dismiss()
         }
 
         btnNao.setOnClickListener {
-            dialog.dismiss()          // Apenas fecha o dialog se desistir
+            dialog.dismiss()
         }
 
-        // 5. Mostra o seu dialog customizado na tela
         dialog.show()
     }
 

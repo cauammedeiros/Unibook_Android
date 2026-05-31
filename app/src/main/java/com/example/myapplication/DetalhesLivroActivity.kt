@@ -141,6 +141,11 @@ class DetalhesLivroActivity : AppCompatActivity() {
         val btnConfirmar = dialog.findViewById<Button>(R.id.btnConfirmarBaixar)
         val btnVoltarDialog = dialog.findViewById<Button>(R.id.btnVoltar)
         val checkAceitar = dialog.findViewById<CheckBox>(R.id.checkAceitar)
+        val txtAceitar = dialog.findViewById<TextView>(R.id.btnAceitarTermosDialog)
+
+        txtAceitar.setOnClickListener {
+            checkAceitar.isChecked = !checkAceitar.isChecked
+        }
 
         btnConfirmar.setOnClickListener {
             if (checkAceitar.isChecked) {
@@ -148,7 +153,7 @@ class DetalhesLivroActivity : AppCompatActivity() {
                 Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
-                Toast.makeText(this, "Você precisa aceitar os termos para baixar.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.err_aceitar_termos), Toast.LENGTH_SHORT).show()
             }
         }
 
