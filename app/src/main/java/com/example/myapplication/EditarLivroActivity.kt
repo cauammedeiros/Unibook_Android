@@ -42,7 +42,6 @@ class EditarLivroActivity : AppCompatActivity() {
         edtSinopse = findViewById(R.id.edtSinopse)
         btnRemover = findViewById(R.id.btnRemover)
         btnSalvar = findViewById(R.id.btnEditar)
-        btnSalvar.text = "Salvar Alterações"
         txtErro = findViewById(R.id.txtErro)
 
         findViewById<View>(R.id.btnVoltar).setOnClickListener { finish() }
