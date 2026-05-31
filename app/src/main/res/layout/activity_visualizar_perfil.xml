@@ -138,50 +138,19 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="20dp" />
 
-                    <!-- Linha: Nome do Livro -->
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtSemEmprestimos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="12dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_nome"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="14sp" />
-                        <TextView
-                            android:id="@+id/txtNomeLivro"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/placeholder_livro_nome"
-                            android:textColor="@color/texto_principal"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                        android:text="@string/msg_sem_emprestimos"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="14sp" />
 
-                    <!-- Linha: Status -->
                     <LinearLayout
+                        android:id="@+id/layoutLivrosEmprestimo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_status_v2"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="14sp" />
-                        <TextView
-                            android:id="@+id/txtStatusLivro"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/placeholder_status_emprestimo"
-                            android:textColor="@color/texto_principal"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                        android:orientation="vertical" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -198,7 +167,8 @@
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
 class ConfiguracoesActivity : BaseActivity() {
     private lateinit var prefs: PreferencesManager
@@ -77,14 +76,19 @@ class ConfiguracoesActivity : BaseActivity() {
     }
 
     private fun updateThemeButtonsUI(btnPadrao: Button, btnContraste: Button) {
+        btnPadrao.text = "Padrão"
+        btnContraste.text = "Contraste"
+
         if (prefs.isDarkMode) {
-            btnContraste.text = "Escuro"
-            btnPadrao.text = "Padrão"
-            btnPadrao.setTextColor(android.graphics.Color.BLACK)
-        } else {
-            btnPadrao.text = "Claro"
-            btnContraste.text = "Contraste"
+            btnPadrao.setBackgroundResource(R.drawable.btn_branco_borda)
             btnPadrao.setTextColor(resources.getColor(R.color.texto_principal, theme))
+            btnContraste.setBackgroundResource(R.drawable.btn_azul)
+            btnContraste.setTextColor(resources.getColor(R.color.white, theme))
+        } else {
+            btnPadrao.setBackgroundResource(R.drawable.btn_azul)
+            btnPadrao.setTextColor(resources.getColor(R.color.white, theme))
+            btnContraste.setBackgroundResource(R.drawable.btn_branco_borda)
+            btnContraste.setTextColor(resources.getColor(R.color.texto_principal, theme))
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import java.util.Locale
+
 /**
  * Modelo de dados para representar uma multa de usuário
  */
@@ -16,7 +18,7 @@ data class Multa(
      * Exemplo: "R$ 15,00"
      */
     fun getValorFormatado(): String {
-        return "R$ %.2f".format(valorMulta)
+        return String.format(Locale("pt", "BR"), "R$ %.2f", valorMulta)
     }
 
     /**

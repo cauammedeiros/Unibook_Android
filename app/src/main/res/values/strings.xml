@@ -152,6 +152,7 @@
     <string name="placeholder_nome_usuario">Nome do Usuário</string>
     <string name="placeholder_livro_nome">O Senhor dos Anéis</string>
     <string name="placeholder_status_emprestimo">Em andamento</string>
+    <string name="msg_sem_emprestimos">Nenhum livro em empréstimo encontrado.</string>
     <string name="hint_digite_nome">Digite seu nome</string>
     <string name="hint_digite_email">Digite seu e-mail</string>
     <string name="title_redefinir_senha">Redefinir Senha</string>
