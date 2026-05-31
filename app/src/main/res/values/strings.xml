@@ -95,6 +95,7 @@
     <string name="err_email_cadastrado">O email inserido já está cadastrado</string>
     <string name="err_servidor">Erro de conexão com o servidor. Verifique sua internet.</string>
     <string name="err_campos_vazios">Preencha todos os campos</string>
+    <string name="err_email_invalido">Por favor, insira um e-mail válido</string>
     <string name="err_admin_senha">Senha administrativa incorreta.</string>
     <string name="err_login_incorreto">Email ou senha incorretos</string>
     <string name="err_senha_incorreta">Senha incorreta.</string>
