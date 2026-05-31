@@ -191,7 +191,6 @@ class HomeActivity : BaseActivity() {
 
         viewModel.error.observe(this, Observer { errorMsg ->
             if (errorMsg != null) {
-                Toast.makeText(this, "Erro ao carregar livros: $errorMsg", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -276,19 +275,19 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun configurarCliquesVerTudo() {
-        findViewById<TextView>(R.id.tvVerTudoAclamados)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_aclamados)) }
-        findViewById<TextView>(R.id.tvVerTudoEducacao)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_educacao)) }
-        findViewById<TextView>(R.id.tvVerTudo)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_minha_lista)) }
-        findViewById<TextView>(R.id.tvVerTudoComedias)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_comedias)) }
-        findViewById<TextView>(R.id.tvVerTudoSuspense)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_suspense)) }
-        findViewById<TextView>(R.id.tvVerTudoFiccao)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_ficcao)) }
-        findViewById<TextView>(R.id.tvVerTudoTerror)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_terror)) }
-        findViewById<TextView>(R.id.tvVerTudoRomance)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_romance)) }
-        findViewById<TextView>(R.id.tvVerTudoAventura)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_aventura)) }
-        findViewById<TextView>(R.id.tvVerTudoDocumentarios)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_documentarios)) }
-        findViewById<TextView>(R.id.tvVerTudoAnimes)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_animes)) }
-        findViewById<TextView>(R.id.tvVerTudoClassicos)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_classicos)) }
-        findViewById<TextView>(R.id.tvVerTudoFantasia)?.setOnClickListener { abrirGenero(getString(R.string.home_cat_fantasia)) }
+        findViewById<TextView>(R.id.tvVerTudoAclamados)?.setOnClickListener { abrirGenero("Sugeridos") }
+        findViewById<TextView>(R.id.tvVerTudoEducacao)?.setOnClickListener { abrirGenero("Educação") }
+        findViewById<TextView>(R.id.tvVerTudo)?.setOnClickListener { abrirGenero("Minha Lista") }
+        findViewById<TextView>(R.id.tvVerTudoComedias)?.setOnClickListener { abrirGenero("Comédia") }
+        findViewById<TextView>(R.id.tvVerTudoSuspense)?.setOnClickListener { abrirGenero("Suspense") }
+        findViewById<TextView>(R.id.tvVerTudoFiccao)?.setOnClickListener { abrirGenero("Ficção Científica") }
+        findViewById<TextView>(R.id.tvVerTudoTerror)?.setOnClickListener { abrirGenero("Terror") }
+        findViewById<TextView>(R.id.tvVerTudoRomance)?.setOnClickListener { abrirGenero("Romance") }
+        findViewById<TextView>(R.id.tvVerTudoAventura)?.setOnClickListener { abrirGenero("Aventura") }
+        findViewById<TextView>(R.id.tvVerTudoDocumentarios)?.setOnClickListener { abrirGenero("Documentário") }
+        findViewById<TextView>(R.id.tvVerTudoAnimes)?.setOnClickListener { abrirGenero("Anime") }
+        findViewById<TextView>(R.id.tvVerTudoClassicos)?.setOnClickListener { abrirGenero("Clássico") }
+        findViewById<TextView>(R.id.tvVerTudoFantasia)?.setOnClickListener { abrirGenero("Fantasia") }
     }
 
     private fun configurarBotaoTema() {

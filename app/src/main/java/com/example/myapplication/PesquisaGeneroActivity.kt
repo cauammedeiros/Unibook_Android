@@ -25,12 +25,16 @@ class PesquisaGeneroActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pesquisa_genero)
 
-        // Recebe e padroniza o gênero vindo da outra tela (ex: "terror" -> "Terror")
-        val generoBruto = intent.getStringExtra("GENERO_NOME") ?: ""
-        val generoSelecionado = generoBruto.trim().lowercase().replaceFirstChar { it.uppercase() }
+        // Recebe o gênero vindo da outra tela
+        val generoSelecionado = intent.getStringExtra("GENERO_NOME") ?: ""
 
-        // Atualiza o título da tela com o gênero selecionado
-        findViewById<TextView>(R.id.txtTitulo).text = "Gênero: $generoSelecionado"
+        // Atualiza o título da tela
+        val tituloExibicao = when(generoSelecionado) {
+            "Sugeridos" -> "Livros Sugeridos"
+            "Minha Lista" -> "Minha Lista"
+            else -> "Gênero: $generoSelecionado"
+        }
+        findViewById<TextView>(R.id.txtTitulo).text = tituloExibicao
 
         rvLivrosGenero = findViewById(R.id.rvLivrosGenero)
         btnVoltar = findViewById(R.id.btnVoltar)
@@ -41,16 +45,57 @@ class PesquisaGeneroActivity : BaseActivity() {
         rvLivrosGenero.adapter = adapter
         rvLivrosGenero.layoutManager = GridLayoutManager(this, 3)
 
-        // Se houver um gênero vindo da busca, carrega do banco
+        // Carrega os livros baseados na categoria/gênero
         if (generoSelecionado.isNotEmpty()) {
-            carregarLivrosPorGenero(generoSelecionado)
+            when(generoSelecionado) {
+                "Sugeridos" -> carregarTodosLivros()
+                "Minha Lista" -> carregarFavoritos()
+                else -> carregarLivrosPorGenero(generoSelecionado)
+            }
         }
 
         configurarNavegacao()
         configurarBotaoTema()
     }
 
-    // Função movida para fora do onCreate e corrigida
+    private fun carregarTodosLivros() {
+        db.collection("Livros")
+            .get()
+            .addOnSuccessListener { documents ->
+                listaLivros.clear()
+                for (document in documents) {
+                    val livro = document.toObject(Livro::class.java)
+                    livro.id = document.id
+                    listaLivros.add(livro)
+                }
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erro: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun carregarFavoritos() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val userId = sharedPref.getString("USER_ID", null) ?: return
+
+        db.collection("Favoritos")
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                listaLivros.clear()
+                for (document in documents) {
+                    val livro = document.toObject(Livro::class.java)
+                    livro.id = document.getString("livroId") ?: document.id
+                    listaLivros.add(livro)
+                }
+                adapter.notifyDataSetChanged()
+                if (listaLivros.isEmpty()) {
+                    Toast.makeText(this, "Sua lista está vazia", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
     private fun carregarLivrosPorGenero(genero: String) {
         db.collection("Livros")
             .whereEqualTo("Genero", genero)

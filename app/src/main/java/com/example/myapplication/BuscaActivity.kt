@@ -134,26 +134,24 @@ class BuscaActivity : BaseActivity() {
 
         // Função auxiliar para abrir gênero
         fun abrirGenero(nome: String) {
-            // Padroniza o nome do gênero antes de enviar (ex: "terror" -> "Terror")
-            val nomePadronizado = nome.trim().lowercase().replaceFirstChar { it.uppercase() }
             val intent = Intent(this, PesquisaGeneroActivity::class.java)
-            intent.putExtra("GENERO_NOME", nomePadronizado)
+            intent.putExtra("GENERO_NOME", nome)
             startActivity(intent)
         }
 
         // Cliques nas Coleções (Conforme seu pedido)
         findViewById<android.view.View>(R.id.itemAclamados).setOnClickListener { 
-            abrirGenero(getString(R.string.home_cat_aclamados)) 
+            abrirGenero("Sugeridos") 
         }
         findViewById<android.view.View>(R.id.itemDocumentarios).setOnClickListener { 
-            abrirGenero(getString(R.string.home_cat_documentarios)) 
+            abrirGenero("Documentário") 
         }
         findViewById<android.view.View>(R.id.itemEducacao).setOnClickListener { 
-            abrirGenero(getString(R.string.home_cat_educacao)) 
+            abrirGenero("Educação")
         }
 
-        // Cliques nos Gêneros da Grade (Exemplos)
-        genRomance.setOnClickListener { abrirGenero(getString(R.string.home_cat_romance)) }
+        // Cliques nos Gêneros da Grade
+        genRomance.setOnClickListener { abrirGenero("Romance") }
         genTerror.setOnClickListener { abrirGenero("Terror") }
         genInfantis.setOnClickListener { abrirGenero("Infantis") }
         genSuspense.setOnClickListener { abrirGenero("Suspense") }

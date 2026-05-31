@@ -109,7 +109,7 @@
 
     <!-- Home Categorias -->
     <string name="home_saudacao">Para %1$s</string>
-    <string name="home_cat_aclamados">Livros aclamados pela crítica</string>
+    <string name="home_cat_aclamados">Livros sugeridos</string>
     <string name="home_cat_educacao">Educação e Tecnologia</string>
     <string name="home_cat_minha_lista">Minha lista</string>
     <string name="home_ver_tudo">Ver tudo ></string>
