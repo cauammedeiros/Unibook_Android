@@ -24,6 +24,7 @@ class CriarLivroActivity : AppCompatActivity() {
     private lateinit var edtSinopse: EditText
     private lateinit var btnCriar: Button
     private lateinit var txtErro: TextView
+    private lateinit var cardErro: androidx.cardview.widget.CardView
 
     private var urlCapaSelecionada: String = ""
 
@@ -40,6 +41,7 @@ class CriarLivroActivity : AppCompatActivity() {
         edtSinopse = findViewById(R.id.edtSinopse)
         btnCriar = findViewById(R.id.btnCriar)
         txtErro = findViewById(R.id.txtErro)
+        cardErro = findViewById(R.id.cardErroCriarLivro)
 
         // Configuração do botão voltar
         findViewById<View>(R.id.btnVoltar).setOnClickListener {
@@ -58,11 +60,12 @@ class CriarLivroActivity : AppCompatActivity() {
             val genero = edtGenero.text.toString().trim()
             val sinopse = edtSinopse.text.toString().trim()
 
-            if (nome.isEmpty() || autor.isEmpty() || urlCapaSelecionada.isEmpty()) {
-                txtErro.text = "Preencha o nome, autor e adicione uma capa."
-                txtErro.visibility = View.VISIBLE
+            // Validação Rigorosa: Verifica se TODOS os campos foram preenchidos
+            if (nome.isEmpty() || autor.isEmpty() || genero.isEmpty() || sinopse.isEmpty() || urlCapaSelecionada.isEmpty()) {
+                txtErro.text = "Por favor, preencha todas as informações e adicione uma capa."
+                cardErro.visibility = View.VISIBLE
             } else {
-                txtErro.visibility = View.GONE
+                cardErro.visibility = View.GONE
                 salvarLivroNoFirebase(nome, autor, genero, sinopse, urlCapaSelecionada)
             }
         }
