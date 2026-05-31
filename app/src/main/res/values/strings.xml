@@ -30,7 +30,7 @@
     <string name="btn_excluir_perfil">Excluir Perfil</string>
     <string name="btn_criar_pequeno">Criar</string>
     <string name="btn_procurar_pequeno">Procurar</string>
-    <string name="title_escolha_acao">Escolha uma ação</string>
+    <string name="title_escolha_prosseguir">Escolha como deseja prosseguir:</string>
     <string name="msg_pergunta_livro">O que deseja fazer com este livro?</string>
     <string name="btn_emprestimo">Empréstimo</string>
     <string name="title_gerenciar_livros">Gerenciar Livros</string>
@@ -128,7 +128,7 @@
     <string name="title_detalhes">Detalhes</string>
     <string name="btn_baixar">Baixar</string>
     <string name="btn_favoritar">Favoritar</string>
-    <string name="btn_emprestimo_v2">Empréstimo</string>
+    <string name="btn_emprestimo_v2">Alugar/Empréstimo</string>
     <string name="label_genero_v2">Gênero: %1$s</string>
     <string name="label_autor_v2">Autor: %1$s</string>
     <string name="desc_capa_livro">Capa do Livro</string>

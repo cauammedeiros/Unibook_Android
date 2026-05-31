@@ -129,7 +129,11 @@
                         app:backgroundTint="@null"
                         android:text="@string/btn_emprestimo_v2"
                         android:textColor="@color/texto_principal"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:drawableStart="@drawable/ic_shopping_cart"
+                        android:drawablePadding="8dp"
+                        android:paddingStart="16dp"
+                        app:drawableTint="@color/cor_icones" />
                 </LinearLayout>
             </LinearLayout>
 
