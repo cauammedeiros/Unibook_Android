@@ -82,18 +82,9 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_profile_1"
                         android:contentDescription="@string/nav_perfil" />
+
                 </androidx.cardview.widget.CardView>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnAlterarFoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    app:fabSize="mini"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@color/white"
-                    app:backgroundTint="@color/cor_primaria"
-                    android:contentDescription="@string/btn_editar_perfil" />
             </FrameLayout>
 
             <!-- Campo Nome -->
