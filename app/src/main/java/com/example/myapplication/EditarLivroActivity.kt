@@ -52,7 +52,6 @@ class EditarLivroActivity : AppCompatActivity() {
         if (livroId != null) {
             carregarDadosDoLivro(livroId!!)
         } else {
-            Toast.makeText(this, "Erro: ID do livro não encontrado.", Toast.LENGTH_SHORT).show()
             finish()
         }
 
@@ -94,7 +93,6 @@ class EditarLivroActivity : AppCompatActivity() {
                         carregarImagemCapa(urlCapa)
                     }
                 } else {
-                    Toast.makeText(this, "Livro não encontrado no banco.", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { exception ->
@@ -133,7 +131,6 @@ class EditarLivroActivity : AppCompatActivity() {
             db.collection("Livros").document(id)
                 .update(dadosAtualizados as Map<String, Any>)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Alterações salvas com sucesso!", Toast.LENGTH_SHORT).show()
                     finish() // Fecha a tela de edição e volta
                 }
                 .addOnFailureListener { exception ->
@@ -182,7 +179,6 @@ class EditarLivroActivity : AppCompatActivity() {
             db.collection("Livros").document(id)
                 .delete()
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Livro removido com sucesso!", Toast.LENGTH_SHORT).show()
                     finish() // Fecha a tela de edição e volta para a listagem
                 }
                 .addOnFailureListener { exception ->
@@ -190,7 +186,6 @@ class EditarLivroActivity : AppCompatActivity() {
                     txtErro.visibility = View.VISIBLE
                 }
         } ?: run {
-            Toast.makeText(this, "Erro: ID do livro inválido.", Toast.LENGTH_SHORT).show()
         }
     }
 }

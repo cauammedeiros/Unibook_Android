@@ -71,14 +71,9 @@ class BuscaFiltradaActivity : BaseActivity() {
                 }
                 adapter.notifyDataSetChanged()
                 progressLoading.visibility = View.GONE
-                
-                if (listaResultados.isEmpty()) {
-                    Toast.makeText(this, "Nenhum resultado encontrado para \"$termo\"", Toast.LENGTH_SHORT).show()
-                }
             }
             .addOnFailureListener { e ->
                 progressLoading.visibility = View.GONE
-                Toast.makeText(this, "Erro na busca: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 

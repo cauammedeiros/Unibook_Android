@@ -150,10 +150,8 @@ class DetalhesLivroActivity : AppCompatActivity() {
         btnConfirmar.setOnClickListener {
             if (checkAceitar.isChecked) {
                 salvarHistorico("Download")
-                Toast.makeText(this, "Download iniciado...", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
-                Toast.makeText(this, getString(R.string.err_aceitar_termos), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -185,7 +183,6 @@ class DetalhesLivroActivity : AppCompatActivity() {
         db.collection("Historico")
             .add(historico)
             .addOnSuccessListener {
-                Toast.makeText(this, "Livro adicionado ao histórico!", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -195,7 +192,6 @@ class DetalhesLivroActivity : AppCompatActivity() {
         val livroId = intent.getStringExtra("LIVRO_ID")
 
         if (userId == null || livroId == null) {
-            Toast.makeText(this, "Erro ao identificar usuário ou livro.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -207,7 +203,6 @@ class DetalhesLivroActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     isFavoritado = false
                     atualizarBotaoFavorito()
-                    Toast.makeText(this, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
                 }
         } else {
             val favorito = hashMapOf(
@@ -226,7 +221,6 @@ class DetalhesLivroActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     isFavoritado = true
                     atualizarBotaoFavorito()
-                    Toast.makeText(this, "Adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
                 }
         }
     }

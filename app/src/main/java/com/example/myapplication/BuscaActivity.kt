@@ -65,7 +65,6 @@ class BuscaActivity : BaseActivity() {
                     startActivity(intent)
                 }
             } else {
-                Toast.makeText(this, getString(R.string.err_busca_vazia), Toast.LENGTH_SHORT).show()
             }
         }
 

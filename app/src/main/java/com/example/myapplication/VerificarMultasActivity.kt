@@ -34,7 +34,6 @@ class VerificarMultasActivity : AppCompatActivity() {
 
         // Configurar RecyclerView
         adapter = MultasAdapter(multasFiltradas) { multa ->
-            Toast.makeText(this, "Usuário: ${multa.nomeUsuario}", Toast.LENGTH_SHORT).show()
         }
         rvMultas.adapter = adapter
         rvMultas.layoutManager = LinearLayoutManager(this)

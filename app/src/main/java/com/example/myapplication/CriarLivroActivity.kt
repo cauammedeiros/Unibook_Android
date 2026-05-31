@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
@@ -100,7 +99,6 @@ class CriarLivroActivity : AppCompatActivity() {
                     .into(imgCapa)
                 dialog.dismiss()
             } else {
-                Toast.makeText(this, "Insira uma URL válida", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -126,11 +124,9 @@ class CriarLivroActivity : AppCompatActivity() {
         db.collection("Livros")
             .add(novoLivro)
             .addOnSuccessListener {
-                Toast.makeText(this, "Livro cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao salvar no banco: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 }

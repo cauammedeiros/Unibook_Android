@@ -85,7 +85,6 @@ class EmprestimoActivity : BaseActivity() {
                 salvarHistorico()
             } else {
                 txtErro.visibility = View.VISIBLE
-                Toast.makeText(this, getString(R.string.err_aceitar_termos), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -96,7 +95,6 @@ class EmprestimoActivity : BaseActivity() {
         val livroId = intent.getStringExtra("LIVRO_ID")
 
         if (userId == null || livroId == null) {
-            Toast.makeText(this, "Erro ao processar empréstimo.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -114,11 +112,9 @@ class EmprestimoActivity : BaseActivity() {
         db.collection("Historico")
             .add(historico)
             .addOnSuccessListener {
-                Toast.makeText(this, "Empréstimo realizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Erro ao salvar no histórico", Toast.LENGTH_SHORT).show()
             }
     }
 

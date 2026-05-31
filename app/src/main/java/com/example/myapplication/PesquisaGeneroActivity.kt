@@ -71,7 +71,6 @@ class PesquisaGeneroActivity : BaseActivity() {
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -90,9 +89,6 @@ class PesquisaGeneroActivity : BaseActivity() {
                     listaLivros.add(livro)
                 }
                 adapter.notifyDataSetChanged()
-                if (listaLivros.isEmpty()) {
-                    Toast.makeText(this, "Sua lista está vazia", Toast.LENGTH_SHORT).show()
-                }
             }
     }
 
@@ -108,13 +104,8 @@ class PesquisaGeneroActivity : BaseActivity() {
                     listaLivros.add(livro)
                 }
                 adapter.notifyDataSetChanged()
-                
-                if (listaLivros.isEmpty()) {
-                    Toast.makeText(this, "Nenhum livro encontrado em $genero", Toast.LENGTH_SHORT).show()
-                }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao carregar livros: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 

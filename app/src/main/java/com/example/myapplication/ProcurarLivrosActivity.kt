@@ -37,7 +37,6 @@ class ProcurarLivrosActivity : AppCompatActivity() {
         db.collection("Livros")
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
-                    Toast.makeText(this, "Erro ao carregar livros: ${error.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
 

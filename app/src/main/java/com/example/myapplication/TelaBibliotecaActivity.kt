@@ -55,7 +55,6 @@ class TelaBibliotecaActivity : BaseActivity() {
         val userId = sharedPref.getString("USER_ID", null)
 
         if (userId == null) {
-            Toast.makeText(this, "Faça login para ver seus favoritos", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -77,7 +76,6 @@ class TelaBibliotecaActivity : BaseActivity() {
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao carregar favoritos: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 

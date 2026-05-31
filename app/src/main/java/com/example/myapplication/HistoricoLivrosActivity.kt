@@ -77,7 +77,6 @@ class HistoricoLivrosActivity : AppCompatActivity() {
         val userId = sharedPref.getString("USER_ID", null)
 
         if (userId == null) {
-            Toast.makeText(this, "Usuário não logado", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -87,7 +86,6 @@ class HistoricoLivrosActivity : AppCompatActivity() {
             .orderBy("data", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) {
-                    Toast.makeText(this, "Erro ao carregar histórico", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
 

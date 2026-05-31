@@ -44,9 +44,7 @@ class RedefinirActivity : AppCompatActivity() {
             val repetirSenha = findViewById<EditText>(R.id.txtRepetirSenha).text.toString()
 
             if (novaSenha != repetirSenha) {
-                Toast.makeText(this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show()
             } else if (!isSenhaValida(novaSenha)) {
-                Toast.makeText(this, "A senha não atende aos requisitos!", Toast.LENGTH_SHORT).show()
             } else {
                 fb.collection("Usuários")
                     .whereEqualTo("email", email)
@@ -57,18 +55,15 @@ class RedefinirActivity : AppCompatActivity() {
                             fb.collection("Usuários").document(docId)
                                 .update("senha", novaSenha)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, MainActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
                                     finish()
                                 }
                         } else {
-                            Toast.makeText(this, "Usuário não encontrado para este e-mail.", Toast.LENGTH_SHORT).show()
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(this, "Erro ao conectar com o servidor.", Toast.LENGTH_SHORT).show()
                     }
             }
         }

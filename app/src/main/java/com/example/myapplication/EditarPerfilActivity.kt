@@ -61,9 +61,7 @@ class EditarPerfilActivity : BaseActivity() {
             isValid = false
         }
 
-        if (!isValid) {
-            Toast.makeText(this, R.string.err_campos_vazios, Toast.LENGTH_SHORT).show()
-        }
+
 
         return isValid
     }
@@ -99,7 +97,6 @@ class EditarPerfilActivity : BaseActivity() {
 
     private fun salvarAlteracoesNoFirebase(nome: String, email: String) {
         if(userId.isEmpty()){
-            Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
             return
         }
         val dados = mapOf(
@@ -110,11 +107,9 @@ class EditarPerfilActivity : BaseActivity() {
         db.collection("Usuários").document(userId)
             .update(dados)
             .addOnSuccessListener {
-                Toast.makeText(this, "Perfil atualizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao salvar: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

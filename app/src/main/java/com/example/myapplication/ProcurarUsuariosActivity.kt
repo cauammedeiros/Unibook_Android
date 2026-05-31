@@ -74,7 +74,6 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
         db.collection("Usuários")
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
-                    Toast.makeText(this, "Erro ao carregar: ${error.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
 
@@ -143,10 +142,8 @@ class ProcurarUsuariosActivity : AppCompatActivity() {
             dialog.dismiss()
             db.collection("Usuários").document(idDoDocumento).delete()
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Usuário removido com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Erro ao deletar: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
 
