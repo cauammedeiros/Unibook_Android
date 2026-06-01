@@ -21,10 +21,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : BaseActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
+    private val db = FirebaseFirestore.getInstance()
     
     private lateinit var adapterAclamados: LivroAdapter
     private lateinit var adapterEducacao: LivroAdapter
@@ -67,10 +69,7 @@ class HomeActivity : BaseActivity() {
 
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
         val userId = sharedPref.getString("USER_ID", null)
-        val nomeUsuario = sharedPref.getString("USER_NAME", "Usuário")
-
-        val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
-        txtUsuario.text = getString(R.string.home_saudacao, nomeUsuario)
+        atualizarSaudacaoUsuario()
 
         configurarNavegacao()
         setupRecyclerViews()
@@ -89,12 +88,37 @@ class HomeActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        atualizarSaudacaoUsuario()
         // Atualiza favoritos toda vez que volta para a Home (ex: após favoritar/desfavoritar nos Detalhes)
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
         val userId = sharedPref.getString("USER_ID", null)
         if (userId != null) {
             viewModel.fetchFavorites(userId)
         }
+    }
+
+    private fun atualizarSaudacaoUsuario() {
+        val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+        val txtUsuario = findViewById<TextView>(R.id.txtUsuario)
+        val nomeSalvo = sharedPref.getString("USER_NAME", null)?.takeIf { it.isNotBlank() }
+        val userId = sharedPref.getString("USER_ID", null)
+
+        txtUsuario.text = getString(R.string.home_saudacao, nomeSalvo ?: "Usuário")
+
+        if (userId.isNullOrBlank()) {
+            return
+        }
+
+        db.collection("Usuários").document(userId).get()
+            .addOnSuccessListener { document ->
+                val nomeAtualizado = document.getString("nome")?.takeIf { it.isNotBlank() }
+                    ?: return@addOnSuccessListener
+
+                if (nomeAtualizado != nomeSalvo) {
+                    sharedPref.edit().putString("USER_NAME", nomeAtualizado).apply()
+                    txtUsuario.text = getString(R.string.home_saudacao, nomeAtualizado)
+                }
+            }
     }
 
     private fun setupRecyclerViews() {
