@@ -103,8 +103,7 @@ class HistoricoLivrosActivity : AppCompatActivity() {
                         titulo = "Dom Casmurro (Exemplo Atraso)",
                         autor = "Machado de Assis",
                         tipoAcao = "Empréstimo",
-                        status = "Atrasado",
-                        capaUrl = "https://m.media-amazon.com/images/I/8179u8E6WpL.jpg"
+                        status = "Atrasado"
                     )
                 )
 
