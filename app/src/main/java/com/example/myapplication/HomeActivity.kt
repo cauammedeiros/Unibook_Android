@@ -13,6 +13,7 @@ import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 
 import android.view.View
@@ -121,21 +122,23 @@ class HomeActivity : BaseActivity() {
             }
     }
 
+    private fun Int.dp(): Int = (this * resources.displayMetrics.density).toInt()
+
     private fun setupRecyclerViews() {
         // Inicializa os adapters
-        adapterAclamados = LivroAdapter(listaAclamados)
-        adapterEducacao = LivroAdapter(listaEducacao)
-        adapterMinhaLista = LivroAdapter(listaMinhaLista)
-        adapterComedias = LivroAdapter(listaComedias)
-        adapterSuspense = LivroAdapter(listaSuspense)
-        adapterFiccao = LivroAdapter(listaFiccao)
-        adapterTerror = LivroAdapter(listaTerror)
-        adapterRomance = LivroAdapter(listaRomance)
-        adapterAventura = LivroAdapter(listaAventura)
-        adapterDocumentarios = LivroAdapter(listaDocumentarios)
-        adapterAnimes = LivroAdapter(listaAnimes)
-        adapterClassicos = LivroAdapter(listaClassicos)
-        adapterFantasia = LivroAdapter(listaFantasia)
+        adapterAclamados = LivroAdapter(listaAclamados, itemLayoutRes = R.layout.item_livro_home)
+        adapterEducacao = LivroAdapter(listaEducacao, itemLayoutRes = R.layout.item_livro_home)
+        adapterMinhaLista = LivroAdapter(listaMinhaLista, itemLayoutRes = R.layout.item_livro_home)
+        adapterComedias = LivroAdapter(listaComedias, itemLayoutRes = R.layout.item_livro_home)
+        adapterSuspense = LivroAdapter(listaSuspense, itemLayoutRes = R.layout.item_livro_home)
+        adapterFiccao = LivroAdapter(listaFiccao, itemLayoutRes = R.layout.item_livro_home)
+        adapterTerror = LivroAdapter(listaTerror, itemLayoutRes = R.layout.item_livro_home)
+        adapterRomance = LivroAdapter(listaRomance, itemLayoutRes = R.layout.item_livro_home)
+        adapterAventura = LivroAdapter(listaAventura, itemLayoutRes = R.layout.item_livro_home)
+        adapterDocumentarios = LivroAdapter(listaDocumentarios, itemLayoutRes = R.layout.item_livro_home)
+        adapterAnimes = LivroAdapter(listaAnimes, itemLayoutRes = R.layout.item_livro_home)
+        adapterClassicos = LivroAdapter(listaClassicos, itemLayoutRes = R.layout.item_livro_home)
+        adapterFantasia = LivroAdapter(listaFantasia, itemLayoutRes = R.layout.item_livro_home)
 
         configurarRV(R.id.rvAclamados, adapterAclamados)
         configurarRV(R.id.rvEducacao, adapterEducacao)
@@ -155,13 +158,21 @@ class HomeActivity : BaseActivity() {
     private fun configurarRV(id: Int, adapter: LivroAdapter) {
         val rv = findViewById<RecyclerView>(id) ?: return
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.clipToPadding = false
+        rv.setPadding(16.dp(), 0, 40.dp(), 0)
+        rv.overScrollMode = View.OVER_SCROLL_NEVER
         rv.adapter = adapter
+        if (rv.onFlingListener == null) {
+            LinearSnapHelper().attachToRecyclerView(rv)
+        }
     }
 
     private fun configurarRecyclerViewEstatico(id: Int) {
         val rv = findViewById<RecyclerView>(id) ?: return
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rv.adapter = LivroAdapter(emptyList())
+        rv.clipToPadding = false
+        rv.setPadding(16.dp(), 0, 40.dp(), 0)
+        rv.adapter = LivroAdapter(emptyList(), itemLayoutRes = R.layout.item_livro_home)
     }
 
     private fun observeViewModel() {
