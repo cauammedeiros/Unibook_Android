@@ -65,6 +65,7 @@
         android:layout_above="@id/bottomNavigation">
 
         <LinearLayout
+            android:id="@+id/layoutHomeContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -583,6 +584,12 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_livro" />
+
+            <LinearLayout
+                android:id="@+id/layoutDynamicSections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

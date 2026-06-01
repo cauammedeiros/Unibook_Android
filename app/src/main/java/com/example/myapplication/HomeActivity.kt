@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -28,6 +29,10 @@ class HomeActivity : BaseActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var dynamicSectionsContainer: LinearLayout
+    private val allHomeBooks = mutableListOf<Livro>()
+    private var dynamicSectionCount = 0
+    private var isAppendingDynamicSections = false
     
     private lateinit var adapterAclamados: LivroAdapter
     private lateinit var adapterEducacao: LivroAdapter
@@ -57,6 +62,17 @@ class HomeActivity : BaseActivity() {
     private val listaClassicos = mutableListOf<Livro>()
     private val listaFantasia = mutableListOf<Livro>()
 
+    private val fallbackDynamicTitles = listOf(
+        "Mais para você",
+        "Continue explorando",
+        "Populares no Unibook",
+        "Descobertas para hoje",
+        "Leituras para maratonar",
+        "Escolhas em destaque",
+        "Novidades da biblioteca",
+        "Porque você gosta de ler"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -70,6 +86,7 @@ class HomeActivity : BaseActivity() {
 
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
         val userId = sharedPref.getString("USER_ID", null)
+        dynamicSectionsContainer = findViewById(R.id.layoutDynamicSections)
         atualizarSaudacaoUsuario()
 
         configurarNavegacao()
@@ -123,6 +140,96 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun Int.dp(): Int = (this * resources.displayMetrics.density).toInt()
+
+    private fun adicionarSecoesDinamicas(quantidade: Int = 3) {
+        if (allHomeBooks.isEmpty() || isAppendingDynamicSections) {
+            return
+        }
+
+        isAppendingDynamicSections = true
+
+        repeat(quantidade) {
+            val titulo = proximoTituloDinamico()
+            val livrosDaSecao = livrosParaSecao(titulo)
+
+            if (livrosDaSecao.isNotEmpty()) {
+                dynamicSectionsContainer.addView(criarSecaoDinamica(titulo, livrosDaSecao))
+            }
+
+            dynamicSectionCount++
+        }
+
+        dynamicSectionsContainer.postDelayed({
+            isAppendingDynamicSections = false
+        }, 650L)
+    }
+
+    private fun proximoTituloDinamico(): String {
+        val titulosPorGenero = allHomeBooks
+            .flatMap { livro ->
+                livro.genero.split(",", "/", "|").map { it.trim() }
+            }
+            .filter { it.isNotBlank() }
+            .distinctBy { it.lowercase() }
+            .map { "Mais de $it" }
+
+        val titulos = titulosPorGenero + fallbackDynamicTitles
+        return titulos[dynamicSectionCount % titulos.size]
+    }
+
+    private fun livrosParaSecao(titulo: String): List<Livro> {
+        val genero = titulo.removePrefix("Mais de ").takeIf { it != titulo }
+        val livrosDoGenero = if (genero != null) {
+            allHomeBooks.filter { it.genero.contains(genero, ignoreCase = true) }
+        } else {
+            emptyList()
+        }
+
+        val base = if (livrosDoGenero.size >= MIN_BOOKS_PER_DYNAMIC_ROW) livrosDoGenero else allHomeBooks
+        return base.shuffled().take(MAX_BOOKS_PER_DYNAMIC_ROW)
+    }
+
+    private fun criarSecaoDinamica(titulo: String, livros: List<Livro>): LinearLayout {
+        val section = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        val titleView = TextView(this).apply {
+            text = titulo
+            setTextColor(resources.getColor(R.color.texto_principal, theme))
+            textSize = 18f
+            setTypeface(null, Typeface.BOLD)
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(16.dp(), 24.dp(), 16.dp(), 8.dp())
+            }
+        }
+
+        val recyclerView = RecyclerView(this).apply {
+            id = View.generateViewId()
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            clipToPadding = false
+            setPadding(16.dp(), 0, 40.dp(), 0)
+            overScrollMode = View.OVER_SCROLL_NEVER
+            adapter = LivroAdapter(livros, itemLayoutRes = R.layout.item_livro_home)
+        }
+
+        LinearSnapHelper().attachToRecyclerView(recyclerView)
+        section.addView(titleView)
+        section.addView(recyclerView)
+
+        return section
+    }
 
     private fun setupRecyclerViews() {
         // Inicializa os adapters
@@ -185,6 +292,8 @@ class HomeActivity : BaseActivity() {
                 if (listaAclamados.isEmpty()) txtVazio?.visibility = View.VISIBLE
             } else {
                 txtVazio?.visibility = View.GONE
+                allHomeBooks.clear()
+                allHomeBooks.addAll(livros)
 
                 //Os livros vão para “Aclamados”
                 listaAclamados.clear()
@@ -203,6 +312,10 @@ class HomeActivity : BaseActivity() {
                 atualizarCategoria(livros, "Anime", listaAnimes, adapterAnimes)
                 atualizarCategoria(livros, "Clássico", listaClassicos, adapterClassicos)
                 atualizarCategoria(livros, "Fantasia", listaFantasia, adapterFantasia)
+
+                if (dynamicSectionsContainer.childCount == 0) {
+                    adicionarSecoesDinamicas(DYNAMIC_INITIAL_SECTIONS)
+                }
             }
         })
 
@@ -296,8 +409,11 @@ class HomeActivity : BaseActivity() {
     private fun setupInfiniteScroll() {
         val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
         nestedScrollView?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-            // Se o usuário scrollar até o fim do conteúdo
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+            val content = v.getChildAt(0) ?: return@OnScrollChangeListener
+            val distanciaAteOFim = content.measuredHeight - (scrollY + v.measuredHeight)
+
+            if (distanciaAteOFim <= DYNAMIC_SCROLL_THRESHOLD_DP.dp()) {
+                adicionarSecoesDinamicas()
                 viewModel.fetchBooks(isFirstPage = false)
             }
         })
@@ -359,6 +475,13 @@ class HomeActivity : BaseActivity() {
         findViewById<ImageView>(R.id.btnBuscarTop)?.setOnClickListener {
             startActivity(Intent(this, BuscaActivity::class.java))
         }
+    }
+
+    companion object {
+        private const val MIN_BOOKS_PER_DYNAMIC_ROW = 3
+        private const val MAX_BOOKS_PER_DYNAMIC_ROW = 12
+        private const val DYNAMIC_INITIAL_SECTIONS = 2
+        private const val DYNAMIC_SCROLL_THRESHOLD_DP = 700
     }
 
 }
