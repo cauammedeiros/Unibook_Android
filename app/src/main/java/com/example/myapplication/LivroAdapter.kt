@@ -12,11 +12,12 @@ import com.bumptech.glide.Glide
 // Adicionamos o "isAdmin" no construtor. Por padrão, ele é false (assim não quebra as outras telas se você esquecer de passar)
 class LivroAdapter(
     private val listaLivros: List<Livro>,
-    private val isAdmin: Boolean = false
+    private val isAdmin: Boolean = false,
+    private val itemLayoutRes: Int = R.layout.item_livro
 ) : RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LivroViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_livro, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(itemLayoutRes, parent, false)
         return LivroViewHolder(view)
     }
 
