@@ -12,6 +12,8 @@ class HomeViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
     private var favoritesListener: ListenerRegistration? = null
     
+    private var booksListener: ListenerRegistration? = null
+    
     private val _books = MutableLiveData<List<Livro>>()
     val books: LiveData<List<Livro>> get() = _books
 
@@ -26,14 +28,12 @@ class HomeViewModel : ViewModel() {
 
     private var lastVisible: DocumentSnapshot? = null
     private var isLastPage = false
-    private val PAGE_SIZE = 10L
+    private val PAGE_SIZE = 50L // Aumentado para cobrir mais livros no real-time
 
     fun fetchFavorites(userId: String) {
         // Remove listener anterior se existir
         favoritesListener?.remove()
 
-        // Usamos SnapshotListener para que a Home atualize em tempo real 
-        // quando o usuário favoritar/desfavoritar em outra tela
         favoritesListener = db.collection("Favoritos")
             .whereEqualTo("userId", userId)
             .addSnapshotListener { snapshot, e ->
@@ -45,8 +45,6 @@ class HomeViewModel : ViewModel() {
                 if (snapshot != null) {
                     val favBooks = snapshot.documents.mapNotNull { doc ->
                         val livro = doc.toObject(Livro::class.java)
-                        // IMPORTANTE: Garantir que o ID do livro seja o ID original (livroId)
-                        // e não o ID do documento do favorito (que é userId_livroId)
                         livro?.id = doc.getString("livroId") ?: doc.id
                         livro
                     }
@@ -62,49 +60,69 @@ class HomeViewModel : ViewModel() {
         _loading.value = true
         _error.value = null
 
-        var query = db.collection("Livros")
-            .limit(PAGE_SIZE)
-
+        // Para a primeira página, usamos um listener em tempo real
         if (isFirstPage) {
-            lastVisible = null
-            isLastPage = false
-        } else if (lastVisible != null) {
-            query = query.startAfter(lastVisible!!)
-        }
+            booksListener?.remove()
+            booksListener = db.collection("Livros")
+                .limit(PAGE_SIZE)
+                .addSnapshotListener { snapshot, e ->
+                    _loading.value = false
+                    if (e != null) {
+                        _error.value = e.message
+                        return@addSnapshotListener
+                    }
 
-        query.get()
-            .addOnSuccessListener { documents ->
-                val newBooks = documents.map { doc ->
-                    val livro = doc.toObject(Livro::class.java)
-                    // IMPORTANTE: Se o documento não tem o campo 'id' dentro dele,
-                    // pegamos o ID do documento do Firestore.
-                    livro.id = doc.id 
-                    livro
+                    if (snapshot != null) {
+                        val booksList = snapshot.documents.map { doc ->
+                            val livro = doc.toObject(Livro::class.java)!!
+                            livro.id = doc.id
+                            livro
+                        }
+                        _books.value = booksList
+                        if (!snapshot.isEmpty) {
+                            lastVisible = snapshot.documents[snapshot.size() - 1]
+                        }
+                        isLastPage = snapshot.size() < PAGE_SIZE
+                    }
                 }
-                
-                if (isFirstPage) {
-                    _books.value = newBooks
-                } else {
+        } else {
+            // Para páginas seguintes, mantemos o get() para evitar excesso de listeners ativos
+            var query = db.collection("Livros")
+                .limit(PAGE_SIZE)
+
+            if (lastVisible != null) {
+                query = query.startAfter(lastVisible!!)
+            }
+
+            query.get()
+                .addOnSuccessListener { documents ->
+                    val newBooks = documents.map { doc ->
+                        val livro = doc.toObject(Livro::class.java)
+                        livro.id = doc.id 
+                        livro
+                    }
+                    
                     val currentList = _books.value?.toMutableList() ?: mutableListOf()
                     currentList.addAll(newBooks)
                     _books.value = currentList
-                }
 
-                if (!documents.isEmpty) {
-                    lastVisible = documents.documents[documents.size() - 1]
+                    if (!documents.isEmpty) {
+                        lastVisible = documents.documents[documents.size() - 1]
+                    }
+                    
+                    isLastPage = documents.size() < PAGE_SIZE
+                    _loading.value = false
                 }
-                
-                isLastPage = documents.size() < PAGE_SIZE
-                _loading.value = false
-            }
-            .addOnFailureListener { exception ->
-                _error.value = exception.message
-                _loading.value = false
-            }
+                .addOnFailureListener { exception ->
+                    _error.value = exception.message
+                    _loading.value = false
+                }
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
         favoritesListener?.remove()
+        booksListener?.remove()
     }
 }

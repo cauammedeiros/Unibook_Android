@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class PesquisaGeneroActivity : BaseActivity() {
 
@@ -20,6 +21,7 @@ class PesquisaGeneroActivity : BaseActivity() {
     private lateinit var adapter: LivroGridAdapter
     private val listaLivros = mutableListOf<Livro>()
     private lateinit var btnVoltar: ImageButton
+    private var snapshotListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +61,22 @@ class PesquisaGeneroActivity : BaseActivity() {
     }
 
     private fun carregarTodosLivros() {
-        db.collection("Livros")
-            .get()
-            .addOnSuccessListener { documents ->
-                listaLivros.clear()
-                for (document in documents) {
-                    val livro = document.toObject(Livro::class.java)
-                    livro.id = document.id
-                    listaLivros.add(livro)
+        snapshotListener?.remove()
+        snapshotListener = db.collection("Livros")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) return@addSnapshotListener
+                
+                if (snapshot != null) {
+                    listaLivros.clear()
+                    for (document in snapshot.documents) {
+                        val livro = document.toObject(Livro::class.java)
+                        if (livro != null) {
+                            livro.id = document.id
+                            listaLivros.add(livro)
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
                 }
-                adapter.notifyDataSetChanged()
-            }
-            .addOnFailureListener { e ->
             }
     }
 
@@ -78,35 +84,59 @@ class PesquisaGeneroActivity : BaseActivity() {
         val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
         val userId = sharedPref.getString("USER_ID", null) ?: return
 
-        db.collection("Favoritos")
+        snapshotListener?.remove()
+        snapshotListener = db.collection("Favoritos")
             .whereEqualTo("userId", userId)
-            .get()
-            .addOnSuccessListener { documents ->
-                listaLivros.clear()
-                for (document in documents) {
-                    val livro = document.toObject(Livro::class.java)
-                    livro.id = document.getString("livroId") ?: document.id
-                    listaLivros.add(livro)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) return@addSnapshotListener
+                
+                if (snapshot != null) {
+                    listaLivros.clear()
+                    for (document in snapshot.documents) {
+                        val livro = document.toObject(Livro::class.java)
+                        if (livro != null) {
+                            livro.id = document.getString("livroId") ?: document.id
+                            listaLivros.add(livro)
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
                 }
-                adapter.notifyDataSetChanged()
             }
     }
 
     private fun carregarLivrosPorGenero(genero: String) {
-        db.collection("Livros")
-            .whereEqualTo("Genero", genero)
-            .get()
-            .addOnSuccessListener { documents ->
-                listaLivros.clear()
-                for (document in documents) {
-                    val livro = document.toObject(Livro::class.java)
-                    livro.id = document.id
-                    listaLivros.add(livro)
+        snapshotListener?.remove()
+        
+        // Mapeamento de nomes de gêneros para termos de busca (consistente com HomeActivity)
+        val termoBusca = when(genero) {
+            "Ficção Científica" -> "Ficção"
+            else -> genero
+        }
+
+        snapshotListener = db.collection("Livros")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) return@addSnapshotListener
+                
+                if (snapshot != null) {
+                    listaLivros.clear()
+                    for (document in snapshot.documents) {
+                        val livro = document.toObject(Livro::class.java)
+                        if (livro != null) {
+                            livro.id = document.id
+                            // Filtro por "contém" para suportar múltiplos gêneros no mesmo livro
+                            if (livro.genero.contains(termoBusca, ignoreCase = true)) {
+                                listaLivros.add(livro)
+                            }
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
                 }
-                adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener { e ->
-            }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        snapshotListener?.remove()
     }
 
     private fun configurarNavegacao() {
