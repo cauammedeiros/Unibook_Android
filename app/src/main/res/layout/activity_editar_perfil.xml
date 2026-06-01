@@ -30,23 +30,12 @@
 
         <TextView
             android:id="@+id/txtTituloEditarPerfil"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/btn_editar_perfil"
             android:textColor="@color/texto_principal"
             android:textSize="22sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/btnTema"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_light_mode"
-            android:padding="4dp"
-            app:tint="@color/cor_icones"
-            android:contentDescription="@string/desc_alternar_tema"
-            android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

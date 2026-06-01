@@ -42,7 +42,6 @@ class EditarPerfilActivity : BaseActivity() {
             }
         }
         carregarDadosAtuais(edtNome, edtEmail)
-        configurarBotaoTema()
     }
 
     private fun validarCampos(nome: String, email: String, edtNome: EditText, edtEmail: EditText): Boolean {
@@ -64,20 +63,6 @@ class EditarPerfilActivity : BaseActivity() {
 
 
         return isValid
-    }
-
-    private fun configurarBotaoTema() {
-        val btnTema = findViewById<ImageView>(R.id.btnTema)
-        val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-        btnTema?.setImageResource(if (isDarkMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode)
-
-        btnTema?.setOnClickListener {
-            if (isDarkMode) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-        }
     }
 
 
