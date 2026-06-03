@@ -125,38 +125,46 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/cor_card"
-                android:paddingHorizontal="16dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/cor_card">
 
-                <TextView
-                    android:id="@+id/txtEmail"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="16dp"
-                    android:text="@string/placeholder_email"
-                    android:textColor="@color/texto_principal"
-                    android:textSize="16sp" />
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/cinza_borda"
-                    android:alpha="0.3" />
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="16dp"
+                        android:text="@string/placeholder_email"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/txtLivrosEmprestimo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="16dp"
-                    android:text="@string/label_livros_emprestimo"
-                    android:textColor="@color/texto_principal"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/cinza_borda"
+                        android:alpha="0.3" />
+
+                    <TextView
+                        android:id="@+id/txtLivrosEmprestimo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="16dp"
+                        android:text="@string/label_livros_emprestimo"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- Seção: Empréstimo Atual -->
             <TextView
@@ -236,18 +244,20 @@
                     android:id="@+id/btnLivrosFav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_profile_action"
-                    android:gravity="center_vertical"
-                    android:padding="12dp"
                     android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_profile_action"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:contentDescription="@string/btn_livros_favoritos"
                         android:src="@drawable/ic_star_outline"
-                        app:tint="@color/azul_botao"
-                        android:contentDescription="@string/btn_livros_favoritos" />
+                        app:tint="@color/azul_botao" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
